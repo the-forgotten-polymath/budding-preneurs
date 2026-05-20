@@ -109,12 +109,12 @@ export default function BlogPage() {
 
         {/* FEATURE IMAGE */}
         <section className="px-6 pb-20 max-w-6xl mx-auto">
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[21/9] w-full">
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[16/9] md:aspect-[21/9] w-full bg-slate-50">
             <Image
               src="/images/blog/blog_women_steps_1779276238965.png"
               alt="Five young women standing on outdoor steps expressing playful gestures"
               fill
-              className="object-cover"
+              className="object-cover object-top"
             />
           </div>
         </section>

@@ -167,12 +167,12 @@ export default function WorkshopsPage() {
 
             {/* CARD 2 */}
             <div className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DF] hover:shadow-xl transition-shadow flex flex-col group">
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden">
+              <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-50">
                 <Image 
                   src="/images/workshops/workshops_yoga_1779275490769.png" 
                   alt="Yoga Wellness" 
                   fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700" 
                 />
               </div>
               <div className="p-8 flex flex-col flex-grow">
