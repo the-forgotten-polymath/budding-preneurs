@@ -117,29 +117,10 @@ export default function Home() {
       
       {/* 🚀 GLOWING HEADER / NAVIGATION BAR (Exactly like image.png) */}
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/80 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm" : "bg-transparent py-5"}`}>
-        <div className="max-w-7xl mx-auto px-12 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           
           {/* Buddingpreneurs Brand Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <svg
-              className="w-8 h-8 text-[#0f172a]"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M8 12C14 12 16 8 18 14C20 20 22 24 28 24"
-                stroke="currentColor"
-                strokeWidth="3.2"
-                strokeLinecap="round"
-              />
-              <path
-                d="M6 18C10 18 12 15 14 19C16 23 18 25 22 25"
-                stroke="currentColor"
-                strokeWidth="3.2"
-                strokeLinecap="round"
-              />
-            </svg>
             <span className="text-xl font-black tracking-tight text-[#0f172a] font-sans">
               Buddingpreneurs
             </span>
@@ -227,7 +208,7 @@ export default function Home() {
             >
               <div className="w-5 h-5 rounded-full overflow-hidden border border-slate-200 relative flex-shrink-0">
                 <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=100&q=80" 
+                  src="/images/home/founder.png" 
                   alt="Founder" 
                   className="object-cover w-full h-full"
                 />
