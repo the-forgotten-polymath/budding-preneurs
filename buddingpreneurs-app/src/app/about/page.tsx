@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Menu, X } from "lucide-react";
+import { ArrowRight, Menu, X, Users, Star, Target } from "lucide-react";
+import Footer from "@/components/Footer";
 
 export default function AboutPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -107,9 +108,7 @@ export default function AboutPage() {
         </div>
       </main>
 
-      <footer className="py-12 bg-[#1C1C1C] text-center text-white mt-auto">
-        <p className="text-[#888888] text-sm">© {new Date().getFullYear()} Buddingpreneurs. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

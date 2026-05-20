@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
-
+import Footer from "@/components/Footer";
 export default function DisclaimerPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -98,9 +98,7 @@ export default function DisclaimerPage() {
         </div>
       </main>
 
-      <footer className="py-12 bg-[#1C1C1C] text-center text-white mt-auto">
-        <p className="text-[#888888] text-sm">© {new Date().getFullYear()} Buddingpreneurs. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

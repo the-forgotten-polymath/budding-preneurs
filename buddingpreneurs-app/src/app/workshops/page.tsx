@@ -14,6 +14,7 @@ import {
   BookOpen
 } from "lucide-react";
 import { siteMetadata } from "../../data/siteData";
+import Footer from "@/components/Footer";
 
 export default function WorkshopsPage() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,7 +54,7 @@ export default function WorkshopsPage() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <a href="#" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
+            <a href="/business-plan" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
               <span>Join for Free</span>
               <ArrowRight className="w-3 h-3" />
             </a>
@@ -86,7 +87,7 @@ export default function WorkshopsPage() {
                 </a>
               ))}
               <div className="w-12 h-px bg-slate-200 my-4" />
-              <a href="#" onClick={() => setIsMobileMenuOpen(false)} className="px-8 py-3.5 rounded-full text-sm font-bold transition-all flex items-center justify-center gap-2 bg-[#0f172a] text-white w-full max-w-xs shadow-sm hover:bg-slate-800">
+              <a href="/business-plan" onClick={() => setIsMobileMenuOpen(false)} className="px-8 py-3.5 rounded-full text-sm font-bold transition-all flex items-center justify-center gap-2 bg-[#0f172a] text-white w-full max-w-xs shadow-sm hover:bg-slate-800">
                 <span>Join for Free</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
@@ -158,7 +159,7 @@ export default function WorkshopsPage() {
                 <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
                   Learn essential skills for business growth and promotion. Gain practical knowledge from experts in various fields.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 bg-[#0f172a] text-white hover:bg-[#C9540A]">
+                <a href="/business-plan" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 bg-[#0f172a] text-white hover:bg-[#C9540A]">
                   <span>Join</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
@@ -183,7 +184,7 @@ export default function WorkshopsPage() {
                 <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
                   Participate in wellness workshops for holistic empowerment and growth. Keep your mind and body balanced.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 border-2 border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white">
+                <a href="/programs" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 border-2 border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white">
                   <span>Explore</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
@@ -224,7 +225,7 @@ export default function WorkshopsPage() {
                 <p className="text-gray-300 text-lg leading-relaxed mb-8">
                   Join our empowering Skill Development Workshop designed for Indian women entrepreneurs. Learn essential skills in brand promotion on Facebook, Instagram, and WhatsApp. Collaborate with fellow women to enhance your business acumen and achieve economic independence through shared resources and support.
                 </p>
-                <a href="#" className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-[#C9540A] text-white hover:bg-white hover:text-[#C9540A]">
+                <a href="/contact" className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-[#C9540A] text-white hover:bg-white hover:text-[#C9540A]">
                   <span>Register Now</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
@@ -244,7 +245,7 @@ export default function WorkshopsPage() {
                 <p className="text-gray-300 text-lg leading-relaxed mb-8">
                   Enroll your kids in our engaging Online Workshop tailored for young minds. This interactive session focuses on skill development and creativity, fostering a supportive environment for children to learn and grow. Empower the next generation of innovators and entrepreneurs today!
                 </p>
-                <a href="#" className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-white text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white">
+                <a href="/business-plan" className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-white text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white">
                   <span>Join Today</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
@@ -266,67 +267,8 @@ export default function WorkshopsPage() {
 
       </main>
 
-      {/* FOOTER */}
-      <footer id="contact" className="py-16 px-6 bg-[#1C1C1C] relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 items-start">
-          
-          <div className="col-span-1 md:col-span-2">
-            <a href="#" className="flex items-center gap-2 mb-6">
-              <span className="text-2xl font-black tracking-tight text-white font-sans lowercase">buddingpreneurs</span>
-            </a>
-            <p className="text-[#888888] text-sm leading-relaxed max-w-sm font-sans mb-8">
-              Indian women entrepreneurs rise here. Join the sisterhood, build your personal brand, set up digital catalogs, and achieve economic self-reliance.
-            </p>
-            <div className="flex gap-4">
-               {/* Social Icons Placeholder */}
-               <a href="#" className="w-10 h-10 rounded-full border border-[#333333] flex items-center justify-center text-white hover:border-[#C9540A] hover:text-[#C9540A] transition-colors">
-                  IG
-               </a>
-               <a href="#" className="w-10 h-10 rounded-full border border-[#333333] flex items-center justify-center text-white hover:border-[#C9540A] hover:text-[#C9540A] transition-colors">
-                  FB
-               </a>
-               <a href="#" className="w-10 h-10 rounded-full border border-[#333333] flex items-center justify-center text-white hover:border-[#C9540A] hover:text-[#C9540A] transition-colors">
-                  LI
-               </a>
-            </div>
-          </div>
+      <Footer />
 
-          <div>
-            <h4 className="text-white font-bold mb-6">Quick Links</h4>
-            <ul className="flex flex-col gap-4 text-sm text-[#888888]">
-              <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
-              <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
-              <li><a href="/programs" className="hover:text-white transition-colors">Programs</a></li>
-              <li><a href="/workshops" className="hover:text-white transition-colors">Workshops</a></li>
-              <li><a href="/community" className="hover:text-white transition-colors">Community</a></li>
-              <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-bold mb-6">Get In Touch</h4>
-            <div className="flex flex-col gap-4 text-sm text-[#888888]">
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#C9540A]" />
-                <span>{siteMetadata.contactEmail}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="w-4 h-4 text-[#C9540A]" />
-                <span>{siteMetadata.location}</span>
-              </div>
-            </div>
-          </div>
-
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-[#333333] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#666666]">
-          <span>&copy; {new Date().getFullYear()} Buddingpreneurs. All rights reserved.</span>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

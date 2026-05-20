@@ -4,6 +4,8 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X, Mail, MapPin } from "lucide-react";
+import Footer from "@/components/Footer";
+
 import { siteMetadata } from "../../data/siteData";
 
 export default function BlogPage() {
@@ -56,7 +58,7 @@ export default function BlogPage() {
             ))}
           </nav>
           <div className="flex items-center gap-2 sm:gap-4">
-            <a href="/contact" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
+            <a href="/business-plan" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
               <span>Join for Free</span>
               <ArrowRight className="w-3 h-3" />
             </a>
@@ -194,17 +196,7 @@ export default function BlogPage() {
 
       </main>
 
-      <footer id="contact" className="py-16 px-6 bg-[#1C1C1C] relative z-10 w-full">
-        {/* Same Footer Code ... shortened for space */}
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 items-start text-white">
-          <div className="col-span-1 md:col-span-2">
-            <span className="text-2xl font-black tracking-tight font-sans lowercase">buddingpreneurs</span>
-            <p className="text-[#888888] text-sm leading-relaxed max-w-sm font-sans mt-6">
-              Indian women entrepreneurs rise here.
-            </p>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

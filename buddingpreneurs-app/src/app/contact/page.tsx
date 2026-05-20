@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X, Mail, MapPin } from "lucide-react";
-
+import Footer from "@/components/Footer";
 export default function ContactPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -103,8 +103,8 @@ export default function ContactPage() {
               </div>
               <div>
                 <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Business Category *</label>
-                <select className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50" required>
-                  <option value="" disabled selected>Select a category</option>
+                <select defaultValue="" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50" required>
+                  <option value="" disabled>Select a category</option>
                   <option value="crafting">Crafting</option>
                   <option value="food">Food & Baking</option>
                   <option value="apparel">Apparel & Fashion</option>
@@ -135,9 +135,7 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <footer className="py-12 bg-[#1C1C1C] text-center text-white mt-auto">
-        <p className="text-[#888888] text-sm">© {new Date().getFullYear()} Buddingpreneurs. All rights reserved.</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

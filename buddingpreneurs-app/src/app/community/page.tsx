@@ -12,6 +12,8 @@ import {
   Star,
   Quote
 } from "lucide-react";
+import Footer from "@/components/Footer";
+
 import { siteMetadata } from "../../data/siteData";
 
 export default function CommunityPage() {
@@ -68,7 +70,7 @@ export default function CommunityPage() {
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <a href="/contact" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
+            <a href="/business-plan" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
               <span>Join for Free</span>
               <ArrowRight className="w-3 h-3" />
             </a>
@@ -103,7 +105,7 @@ export default function CommunityPage() {
                 </a>
               ))}
               <div className="w-12 h-px bg-slate-200 my-4" />
-              <a href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="px-8 py-3.5 rounded-full text-sm font-bold transition-all flex items-center justify-center gap-2 bg-[#0f172a] text-white w-full max-w-xs shadow-sm hover:bg-slate-800">
+              <a href="/business-plan" onClick={() => setIsMobileMenuOpen(false)} className="px-8 py-3.5 rounded-full text-sm font-bold transition-all flex items-center justify-center gap-2 bg-[#0f172a] text-white w-full max-w-xs shadow-sm hover:bg-slate-800">
                 <span>Join for Free</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
@@ -209,39 +211,7 @@ export default function CommunityPage() {
       </main>
 
       {/* FOOTER */}
-      <footer id="contact" className="py-16 px-6 bg-[#1C1C1C] relative z-10 w-full">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 items-start">
-          <div className="col-span-1 md:col-span-2">
-            <a href="/" className="flex items-center gap-2 mb-6">
-              <span className="text-2xl font-black tracking-tight text-white font-sans lowercase">buddingpreneurs</span>
-            </a>
-            <p className="text-[#888888] text-sm leading-relaxed max-w-sm font-sans mb-8">
-              Indian women entrepreneurs rise here. Join the sisterhood, build your personal brand, set up digital catalogs, and achieve economic self-reliance.
-            </p>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-6">Quick Links</h4>
-            <ul className="flex flex-col gap-4 text-sm text-[#888888]">
-              {navLinks.slice(0, 5).map(link => (
-                <li key={link.name}><a href={link.path} className="hover:text-white transition-colors">{link.name}</a></li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h4 className="text-white font-bold mb-6">Get In Touch</h4>
-            <div className="flex flex-col gap-4 text-sm text-[#888888]">
-              <div className="flex items-center gap-3">
-                <Mail className="w-4 h-4 text-[#C9540A]" />
-                <span>{siteMetadata.contactEmail}</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <MapPin className="w-4 h-4 text-[#C9540A]" />
-                <span>{siteMetadata.location}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
