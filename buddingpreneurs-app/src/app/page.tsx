@@ -21,7 +21,9 @@ import {
   Shield,
   Briefcase,
   PlayCircle,
-  ChevronLeft
+  ChevronLeft,
+  Menu,
+  X
 } from "lucide-react";
 import { tabsData, siteMetadata, TabData } from "../data/siteData";
 
@@ -29,6 +31,7 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("platform");
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const testimonials = [
@@ -140,17 +143,62 @@ export default function Home() {
           </nav>
 
           {/* Call to action button */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <a
               href="#"
-              className="px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm"
+              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm"
             >
               <span>Join for Free</span>
               <ArrowRight className="w-3 h-3" />
             </a>
+            
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="lg:hidden p-1.5 sm:p-2 text-[#0f172a] hover:bg-slate-100 rounded-full transition-colors z-50 relative"
+            >
+              {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
+            </button>
           </div>
         </div>
       </header>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md pt-24 px-6 pb-6 overflow-y-auto lg:hidden flex flex-col"
+          >
+            <div className="flex flex-col gap-6 items-center text-center mt-8">
+              {['Home', 'Workshops', 'Community', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-lg font-semibold text-[#0f172a] hover:text-[#C9540A] transition-colors"
+                >
+                  {item}
+                </a>
+              ))}
+              
+              <div className="w-12 h-px bg-slate-200 my-4" />
+              
+              <a
+                href="#"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="px-8 py-3.5 rounded-full text-sm font-bold transition-all flex items-center justify-center gap-2 bg-[#0f172a] text-white w-full max-w-xs shadow-sm hover:bg-slate-800"
+              >
+                <span>Join for Free</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ☀️ BRIGHT AIRY HERO SECTION (Exactly like image.png, now full screen with stretched image overlay) */}
       <section className="relative bg-white min-h-screen px-6 flex flex-col items-center justify-start overflow-hidden">
