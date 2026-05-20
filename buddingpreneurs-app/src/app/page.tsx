@@ -127,12 +127,16 @@ export default function Home() {
           </a>
 
           {/* Center Navigation links */}
-          <nav className="hidden md:flex items-center gap-8">
-            <a href="#" className="text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Features</a>
-            <a href="#" className="text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Communities</a>
-            <a href="#" className="text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Events</a>
-            <a href="#" className="text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">About Us</a>
-            <a href="#" className="text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Login</a>
+          <nav className="hidden lg:flex flex-wrap items-center justify-center gap-4 xl:gap-6">
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Home</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Workshops</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Community</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Blog</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Our Programs</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Business Plan</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Disclaimer</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">About us</a>
+            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Contact</a>
           </nav>
 
           {/* Call to action button */}
