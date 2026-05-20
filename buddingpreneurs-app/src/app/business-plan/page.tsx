@@ -87,58 +87,176 @@ export default function BusinessPlanPage() {
         )}
       </AnimatePresence>
 
-      <main className="flex-grow pt-32 pb-20 px-6 max-w-5xl mx-auto w-full">
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-4">Business Plan</h1>
-          <p className="text-[#C9540A] font-bold tracking-widest uppercase text-sm">Ideal Membership Structure</p>
-        </div>
+      <main className="flex-grow">
+        {/* HERO SECTION */}
+        <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100 text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-6">
+            <span>Membership Plans</span>
+          </div>
+          <h1 className="text-4xl md:text-6xl font-black text-[#1A1A1A] leading-[1.1] mb-6">
+            Invest in Your <br />
+            <span className="italic font-serif text-[#C9540A]">Business Journey</span>
+          </h1>
+          <p className="text-[#334155] text-lg leading-relaxed max-w-2xl mx-auto mb-10">
+            Whether you're just starting out or looking to scale your existing home-based venture, our membership plans are designed to give you the exact support, training, and community you need.
+          </p>
+        </section>
 
-        <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
-          <h2 className="text-3xl font-black mb-8 border-b pb-4">Membership Tiers</h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-              <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Basic</h3>
-              <p className="text-slate-500 mb-6 text-sm">For those just starting out.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Access to basic workshops</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Community forum access</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Monthly newsletter</li>
-              </ul>
-              <button className="w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold hover:bg-[#1A1A1A] hover:text-white transition-colors">Join Free</button>
+        {/* PRICING SECTION */}
+        <section className="pb-24 px-6 max-w-6xl mx-auto">
+          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
+            <h2 className="text-3xl font-black mb-8 border-b pb-4 text-center">Membership Tiers</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Basic</h3>
+                <p className="text-slate-500 mb-6 text-sm h-10">For those just starting out.</p>
+                <div className="mb-8">
+                  <span className="text-4xl font-black text-[#1A1A1A]">Free</span>
+                </div>
+                <ul className="space-y-3 mb-8 h-40">
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Access to basic workshops</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Community forum access</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Monthly newsletter</li>
+                </ul>
+                <button className="w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold hover:bg-[#1A1A1A] hover:text-white transition-colors">Join Free</button>
+              </div>
+              
+              <div className="bg-[#1A1A1A] text-white rounded-2xl p-6 border border-slate-800 relative transform md:-translate-y-4 shadow-2xl">
+                <div className="absolute top-0 right-0 bg-[#C9540A] text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">POPULAR</div>
+                <h3 className="text-xl font-bold mb-2">Pro</h3>
+                <p className="text-gray-400 mb-6 text-sm h-10">For growing entrepreneurs needing expert guidance.</p>
+                <div className="mb-8">
+                  <span className="text-4xl font-black">₹999</span>
+                  <span className="text-gray-400 text-sm">/year</span>
+                </div>
+                <ul className="space-y-3 mb-8 h-40">
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> All Basic features</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Advanced marketing tools</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> 1-on-1 mentorship sessions</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Digital catalog setup</li>
+                </ul>
+                <button className="w-full py-3 rounded-xl bg-[#C9540A] font-bold hover:bg-white hover:text-[#C9540A] transition-colors">Get Started</button>
+              </div>
+              
+              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow">
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Elite</h3>
+                <p className="text-slate-500 mb-6 text-sm h-10">For established businesses ready to scale.</p>
+                <div className="mb-8">
+                  <span className="text-4xl font-black text-[#1A1A1A]">₹2,499</span>
+                  <span className="text-slate-500 text-sm">/year</span>
+                </div>
+                <ul className="space-y-3 mb-8 h-40">
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> All Pro features</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Brand promotion campaigns</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Priority 24/7 support</li>
+                  <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Exclusive networking events</li>
+                </ul>
+                <button className="w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold hover:bg-[#1A1A1A] hover:text-white transition-colors">Contact Us</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* WHY JOIN US / FEATURES */}
+        <section className="bg-[#1A1A1A] py-24 px-6 text-white">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-5xl font-black mb-6">More Than Just a <span className="italic font-serif text-[#C9540A]">Membership</span></h2>
+              <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                When you join Buddingpreneurs, you aren't just paying for courses—you're investing in a thriving ecosystem designed to guarantee your success.
+              </p>
             </div>
             
-            <div className="bg-[#1A1A1A] text-white rounded-2xl p-6 border border-slate-800 relative transform md:-translate-y-4 shadow-2xl">
-              <div className="absolute top-0 right-0 bg-[#C9540A] text-xs font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">POPULAR</div>
-              <h3 className="text-xl font-bold mb-2">Pro</h3>
-              <p className="text-gray-400 mb-6 text-sm">For growing entrepreneurs.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> All Basic features</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Advanced marketing tools</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> 1-on-1 mentorship</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Digital catalog setup</li>
-              </ul>
-              <button className="w-full py-3 rounded-xl bg-[#C9540A] font-bold hover:bg-white hover:text-[#C9540A] transition-colors">Get Started</button>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="bg-[#2A2A2A] p-8 rounded-2xl border border-gray-800">
+                <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mb-6">
+                  <span className="text-2xl">👩‍🏫</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Expert Mentorship</h3>
+                <p className="text-gray-400">Get direct feedback, personalized advice, and strategic guidance from successful women entrepreneurs.</p>
+              </div>
+              <div className="bg-[#2A2A2A] p-8 rounded-2xl border border-gray-800">
+                <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mb-6">
+                  <span className="text-2xl">🤝</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Vibrant Sisterhood</h3>
+                <p className="text-gray-400">Never feel alone in your journey. Connect, collaborate, and grow alongside hundreds of like-minded women.</p>
+              </div>
+              <div className="bg-[#2A2A2A] p-8 rounded-2xl border border-gray-800">
+                <div className="w-12 h-12 bg-gray-800 rounded-full flex items-center justify-center mb-6">
+                  <span className="text-2xl">📈</span>
+                </div>
+                <h3 className="text-xl font-bold mb-3">Actionable Growth</h3>
+                <p className="text-gray-400">Our programs focus on practical, actionable steps that directly translate to brand visibility and income.</p>
+              </div>
             </div>
-            
-            <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200">
-              <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Elite</h3>
-              <p className="text-slate-500 mb-6 text-sm">For established businesses.</p>
-              <ul className="space-y-3 mb-8">
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> All Pro features</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Brand promotion campaigns</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Priority support</li>
-                <li className="flex gap-2 text-sm"><CheckCircle2 className="w-5 h-5 text-[#C9540A] shrink-0"/> Exclusive networking events</li>
-              </ul>
-              <button className="w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold hover:bg-[#1A1A1A] hover:text-white transition-colors">Contact Us</button>
+          </div>
+        </section>
+
+        {/* CTA SECTION */}
+        <section className="py-24 px-6 text-center">
+          <h2 className="text-3xl md:text-4xl font-black text-[#1A1A1A] mb-6">Ready to turn your skills into a business?</h2>
+          <p className="text-slate-600 mb-8 max-w-xl mx-auto">
+            Take the first step towards financial independence today. Join the community and start your entrepreneurial journey.
+          </p>
+          <a href="/contact" className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-[#C9540A] text-white hover:bg-[#1A1A1A] shadow-lg hover:shadow-xl">
+            <span>Get in Touch</span>
+            <ArrowRight className="w-4 h-4" />
+          </a>
+        </section>
+      </main>
+
+      {/* FULL FOOTER */}
+      <footer id="contact" className="py-16 px-6 bg-[#1C1C1C] relative z-10 w-full">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 items-start">
+          <div className="col-span-1 md:col-span-2">
+            <a href="/" className="flex items-center gap-2 mb-6">
+              <span className="text-2xl font-black tracking-tight text-white font-sans lowercase">buddingpreneurs</span>
+            </a>
+            <p className="text-[#888888] text-sm leading-relaxed max-w-sm font-sans mb-8">
+              Indian women entrepreneurs rise here. Join the sisterhood, build your personal brand, set up digital catalogs, and achieve economic self-reliance.
+            </p>
+            <div className="flex gap-4">
+               <a href="#" className="w-10 h-10 rounded-full border border-[#333333] flex items-center justify-center text-white hover:border-[#C9540A] hover:text-[#C9540A] transition-colors">IG</a>
+               <a href="#" className="w-10 h-10 rounded-full border border-[#333333] flex items-center justify-center text-white hover:border-[#C9540A] hover:text-[#C9540A] transition-colors">FB</a>
+               <a href="#" className="w-10 h-10 rounded-full border border-[#333333] flex items-center justify-center text-white hover:border-[#C9540A] hover:text-[#C9540A] transition-colors">LI</a>
+            </div>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-6">Quick Links</h4>
+            <ul className="flex flex-col gap-4 text-sm text-[#888888]">
+              <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
+              <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="/programs" className="hover:text-white transition-colors">Programs</a></li>
+              <li><a href="/community" className="hover:text-white transition-colors">Community</a></li>
+              <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="text-white font-bold mb-6">Get In Touch</h4>
+            <div className="flex flex-col gap-4 text-sm text-[#888888]">
+              <div className="flex items-center gap-3">
+                <span className="w-4 h-4 text-[#C9540A]">✉</span>
+                <span>{siteMetadata.contactEmail}</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="w-4 h-4 text-[#C9540A]">📍</span>
+                <span>{siteMetadata.location}</span>
+              </div>
             </div>
           </div>
         </div>
-      </main>
-
-      {/* Simplified footer */}
-      <footer className="py-12 bg-[#1C1C1C] text-center text-white">
-        <p className="text-[#888888] text-sm">© {new Date().getFullYear()} Buddingpreneurs. All rights reserved.</p>
+        
+        <div className="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-[#333333] flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-[#666666]">
+          <span>&copy; {new Date().getFullYear()} Buddingpreneurs. All rights reserved.</span>
+          <div className="flex gap-6">
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          </div>
+        </div>
       </footer>
     </div>
   );
