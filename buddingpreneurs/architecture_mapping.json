@@ -1,0 +1,1100 @@
+{
+  "project_name": "Buddingpreneurs Redesign Catalog & Architecture Map",
+  "site_base_url": "https://buddingpreneurs.in/",
+  "total_pages": 9,
+  "navigation_hierarchy": [
+    {
+      "label": "Home",
+      "route": "/",
+      "slug": "home"
+    },
+    {
+      "label": "Our Programs",
+      "route": "/our-programs",
+      "slug": "our-programs"
+    },
+    {
+      "label": "Workshops",
+      "route": "/workshops",
+      "slug": "workshops"
+    },
+    {
+      "label": "Business Plan",
+      "route": "/business-plan",
+      "slug": "business-plan"
+    },
+    {
+      "label": "Community",
+      "route": "/community",
+      "slug": "community"
+    },
+    {
+      "label": "Blog",
+      "route": "/blog",
+      "slug": "blog"
+    },
+    {
+      "label": "About Us",
+      "route": "/about-us",
+      "slug": "about-us"
+    },
+    {
+      "label": "Contact",
+      "route": "/contact",
+      "slug": "contact"
+    },
+    {
+      "label": "Disclaimer",
+      "route": "/disclaimer",
+      "slug": "disclaimer"
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://buddingpreneurs.in/",
+      "slug": "home",
+      "title": "Buddingpreneurs – Startup Training & Empowerment Platform for Indian Women | Buddingpreneurs",
+      "headings": [
+        "Welcome to Buddingpreneurs Celebrating Women-Led Businesses.",
+        "Start Small, Dream Big — Women Entrepreneurs Rise Here",
+        "Our Community Speaks",
+        "🏆 Recognition",
+        "At Buddingpreneurs, we believe that recognition is a reflection of consistent effort and impact. Over time, our journey has been marked by various certifications, awards, and acknowledgments from respected organizations. These milestones not only validate our commitment to empowering women but also inspire us to keep growing.",
+        "Get In Touch",
+        "Our Clients"
+      ],
+      "content_snippets": [
+        "Connect      Collaborate     Grow",
+        "Turning Skills into Startups for Indian Women",
+        "Buddingpreneurs is a vibrant community dedicated to empowering Indian women through skill development, collaboration, and support, fostering independence and economic growth in their entrepreneurial journeys. We believe in the power of community. Through hands-on training, digital tools, and peer support, we help women turn ideas into income. Whether it’s starting a home business, learning new skills, or building a personal brand — we grow stronger, together.",
+        "Every big journey begins with a small step — and at Buddingpreneur, we help women take that first leap through our Start-up program. With the right skills, guidance, and community, women can turn simple ideas into powerful ventures and achieve the independence they deserve.",
+        "Participate in workshops focused on brand promotion and technical skills for aspiring women entrepreneurs.",
+        "Leverage our community resources for effective marketing strategies and organic reach to your target audience.",
+        "\"Promoting inner strength and balance through guided yoga, meditation, and holistic wellness practices tailored for women.\"",
+        "Join our community of women entrepreneurs. Reach out for support, collaboration, and skill development.",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com"
+      ],
+      "full_text_blocks": [
+        "Connect      Collaborate     Grow",
+        "Turning Skills into Startups for Indian Women",
+        "Buddingpreneurs is a vibrant community dedicated to empowering Indian women through skill development, collaboration, and support, fostering independence and economic growth in their entrepreneurial journeys. We believe in the power of community. Through hands-on training, digital tools, and peer support, we help women turn ideas into income. Whether it’s starting a home business, learning new skills, or building a personal brand — we grow stronger, together.",
+        "Every big journey begins with a small step — and at Buddingpreneur, we help women take that first leap through our Start-up program. With the right skills, guidance, and community, women can turn simple ideas into powerful ventures and achieve the independence they deserve.",
+        "Participate in workshops focused on brand promotion and technical skills for aspiring women entrepreneurs.",
+        "Leverage our community resources for effective marketing strategies and organic reach to your target audience.",
+        "\"Promoting inner strength and balance through guided yoga, meditation, and holistic wellness practices tailored for women.\"",
+        "Join our community of women entrepreneurs. Reach out for support, collaboration, and skill development.",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/home/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/home/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/home/photo-1590650423710-ffa6e7f63440",
+          "alt": "two women sitting on a couch looking at a laptop",
+          "original_url": "https://images.unsplash.com/photo-1590650423710-ffa6e7f63440?auto=format&fit=crop&w=562&h=480"
+        },
+        {
+          "local_path": "images/home/photo-1590650423710-ffa6e7f63440",
+          "alt": "two women sitting on a couch looking at a laptop",
+          "original_url": "https://images.unsplash.com/photo-1590650423710-ffa6e7f63440?auto=format&fit=crop&w=328&h=264"
+        },
+        {
+          "local_path": "images/home/chatgpt-image-may-1-2025-07_45_44-pm-mp8WlQk18Xsr5717.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=600,fit=crop/d9512wj5Wnh6B12X/chatgpt-image-may-1-2025-07_45_44-pm-mp8WlQk18Xsr5717.png"
+        },
+        {
+          "local_path": "images/home/chatgpt-image-may-1-2025-07_45_44-pm-mp8WlQk18Xsr5717.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=293,fit=crop/d9512wj5Wnh6B12X/chatgpt-image-may-1-2025-07_45_44-pm-mp8WlQk18Xsr5717.png"
+        },
+        {
+          "local_path": "images/home/421683904-h-768x525-Awv43nB0LnhNaob8.jpg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=600,fit=crop/d9512wj5Wnh6B12X/421683904-h-768x525-Awv43nB0LnhNaob8.jpg"
+        },
+        {
+          "local_path": "images/home/421683904-h-768x525-Awv43nB0LnhNaob8.jpg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=301,fit=crop/d9512wj5Wnh6B12X/421683904-h-768x525-Awv43nB0LnhNaob8.jpg"
+        },
+        {
+          "local_path": "images/home/photo-1562088287-bde35a1ea917",
+          "alt": "woman performing yoga",
+          "original_url": "https://images.unsplash.com/photo-1562088287-bde35a1ea917?auto=format&fit=crop&w=400&h=312"
+        },
+        {
+          "local_path": "images/home/photo-1562088287-bde35a1ea917",
+          "alt": "woman performing yoga",
+          "original_url": "https://images.unsplash.com/photo-1562088287-bde35a1ea917?auto=format&fit=crop&w=328&h=280"
+        },
+        {
+          "local_path": "images/home/screenshot-16-YX4lrxoGwbC91XyD.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/screenshot-16-YX4lrxoGwbC91XyD.png"
+        },
+        {
+          "local_path": "images/home/screenshot-17-YD0lNwLwOZf9kKMK.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/screenshot-17-YD0lNwLwOZf9kKMK.png"
+        },
+        {
+          "local_path": "images/home/screenshot-19-Yan1kJokr1fQXnrJ.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/screenshot-19-Yan1kJokr1fQXnrJ.png"
+        },
+        {
+          "local_path": "images/home/screenshot-20-mxB4DX6QowcKKoK1.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/screenshot-20-mxB4DX6QowcKKoK1.png"
+        },
+        {
+          "local_path": "images/home/screenshot-21-m5KM3n3OxZcK64yW.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/screenshot-21-m5KM3n3OxZcK64yW.png"
+        },
+        {
+          "local_path": "images/home/screenshot-22-Awv4292ON5CgONVz.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/screenshot-22-Awv4292ON5CgONVz.png"
+        },
+        {
+          "local_path": "images/home/screenshot-24-mP4O0KeZxkiLLP8J.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/screenshot-24-mP4O0KeZxkiLLP8J.png"
+        },
+        {
+          "local_path": "images/home/slider4-mjE7pMXwwehkK7wr.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/slider4-mjE7pMXwwehkK7wr.png"
+        },
+        {
+          "local_path": "images/home/slide-1-A0xl7j0Rbgibj4Xo.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/slide-1-A0xl7j0Rbgibj4Xo.png"
+        },
+        {
+          "local_path": "images/home/slide-6-Yyv9pzbyBGHRZEwp.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/slide-6-Yyv9pzbyBGHRZEwp.png"
+        },
+        {
+          "local_path": "images/home/trophu-YbNB25zWJ0cMvove.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=1920,fit=crop/d9512wj5Wnh6B12X/trophu-YbNB25zWJ0cMvove.png"
+        },
+        {
+          "local_path": "images/home/photo-1503428593586-e225b39bddfe",
+          "alt": "selective focus photography of people sitting on chairs while writing on notebooks",
+          "original_url": "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?auto=format&fit=crop&w=1111&h=384"
+        },
+        {
+          "local_path": "images/home/photo-1503428593586-e225b39bddfe",
+          "alt": "selective focus photography of people sitting on chairs while writing on notebooks",
+          "original_url": "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/home/closet-mxB4DOXvJ9f6VjLw.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/closet-mxB4DOXvJ9f6VjLw.png"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-12.12.19-pm-3-AQExRqeN1vFRVM34.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-12.12.19-pm-3-AQExRqeN1vFRVM34.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-12.12.19-pm-1-m5KM3EkNp0TbbGoG.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-12.12.19-pm-1-m5KM3EkNp0TbbGoG.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-12.12.19-pm-m7V31vvjR6ua4GRv.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-12.12.19-pm-m7V31vvjR6ua4GRv.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-17-at-10.25.15-am-A1aPb6pDJys6ekvx.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-17-at-10.25.15-am-A1aPb6pDJys6ekvx.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-12.12.19-pm-2-Y4LDZ5BDB0HJ3eVK.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-12.12.19-pm-2-Y4LDZ5BDB0HJ3eVK.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-12.12.20-pm-1-mP4O01olz2CyzMn3.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-12.12.20-pm-1-mP4O01olz2CyzMn3.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-7.22.07-pm-mP4O0KG2PRixLKrm.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-7.22.07-pm-mP4O0KG2PRixLKrm.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-8.45.50-pm-mp8WrVlznniZ8W47.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-8.45.50-pm-mp8WrVlznniZ8W47.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-16-at-12.12.20-pm-Y4LDZ5Mnp0fleZV2.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-12.12.20-pm-Y4LDZ5Mnp0fleZV2.jpeg"
+        },
+        {
+          "local_path": "images/home/whatsapp-image-2025-05-17-at-10.11.58-am-mv0W6aB7rOFzb89o.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=375,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-17-at-10.11.58-am-mv0W6aB7rOFzb89o.jpeg"
+        },
+        {
+          "local_path": "images/home/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/home/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/home"
+    },
+    {
+      "url": "https://buddingpreneurs.in/workshops",
+      "slug": "workshops",
+      "title": "Skill Development & Startup Workshops for Women | Buddingpreneurs | Buddingpreneurs",
+      "headings": [
+        "Enable Women to Lead and Launch",
+        "Grow Her Ideas into Impact"
+      ],
+      "content_snippets": [
+        "Join our skill development workshops to boost your business and connect with like-minded women.",
+        "Join our workshops to enhance skills and promote businesses.",
+        "Learn essential skills for business growth and promotion.",
+        "Participate in wellness workshops for holistic empowerment and growth.",
+        "Join our empowering Skill Development Workshop designed for Indian women entrepreneurs. Learn essential skills in brand promotion on Facebook, Instagram, and WhatsApp. Collaborate with fellow women to enhance your business acumen and achieve economic independence through shared resources and support.",
+        "Enroll your kids in our engaging Online Workshop tailored for young minds. This interactive session focuses on skill development and creativity, fostering a supportive environment for children to learn and grow. Empower the next generation of innovators and entrepreneurs today!",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "full_text_blocks": [
+        "Join our skill development workshops to boost your business and connect with like-minded women.",
+        "Join our workshops to enhance skills and promote businesses.",
+        "Learn essential skills for business growth and promotion.",
+        "Participate in wellness workshops for holistic empowerment and growth.",
+        "Join our empowering Skill Development Workshop designed for Indian women entrepreneurs. Learn essential skills in brand promotion on Facebook, Instagram, and WhatsApp. Collaborate with fellow women to enhance your business acumen and achieve economic independence through shared resources and support.",
+        "Enroll your kids in our engaging Online Workshop tailored for young minds. This interactive session focuses on skill development and creativity, fostering a supportive environment for children to learn and grow. Empower the next generation of innovators and entrepreneurs today!",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/workshops/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/workshops/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/workshops/photo-1623683704451-ca4299bb3c99",
+          "alt": "A monochromatic photograph features an open magazine or booklet with the headline 'SECRET WOMEN'S BUSINESS' in bold black letters. The text below the headline discusses female entrepreneurs and the economic recovery post-COVID-19. A round white object with a black symbol partially obscures part of the text. The background appears to be a crumpled white fabric.",
+          "original_url": "https://images.unsplash.com/photo-1623683704451-ca4299bb3c99?auto=format&fit=crop&w=503&h=360"
+        },
+        {
+          "local_path": "images/workshops/photo-1623683704451-ca4299bb3c99",
+          "alt": "A monochromatic photograph features an open magazine or booklet with the headline 'SECRET WOMEN'S BUSINESS' in bold black letters. The text below the headline discusses female entrepreneurs and the economic recovery post-COVID-19. A round white object with a black symbol partially obscures part of the text. The background appears to be a crumpled white fabric.",
+          "original_url": "https://images.unsplash.com/photo-1623683704451-ca4299bb3c99?auto=format&fit=crop&w=158&h=184"
+        },
+        {
+          "local_path": "images/workshops/photo-1510894347713-fc3ed6fdf539",
+          "alt": "woman wearing black shirt sitting on green yoga mat",
+          "original_url": "https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=503&h=360"
+        },
+        {
+          "local_path": "images/workshops/photo-1510894347713-fc3ed6fdf539",
+          "alt": "woman wearing black shirt sitting on green yoga mat",
+          "original_url": "https://images.unsplash.com/photo-1510894347713-fc3ed6fdf539?auto=format&fit=crop&w=158&h=184"
+        },
+        {
+          "local_path": "images/workshops/photo-1556159992-e189f8e50104",
+          "alt": "three woman sitting near the flower",
+          "original_url": "https://images.unsplash.com/photo-1556159992-e189f8e50104?auto=format&fit=crop&w=503&h=360"
+        },
+        {
+          "local_path": "images/workshops/photo-1556159992-e189f8e50104",
+          "alt": "three woman sitting near the flower",
+          "original_url": "https://images.unsplash.com/photo-1556159992-e189f8e50104?auto=format&fit=crop&w=158&h=184"
+        },
+        {
+          "local_path": "images/workshops/photo-1665753697122-2e3426c2abaf",
+          "alt": "A group of five women, sitting together in an outdoor setting, are smiling and posing for the camera. They are wearing traditional attire with vibrant colors and are holding packaged food products. Tents and people in the background suggest a festival or market event.",
+          "original_url": "https://images.unsplash.com/photo-1665753697122-2e3426c2abaf?auto=format&fit=crop&w=503&h=360"
+        },
+        {
+          "local_path": "images/workshops/photo-1665753697122-2e3426c2abaf",
+          "alt": "A group of five women, sitting together in an outdoor setting, are smiling and posing for the camera. They are wearing traditional attire with vibrant colors and are holding packaged food products. Tents and people in the background suggest a festival or market event.",
+          "original_url": "https://images.unsplash.com/photo-1665753697122-2e3426c2abaf?auto=format&fit=crop&w=158&h=184"
+        },
+        {
+          "local_path": "images/workshops/photo-1607829856286-8eb35ecc1e47",
+          "alt": "A sign with text in white on a dark background that reads 'Forcing a Change' and details the role of women in leading the fight for black freedom. The background includes a blurred outdoor scene with trees and a building.",
+          "original_url": "https://images.unsplash.com/photo-1607829856286-8eb35ecc1e47?auto=format&fit=crop&w=547&h=440"
+        },
+        {
+          "local_path": "images/workshops/photo-1607829856286-8eb35ecc1e47",
+          "alt": "A sign with text in white on a dark background that reads 'Forcing a Change' and details the role of women in leading the fight for black freedom. The background includes a blurred outdoor scene with trees and a building.",
+          "original_url": "https://images.unsplash.com/photo-1607829856286-8eb35ecc1e47?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/workshops/photo-1596464716127-f2a82984de30",
+          "alt": "person holding white and gray stone",
+          "original_url": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=547&h=440"
+        },
+        {
+          "local_path": "images/workshops/photo-1596464716127-f2a82984de30",
+          "alt": "person holding white and gray stone",
+          "original_url": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/workshops/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/workshops/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/workshops"
+    },
+    {
+      "url": "https://buddingpreneurs.in/community",
+      "slug": "community",
+      "title": "Women Entrepreneur Community & Support | Buddingpreneurs | Buddingpreneurs",
+      "headings": [
+        "A Platform for Her to Start, Share, and Shine",
+        "Let’s Build Your Dream Together — Get in Touch!",
+        "Gallery"
+      ],
+      "content_snippets": [
+        "At Buddingpreneurs, we are committed to uplifting Indian women by turning skills into self-reliance. Whether she’s starting from scratch or looking to grow her small venture, we provide hands-on training, digital promotion guidance, and a supportive sisterhood to help her thrive. This is a space where women learn, share experiences, and shine—together.",
+        "The buddingpreneurs  has been an invaluable resource for learning, networking, and refining entrepreneurial skills.We trust buddingpreneurs . Must try ..see the difference.Nirmla chib Entrepreneur Brand TVAREETAZ,  MD",
+        "Nirmla Chib",
+        "★★★★★",
+        "No dream is too small when you have the right support. At Buddingpreneurs, we walk with you at every step — from discovering your skills to launching your brand and growing your confidence. Whether you're curious, committed, or just starting out, we're here to help you begin. Reach out today and let’s shape your journey together.",
+        "\"From Idea to Income: Empowering Women Through Startup Support\"",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "full_text_blocks": [
+        "At Buddingpreneurs, we are committed to uplifting Indian women by turning skills into self-reliance. Whether she’s starting from scratch or looking to grow her small venture, we provide hands-on training, digital promotion guidance, and a supportive sisterhood to help her thrive. This is a space where women learn, share experiences, and shine—together.",
+        "The buddingpreneurs  has been an invaluable resource for learning, networking, and refining entrepreneurial skills.We trust buddingpreneurs . Must try ..see the difference.Nirmla chib Entrepreneur Brand TVAREETAZ,  MD",
+        "Nirmla Chib",
+        "★★★★★",
+        "No dream is too small when you have the right support. At Buddingpreneurs, we walk with you at every step — from discovering your skills to launching your brand and growing your confidence. Whether you're curious, committed, or just starting out, we're here to help you begin. Reach out today and let’s shape your journey together.",
+        "\"From Idea to Income: Empowering Women Through Startup Support\"",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/community/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/community/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/community/whatsapp-image-2025-05-16-at-11.28.09-am-1-m7V310yXoBhZe8g0.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=354,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-11.28.09-am-1-m7V310yXoBhZe8g0.jpeg"
+        },
+        {
+          "local_path": "images/community/whatsapp-image-2025-05-16-at-11.28.09-am-1-m7V310yXoBhZe8g0.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=368,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-16-at-11.28.09-am-1-m7V310yXoBhZe8g0.jpeg"
+        },
+        {
+          "local_path": "images/community/whatsapp-image-2025-05-18-at-8.28.51-am-m5KM9kNZVMsOW363.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=584,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-18-at-8.28.51-am-m5KM9kNZVMsOW363.jpeg"
+        },
+        {
+          "local_path": "images/community/whatsapp-image-2025-05-18-at-8.28.51-am-m5KM9kNZVMsOW363.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=306,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-18-at-8.28.51-am-m5KM9kNZVMsOW363.jpeg"
+        },
+        {
+          "local_path": "images/community/photo-1564445476463-7833c341e914",
+          "alt": "A group of women is sitting at a table, each using a laptop. Their expressions suggest focus and engagement. In the center, there are various items, including cups and a thermos. The setting appears to be a casual workspace with brick and glass walls in the background.",
+          "original_url": "https://images.unsplash.com/flagged/photo-1564445476463-7833c341e914?auto=format&fit=crop&w=400&h=568"
+        },
+        {
+          "local_path": "images/community/photo-1564445476463-7833c341e914",
+          "alt": "A group of women is sitting at a table, each using a laptop. Their expressions suggest focus and engagement. In the center, there are various items, including cups and a thermos. The setting appears to be a casual workspace with brick and glass walls in the background.",
+          "original_url": "https://images.unsplash.com/flagged/photo-1564445476463-7833c341e914?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/community/chatgpt-image-may-1-2025-07_42_22-pm-A85e8PD0rgF7ZeBk.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/d9512wj5Wnh6B12X/chatgpt-image-may-1-2025-07_42_22-pm-A85e8PD0rgF7ZeBk.png"
+        },
+        {
+          "local_path": "images/community/chatgpt-image-may-1-2025-07_42_22-pm-A85e8PD0rgF7ZeBk.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/d9512wj5Wnh6B12X/chatgpt-image-may-1-2025-07_42_22-pm-A85e8PD0rgF7ZeBk.png"
+        },
+        {
+          "local_path": "images/community/five-female-colleagues-work-meeting-260nw-749253997-A1aPWGK7ZMHROX7L.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=538,fit=crop/d9512wj5Wnh6B12X/five-female-colleagues-work-meeting-260nw-749253997-A1aPWGK7ZMHROX7L.png"
+        },
+        {
+          "local_path": "images/community/five-female-colleagues-work-meeting-260nw-749253997-A1aPWGK7ZMHROX7L.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/d9512wj5Wnh6B12X/five-female-colleagues-work-meeting-260nw-749253997-A1aPWGK7ZMHROX7L.png"
+        },
+        {
+          "local_path": "images/community/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/community/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/community"
+    },
+    {
+      "url": "https://buddingpreneurs.in/blog",
+      "slug": "blog",
+      "title": "Startup Stories & Tips for Women | Buddingpreneurs Blog | Buddingpreneurs",
+      "headings": [
+        "\"Empower Her Dreams: Startups That Start at Home\""
+      ],
+      "content_snippets": [
+        "Join our vibrant community for skill development and marketing support, celebrating women-led businesses in India.",
+        "Empowering Women Entrepreneurs",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "full_text_blocks": [
+        "Join our vibrant community for skill development and marketing support, celebrating women-led businesses in India.",
+        "Empowering Women Entrepreneurs",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/blog/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/blog/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/blog/photo-1678928608031-3eb501c794ab",
+          "alt": "A large group of people, predominantly women, are gathered for a protest or rally. They are holding signs with various messages, many of which focus on women's rights and empowerment. Some participants are wearing purple, a color often associated with feminist movements. The atmosphere is lively and engaged, with a sense of solidarity among the crowd.",
+          "original_url": "https://images.unsplash.com/photo-1678928608031-3eb501c794ab?auto=format&fit=crop&w=812&h=344"
+        },
+        {
+          "local_path": "images/blog/photo-1678928608031-3eb501c794ab",
+          "alt": "A large group of people, predominantly women, are gathered for a protest or rally. They are holding signs with various messages, many of which focus on women's rights and empowerment. Some participants are wearing purple, a color often associated with feminist movements. The atmosphere is lively and engaged, with a sense of solidarity among the crowd.",
+          "original_url": "https://images.unsplash.com/photo-1678928608031-3eb501c794ab?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/blog/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/blog/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/blog"
+    },
+    {
+      "url": "https://buddingpreneurs.in/our-programs",
+      "slug": "our-programs",
+      "title": "Startup & Skill Programs for Women | Buddingpreneurs | Buddingpreneurs",
+      "headings": [
+        "\"The Startup for women: Powering Women to Rise and Thrive\"",
+        "What Skills Do We Teach?",
+        "Workshop Formats",
+        "How to Register",
+        "Brand Promotion Training",
+        "What We Teach",
+        "Hands-On Training Tools"
+      ],
+      "content_snippets": [
+        "Our skill training programs are designed to equip women with practical, income-generating skills tailored for today's digital and creative industries. From crafting and content creation to social media marketing and home-based business management, we ensure each session empowers participants with hands-on knowledge. Whether you're starting from scratch or looking to grow your talents, our workshops help you build the confidence and capability to turn skills into sustainable ventures.",
+        "At Buddingpreneurs, we offer a thoughtfully curated program designed to empower, elevate, and enrich the journey of women entrepreneurs and aspiring business leaders. Here’s what you’ll find in our ecosystem:",
+        "✅ A Quality Platform with a Cream Audience",
+        "Connect with a like-minded, value-driven community of entrepreneurs, mentors, and collaborators from across India.",
+        "🤝 Collaboration Opportunities",
+        "Network and grow through partnerships, brand collaborations, and community-led initiatives.",
+        "🎓 Skill Development Workshops",
+        "Upskill with expert-led sessions on business, marketing, finance, and personal growth.",
+        "💼 Earn Through Paid Campaigns",
+        "Promote brands, offer services, and participate in influencer or ambassador programs to earn while you grow.",
+        "🎁 Referral Rewards Program",
+        "Invite others to join and get rewarded for growing our community together."
+      ],
+      "full_text_blocks": [
+        "Our skill training programs are designed to equip women with practical, income-generating skills tailored for today's digital and creative industries. From crafting and content creation to social media marketing and home-based business management, we ensure each session empowers participants with hands-on knowledge. Whether you're starting from scratch or looking to grow your talents, our workshops help you build the confidence and capability to turn skills into sustainable ventures.",
+        "At Buddingpreneurs, we offer a thoughtfully curated program designed to empower, elevate, and enrich the journey of women entrepreneurs and aspiring business leaders. Here’s what you’ll find in our ecosystem:",
+        "✅ A Quality Platform with a Cream Audience",
+        "Connect with a like-minded, value-driven community of entrepreneurs, mentors, and collaborators from across India.",
+        "🤝 Collaboration Opportunities",
+        "Network and grow through partnerships, brand collaborations, and community-led initiatives.",
+        "🎓 Skill Development Workshops",
+        "Upskill with expert-led sessions on business, marketing, finance, and personal growth.",
+        "💼 Earn Through Paid Campaigns",
+        "Promote brands, offer services, and participate in influencer or ambassador programs to earn while you grow.",
+        "🎁 Referral Rewards Program",
+        "Invite others to join and get rewarded for growing our community together.",
+        "🧘‍♀️ Health & Wellness Workshops",
+        "Because a healthy mind and body are essential for entrepreneurial success—join our yoga, mental wellness, and nutrition sessions.",
+        "🎨 Kids' Enrichment Workshops",
+        "Keep your little ones engaged with fun and educational sessions including Vedic Math, Abacus, Calligraphy, Art & Crafts, and more.",
+        "Skill Development",
+        "At Buddingpreneur, we believe skill is power — especially when it's nurtured in the right environment. Our Skill Development Program is at the heart of empowering Indian women to take their first step toward financial independence and personal growth.",
+        "We offer a diverse range of skills that are both practical and market-relevant, including:",
+        "Craft & Creative Skills: handmade decor, jewellery making, mehndi, gift wrapping, and more",
+        "Digital Skills: content creation, Canva design, photo/video editing, eCommerce basics",
+        "Marketing Skills: Facebook & Instagram promotion, WhatsApp catalog setup, personal branding",
+        "Soft Business Skills: customer handling, pricing your product, time management",
+        "We understand every woman has a different schedule and learning preference. That’s why we offer:",
+        "Live Online Workshops (Zoom or Google Meet) – Interactive and trainer-led",
+        "Recorded Sessions – Watch at your own pace, anytime",
+        "Downloadable Material – Checklists, templates, and practical guides",
+        "Practice Groups – Post-workshop support via WhatsApp or private Facebook groups",
+        "Joining is easy and open to all Indian women:",
+        "Follow us on Facebook or Instagram for upcoming sessions",
+        "Join our private Facebook group for exclusive member-only training",
+        "Use our Registration Form (linked below) to sign up for any upcoming skill workshop",
+        "Pay nominal fees (if applicable) for special training sessions",
+        "💡 We believe in learning by doing — all workshops are hands-on, practical, and community-driven.",
+        "A great product or skill deserves to be seen — and that’s exactly what our Brand Promotion Training is designed for. We help women-led businesses grow visibility, trust, and sales using smart, simple social media strategies.",
+        "Our program focuses on teaching how to build and promote your personal or small business brand using free, easy-to-learn digital tools. You’ll learn:",
+        "How to create and optimize your Facebook Page for business",
+        "Promoting through WhatsApp Business – catalogs, auto-replies, broadcast lists",
+        "Crafting engaging Instagram Reels to tell your brand story",
+        "Using Facebook & Insta Stories to boost engagement",
+        "Basics of hashtags, captions, and building trust with your audience",
+        "We tailor strategies for homemakers, beginners, and small sellers who may be starting without any followers or digital background.",
+        "We don’t just teach theory — we train you on:",
+        "Facebook Page Setup & Posting Calendar",
+        "WhatsApp Business Profile & Catalog Creation",
+        "Instagram Reels: shooting, editing, and posting",
+        "Canva for designing logos, posters, and stories",
+        "Tips to grow your organic reach without paid ads",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/our-programs/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/our-programs/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/our-programs/photo-1590650046871-92c887180603",
+          "alt": "woman in black jacket sitting beside woman in white blazer",
+          "original_url": "https://images.unsplash.com/photo-1590650046871-92c887180603?auto=format&fit=crop&w=1224&h=544"
+        },
+        {
+          "local_path": "images/our-programs/photo-1590650046871-92c887180603",
+          "alt": "woman in black jacket sitting beside woman in white blazer",
+          "original_url": "https://images.unsplash.com/photo-1590650046871-92c887180603?auto=format&fit=crop&w=328&h=278"
+        },
+        {
+          "local_path": "images/our-programs/photo-1522543558187-768b6df7c25c",
+          "alt": "four person holding each others waist at daytime",
+          "original_url": "https://images.unsplash.com/photo-1522543558187-768b6df7c25c?auto=format&fit=crop&w=480&h=320"
+        },
+        {
+          "local_path": "images/our-programs/photo-1522543558187-768b6df7c25c",
+          "alt": "four person holding each others waist at daytime",
+          "original_url": "https://images.unsplash.com/photo-1522543558187-768b6df7c25c?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/our-programs/photo-1508780709619-79562169bc64",
+          "alt": "person using laptop",
+          "original_url": "https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=480&h=320"
+        },
+        {
+          "local_path": "images/our-programs/photo-1508780709619-79562169bc64",
+          "alt": "person using laptop",
+          "original_url": "https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/our-programs/photo-1520333789090-1afc82db536a",
+          "alt": "woman in white shirt using smartphone",
+          "original_url": "https://images.unsplash.com/photo-1520333789090-1afc82db536a?auto=format&fit=crop&w=480&h=320"
+        },
+        {
+          "local_path": "images/our-programs/photo-1520333789090-1afc82db536a",
+          "alt": "woman in white shirt using smartphone",
+          "original_url": "https://images.unsplash.com/photo-1520333789090-1afc82db536a?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/our-programs/photo-1590650516494-0c8e4a4dd67e",
+          "alt": "two women sitting at a table looking at a computer screen",
+          "original_url": "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?auto=format&fit=crop&w=1224&h=544"
+        },
+        {
+          "local_path": "images/our-programs/photo-1590650516494-0c8e4a4dd67e",
+          "alt": "two women sitting at a table looking at a computer screen",
+          "original_url": "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?auto=format&fit=crop&w=328&h=278"
+        },
+        {
+          "local_path": "images/our-programs/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/our-programs/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/our-programs"
+    },
+    {
+      "url": "https://buddingpreneurs.in/business-plan",
+      "slug": "business-plan",
+      "title": "Business Plans for Women Entrepreneurs | Buddingpreneurs | Buddingpreneurs",
+      "headings": [
+        "Ideal Membership Structure for Entrepreneur Community.Choose your plans that's right for your Business ."
+      ],
+      "content_snippets": [
+        "Ideal For: Beginners or curious aspiring entrepreneurs",
+        "Includes:",
+        "Lifetime Access to a free community space (WhatsApp group/Facebook group)",
+        "Monthly newsletter with curated business content",
+        "Occasional free events or webinars",
+        "Invite friends and get Saturday and Sunday Free promo",
+        "Ideal For: Scaling businesses growth, business having small teams",
+        "Includes:",
+        "All Startups benefits",
+        "Monthly group coaching or hot-seat sessions",
+        "Pitch/feedback events",
+        "Promotion in community spotlights (socials, newsletters)"
+      ],
+      "full_text_blocks": [
+        "Ideal For: Beginners or curious aspiring entrepreneurs",
+        "Includes:",
+        "Lifetime Access to a free community space (WhatsApp group/Facebook group)",
+        "Monthly newsletter with curated business content",
+        "Occasional free events or webinars",
+        "Invite friends and get Saturday and Sunday Free promo",
+        "Ideal For: Scaling businesses growth, business having small teams",
+        "Includes:",
+        "All Startups benefits",
+        "Monthly group coaching or hot-seat sessions",
+        "Pitch/feedback events",
+        "Promotion in community spotlights (socials, newsletters)",
+        "Access to a job board or collaboration directory",
+        "Co-working sessions or accountability groups",
+        "E certificate from Buddingpreneurs",
+        "First 15 members lock in lifetime pricing",
+        "Get 1 month free with annual sign-up",
+        "Invite 200 members, get 1 month free promo on fb",
+        "Free 15-min strategy call for early sign-upsOngoing Engagement Offers:",
+        "Member of the Month feature with promo across platforms",
+        "Earn rewards for referrals (e.g., $5 credit per signup)",
+        "Content contributions (blog/podcast) for visibility",
+        "Monthly challenge prizes (e.g., best pitch, growth story)",
+        "Ideal For: Startup business or early-stage founders",
+        "Includes:",
+        "Showcase your venture on fb ,WhatsApp and Instagram",
+        "All  benefits from Free membership plan",
+        "Access to all monthly events/workshops",
+        "Networking meetups (virtual or in-person)",
+        "Fb and Instagram live /pre recorded video",
+        "Fb and insta organic reach",
+        "Get featured for your Startup journey(video interview or prerecorded)",
+        "Get featured / brand shout out on our social media platforms",
+        "VIP/Pro Membership",
+        "Ideal For: Funded startups, experienced entrepreneurs",
+        "Includes:",
+        "Includes all startups +Premium membership benefits.",
+        "All Growth benefits",
+        "1-on-1 mentoring (monthly/quarterly)",
+        "Live interview on \"coffee Tales with Buddingpreneurs \"",
+        "Premium mastermind groups",
+        "Personalized intros (investors, partners)",
+        "Get featured on our website",
+        "Speaking opportunities in events",
+        "VIP-only retreats or private events",
+        "Recognition and E certificate by Buddingpreneurs",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/business-plan/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/business-plan/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/business-plan/photo-1496449903678-68ddcb189a24",
+          "alt": "This is the sign you've been looking for neon signage",
+          "original_url": "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?auto=format&fit=crop&w=1140&h=584"
+        },
+        {
+          "local_path": "images/business-plan/photo-1496449903678-68ddcb189a24",
+          "alt": "This is the sign you've been looking for neon signage",
+          "original_url": "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?auto=format&fit=crop&w=328&h=278"
+        },
+        {
+          "local_path": "images/business-plan/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/business-plan/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/business-plan"
+    },
+    {
+      "url": "https://buddingpreneurs.in/disclaimer",
+      "slug": "disclaimer",
+      "title": "Disclaimer | Buddingpreneurs Empowerment Platform | Buddingpreneurs",
+      "headings": [
+        "Website Disclaimer",
+        "General Information",
+        "No Professional or Financial Advice",
+        "Workshops and Training Sessions",
+        "Third-Party Links and Tools",
+        "Community Conduct and Responsibilities",
+        "Privacy and Data Use",
+        "Limitation of Liability"
+      ],
+      "content_snippets": [
+        "Welcome to Buddingpreneur – a platform created to empower Indian women through community-based learning, skill development, and digital entrepreneurship. By accessing and using this website, you acknowledge and agree to the following disclaimer terms.",
+        "All the information, resources, and training materials provided on this website are intended for educational and informational purposes only. Buddingpreneur does not guarantee any specific outcomes or financial success from participation in our programs, workshops, or use of our content.",
+        "We aim to support women in developing skills, promoting small ventures, and gaining visibility online. However, the actual results depend on individual effort, application of knowledge, and external factors beyond our control.",
+        "While we provide training in areas such as branding, digital promotion, wellness, and entrepreneurship, Buddingpreneur does not offer professional, legal, financial, or medical advice. Any decision made based on our guidance, content, or peer discussions is at your own risk and discretion. We recommend seeking professional advice when needed.",
+        "Our workshops and training formats (live, recorded, downloadable) are offered as community support initiatives. These are not formal certifications and should not be interpreted as such. Participation is voluntary, and Buddingpreneur does not take responsibility for the outcomes of applying shared skills or strategies.",
+        "We may recommend or link to external tools (e.g., Canva, WhatsApp Business, Instagram) for educational purposes. Buddingpreneur has no control over third-party websites and is not liable for their content, policies, or practices.",
+        "Our platform and groups are safe spaces exclusively for Indian women. We expect respectful participation, and we reserve the right to remove or restrict access to anyone violating the spirit of our community. We are not liable for individual behavior or third-party interactions within our groups or platforms.",
+        "We collect minimal user information strictly for workshop communication or community coordination. We do not sell or misuse user data. Please refer to our [Privacy Policy] for details on data handling practices.",
+        "Buddingpreneur, its team, or partners shall not be held liable for any direct, indirect, incidental, or consequential damages arising out of or related to the use of our website, participation in our programs, or reliance on our content.",
+        "If you have any questions about this disclaimer or our programs, please contact us at  buddingpreneursinfo@gmail.com.",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact"
+      ],
+      "full_text_blocks": [
+        "Welcome to Buddingpreneur – a platform created to empower Indian women through community-based learning, skill development, and digital entrepreneurship. By accessing and using this website, you acknowledge and agree to the following disclaimer terms.",
+        "All the information, resources, and training materials provided on this website are intended for educational and informational purposes only. Buddingpreneur does not guarantee any specific outcomes or financial success from participation in our programs, workshops, or use of our content.",
+        "We aim to support women in developing skills, promoting small ventures, and gaining visibility online. However, the actual results depend on individual effort, application of knowledge, and external factors beyond our control.",
+        "While we provide training in areas such as branding, digital promotion, wellness, and entrepreneurship, Buddingpreneur does not offer professional, legal, financial, or medical advice. Any decision made based on our guidance, content, or peer discussions is at your own risk and discretion. We recommend seeking professional advice when needed.",
+        "Our workshops and training formats (live, recorded, downloadable) are offered as community support initiatives. These are not formal certifications and should not be interpreted as such. Participation is voluntary, and Buddingpreneur does not take responsibility for the outcomes of applying shared skills or strategies.",
+        "We may recommend or link to external tools (e.g., Canva, WhatsApp Business, Instagram) for educational purposes. Buddingpreneur has no control over third-party websites and is not liable for their content, policies, or practices.",
+        "Our platform and groups are safe spaces exclusively for Indian women. We expect respectful participation, and we reserve the right to remove or restrict access to anyone violating the spirit of our community. We are not liable for individual behavior or third-party interactions within our groups or platforms.",
+        "We collect minimal user information strictly for workshop communication or community coordination. We do not sell or misuse user data. Please refer to our [Privacy Policy] for details on data handling practices.",
+        "Buddingpreneur, its team, or partners shall not be held liable for any direct, indirect, incidental, or consequential damages arising out of or related to the use of our website, participation in our programs, or reliance on our content.",
+        "If you have any questions about this disclaimer or our programs, please contact us at  buddingpreneursinfo@gmail.com.",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/disclaimer/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/disclaimer/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/disclaimer/photo-1630523628239-576bc71b6f69",
+          "alt": "3 women and man smiling",
+          "original_url": "https://images.unsplash.com/photo-1630523628239-576bc71b6f69?auto=format&fit=crop&w=972&h=544"
+        },
+        {
+          "local_path": "images/disclaimer/photo-1630523628239-576bc71b6f69",
+          "alt": "3 women and man smiling",
+          "original_url": "https://images.unsplash.com/photo-1630523628239-576bc71b6f69?auto=format&fit=crop&w=328&h=278"
+        },
+        {
+          "local_path": "images/disclaimer/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/disclaimer/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/disclaimer"
+    },
+    {
+      "url": "https://buddingpreneurs.in/about-us",
+      "slug": "about-us",
+      "title": "About Buddingpreneurs | Empowering Women Startups | Buddingpreneurs",
+      "headings": [
+        "Buddingpreneurs was born from a deeply personal journey—a journey of passion, perseverance, and purpose.",
+        "From Skills to Startups: Empowering Women to Become Entrepreneurs",
+        "Our Vision",
+        "Our Mission",
+        "What We Offer",
+        "Why Choose Us?",
+        "About Us...",
+        "Our Story"
+      ],
+      "content_snippets": [
+        "It all began with our founder, Sasmita, whose love for the intricate beauty of Filigree jewelry and the rich heritage of Odisha inspired her to launch her first venture, Art of Filigree, in 2017. Like many entrepreneurs, she started small, driven by a dream to revive a traditional art form and turn it into a thriving business.",
+        "The challenges of the post-COVID era (2019–2020) sparked a new calling. During this time, Sasmita discovered a powerful passion for building communities and supporting others walking the same entrepreneurial path. She realized that the journey is easier—and more impactful—when it's shared.",
+        "This led to the creation of Buddingpreneurs—a vibrant, inclusive community open to all women-led businesses and aspiring entrepreneurs across India 🇮🇳.",
+        "At Buddingpreneurs, we believe in the power of connection, collaboration, and community. We are a space where women-led ventures are not only supported, but truly celebrated and heard.",
+        "Because every idea deserves a chance, and every woman deserves a voice.",
+        "Buddingpreneurs is more than a learning platform — it's a launchpad for women with passion and potential. Our mission is to turn everyday skills into sustainable ventures by providing women with training, guidance, and the tools to build their own businesses. We believe that with the right support, every woman can grow from a learner to a leader, from a homemaker to a home-based entrepreneur.",
+        "To create a world where women lead, thrive, and support one another in achieving their dreams. We aim to build a strong network of women entrepreneurs who not only share knowledge but also collaborate to uplift each other.",
+        "To empower women by providing them with practical and market-relevant skills.",
+        "To help women confidently launch and grow their businesses through effective digital marketing strategies.",
+        "To offer a safe and supportive community where women can connect, share resources, and learn together.",
+        "Skill Development Workshops: From craft making to digital marketing, our workshops are designed to equip women with the skills needed for success.",
+        "Brand Promotion Training: Learn how to promote your business effectively on social media platforms like Facebook, Instagram, and WhatsApp."
+      ],
+      "full_text_blocks": [
+        "It all began with our founder, Sasmita, whose love for the intricate beauty of Filigree jewelry and the rich heritage of Odisha inspired her to launch her first venture, Art of Filigree, in 2017. Like many entrepreneurs, she started small, driven by a dream to revive a traditional art form and turn it into a thriving business.",
+        "The challenges of the post-COVID era (2019–2020) sparked a new calling. During this time, Sasmita discovered a powerful passion for building communities and supporting others walking the same entrepreneurial path. She realized that the journey is easier—and more impactful—when it's shared.",
+        "This led to the creation of Buddingpreneurs—a vibrant, inclusive community open to all women-led businesses and aspiring entrepreneurs across India 🇮🇳.",
+        "At Buddingpreneurs, we believe in the power of connection, collaboration, and community. We are a space where women-led ventures are not only supported, but truly celebrated and heard.",
+        "Because every idea deserves a chance, and every woman deserves a voice.",
+        "Buddingpreneurs is more than a learning platform — it's a launchpad for women with passion and potential. Our mission is to turn everyday skills into sustainable ventures by providing women with training, guidance, and the tools to build their own businesses. We believe that with the right support, every woman can grow from a learner to a leader, from a homemaker to a home-based entrepreneur.",
+        "To create a world where women lead, thrive, and support one another in achieving their dreams. We aim to build a strong network of women entrepreneurs who not only share knowledge but also collaborate to uplift each other.",
+        "To empower women by providing them with practical and market-relevant skills.",
+        "To help women confidently launch and grow their businesses through effective digital marketing strategies.",
+        "To offer a safe and supportive community where women can connect, share resources, and learn together.",
+        "Skill Development Workshops: From craft making to digital marketing, our workshops are designed to equip women with the skills needed for success.",
+        "Brand Promotion Training: Learn how to promote your business effectively on social media platforms like Facebook, Instagram, and WhatsApp.",
+        "Wellness & Fitness Programs: We believe in holistic empowerment, so we offer wellness and fitness training to help women stay healthy, both mentally and physically.",
+        "Community Support: Our community is built on the principles of collaboration, support, and knowledge sharing. Together, we rise!",
+        "At Buddingpreneurs, we don’t just teach skills; we build confidence, self-reliance, and leadership in every woman who joins us. Whether you’re a homemaker, a student, or a budding entrepreneur, we provide a space for you to learn, grow, and succeed at your own pace.",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/about-us/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/about-us/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/about-us/whatsapp-image-2025-05-17-at-9.55.28-am-A1aPb6RDnWsXMzy7.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=486,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-17-at-9.55.28-am-A1aPb6RDnWsXMzy7.jpeg"
+        },
+        {
+          "local_path": "images/about-us/whatsapp-image-2025-05-17-at-9.55.28-am-A1aPb6RDnWsXMzy7.jpeg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=449,fit=crop/d9512wj5Wnh6B12X/whatsapp-image-2025-05-17-at-9.55.28-am-A1aPb6RDnWsXMzy7.jpeg"
+        },
+        {
+          "local_path": "images/about-us/photo-1590650589327-3f67c43ad8a2",
+          "alt": "woman in black blazer sitting at the table",
+          "original_url": "https://images.unsplash.com/photo-1590650589327-3f67c43ad8a2?auto=format&fit=crop&w=590&h=556"
+        },
+        {
+          "local_path": "images/about-us/photo-1590650589327-3f67c43ad8a2",
+          "alt": "woman in black blazer sitting at the table",
+          "original_url": "https://images.unsplash.com/photo-1590650589327-3f67c43ad8a2?auto=format&fit=crop&w=328&h=278"
+        },
+        {
+          "local_path": "images/about-us/421683904-h-768x525-Awv43nB0LnhNaob8.jpg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,h=512,fit=crop/d9512wj5Wnh6B12X/421683904-h-768x525-Awv43nB0LnhNaob8.jpg"
+        },
+        {
+          "local_path": "images/about-us/421683904-h-768x525-Awv43nB0LnhNaob8.jpg",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=366,fit=crop/d9512wj5Wnh6B12X/421683904-h-768x525-Awv43nB0LnhNaob8.jpg"
+        },
+        {
+          "local_path": "images/about-us/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/about-us/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/about-us"
+    },
+    {
+      "url": "https://buddingpreneurs.in/contact",
+      "slug": "contact",
+      "title": "Contact Us | Buddingpreneurs Women Startup Support | Buddingpreneurs",
+      "headings": [
+        "Get In Touch",
+        "Buddingpreneurs"
+      ],
+      "content_snippets": [
+        "Join our community of women entrepreneurs. Reach out for support, collaboration, and skill development.",
+        "Empowering Indian women entrepreneurs through skill development, workshops, and collaboration for economic independence and wellness.",
+        "Pune, Maharashtra 412207",
+        "9 AM - 7 PM",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "full_text_blocks": [
+        "Join our community of women entrepreneurs. Reach out for support, collaboration, and skill development.",
+        "Empowering Indian women entrepreneurs through skill development, workshops, and collaboration for economic independence and wellness.",
+        "Pune, Maharashtra 412207",
+        "9 AM - 7 PM",
+        "Supporting women entrepreneurs through skill development workshops.",
+        "Community contact",
+        "Collaboration",
+        "buddingpreneursinfo@gmail.com",
+        "© 2025. All rights reserved.",
+        "✉️ Our Email"
+      ],
+      "images": [
+        {
+          "local_path": "images/contact/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/contact/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png",
+          "alt": "Buddingpreneurs logo",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=768,fit=crop/d9512wj5Wnh6B12X/logo_budding-removebg-preview-1-mjE7V4a2Zofraqj9.png"
+        },
+        {
+          "local_path": "images/contact/photo-1596524430615-b46475ddff6e",
+          "alt": "white and black dice on green textile",
+          "original_url": "https://images.unsplash.com/photo-1596524430615-b46475ddff6e?auto=format&fit=crop&w=1224&h=480"
+        },
+        {
+          "local_path": "images/contact/photo-1596524430615-b46475ddff6e",
+          "alt": "white and black dice on green textile",
+          "original_url": "https://images.unsplash.com/photo-1596524430615-b46475ddff6e?auto=format&fit=crop&w=328&h=210"
+        },
+        {
+          "local_path": "images/contact/photo-1503428593586-e225b39bddfe",
+          "alt": "selective focus photography of people sitting on chairs while writing on notebooks",
+          "original_url": "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?auto=format&fit=crop&w=582&h=384"
+        },
+        {
+          "local_path": "images/contact/photo-1503428593586-e225b39bddfe",
+          "alt": "selective focus photography of people sitting on chairs while writing on notebooks",
+          "original_url": "https://images.unsplash.com/photo-1503428593586-e225b39bddfe?auto=format&fit=crop&w=328&h=320"
+        },
+        {
+          "local_path": "images/contact/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=324,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        },
+        {
+          "local_path": "images/contact/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png",
+          "alt": "",
+          "original_url": "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=375,h=365,fit=crop/d9512wj5Wnh6B12X/icons8-whatsapp-48-1-AE0PDw2W7QS1VZ4E.png"
+        }
+      ],
+      "local_dir": "images/contact"
+    }
+  ]
+}
