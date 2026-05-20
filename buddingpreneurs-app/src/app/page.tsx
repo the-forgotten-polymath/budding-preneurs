@@ -135,7 +135,7 @@ export default function Home() {
             <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Workshops</a>
             <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Community</a>
             <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Blog</a>
-            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Our Programs</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Our Programs</a>
             <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Business Plan</a>
             <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Disclaimer</a>
             <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">About us</a>
@@ -177,7 +177,7 @@ export default function Home() {
               {['Home', 'Workshops', 'Community', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
                 <a
                   key={item}
-                  href="#"
+                  href={item === 'Our Programs' ? '/programs' : '#'}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="text-lg font-semibold text-[#0f172a] hover:text-[#C9540A] transition-colors"
                 >
