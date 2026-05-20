@@ -43,13 +43,13 @@ export default function WorkshopsPage() {
           <nav className="hidden lg:flex flex-wrap items-center justify-center gap-4 xl:gap-6">
             <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Home</a>
             <a href="/workshops" className="text-[11px] xl:text-xs font-bold text-[#C9540A] transition-colors border-b-2 border-[#C9540A] pb-1">Workshops</a>
-            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Community</a>
-            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Blog</a>
+            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Community</a>
+            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Blog</a>
             <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Our Programs</a>
-            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Business Plan</a>
-            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Disclaimer</a>
-            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">About us</a>
-            <a href="#" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Contact</a>
+            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Business Plan</a>
+            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Disclaimer</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">About us</a>
+            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Contact</a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -78,7 +78,7 @@ export default function WorkshopsPage() {
               {['Home', 'Workshops', 'Community', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
                 <a
                   key={item}
-                  href={item === 'Home' ? '/' : (item === 'Our Programs' ? '/programs' : (item === 'Workshops' ? '/workshops' : '#'))}
+                  href={item === 'Home' ? '/' : item === 'Our Programs' ? '/programs' : item === 'About us' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-lg font-semibold transition-colors ${item === 'Workshops' ? 'text-[#C9540A]' : 'text-[#0f172a] hover:text-[#C9540A]'}`}
                 >
@@ -295,11 +295,11 @@ export default function WorkshopsPage() {
             <h4 className="text-white font-bold mb-6">Quick Links</h4>
             <ul className="flex flex-col gap-4 text-sm text-[#888888]">
               <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/programs" className="hover:text-white transition-colors">Programs</a></li>
               <li><a href="/workshops" className="hover:text-white transition-colors">Workshops</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Community</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+              <li><a href="/community" className="hover:text-white transition-colors">Community</a></li>
+              <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
             </ul>
           </div>
 
