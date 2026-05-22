@@ -1,5 +1,6 @@
 "use client";
 
+import NavAuth from "@/components/NavAuth";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -11,7 +12,11 @@ import {
   MapPin,
   Calendar,
   Sparkles,
-  BookOpen
+  BookOpen,
+  ChevronDown,
+  CheckCircle2,
+  Phone,
+  ArrowUpRight
 } from "lucide-react";
 import { siteMetadata } from "../../data/siteData";
 import Footer from "@/components/Footer";
@@ -19,6 +24,18 @@ import Footer from "@/components/Footer";
 export default function WorkshopsPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
+  // Category Filter State
+  const [activeCategory, setActiveCategory] = useState<"all" | "training" | "wellness" | "kids">("all");
+  
+  // Registration Modal States
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedWorkshop, setSelectedWorkshop] = useState("");
+  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", phase: "Idea Stage" });
+
+  // FAQ Accordion State (stores index of open item, null if closed)
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,11 +45,46 @@ export default function WorkshopsPage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const openRegisterModal = (workshopName: string) => {
+    setSelectedWorkshop(workshopName);
+    setFormData({ name: "", email: "", phone: "", phase: "Idea Stage" });
+    setIsModalOpen(true);
+    setFormSubmitted(false);
+  };
+
+  const handleFormSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+  };
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      q: "Are these workshops beginner-friendly?",
+      a: "Absolutely! Our workshops are designed to meet you where you are—whether you only have a vague business concept or a fully running local brand. We cover foundational skills step-by-step with practical hands-on examples."
+    },
+    {
+      q: "Do I get access to the recorded sessions?",
+      a: "Yes! All registered members receive lifetime access to high-definition recordings of the workshops, along with downloadable worksheets, checklists, and reference guides."
+    },
+    {
+      q: "Is there any fee to join these programs?",
+      a: "We offer both free introductory community workshops and premium intensive skill-development masterclasses. You can explore all options in our business plan page or register for our free workshops."
+    },
+    {
+      q: "How does the post-workshop community support work?",
+      a: "After completing any workshop, you get invited to our exclusive members-only WhatsApp circle and regional Slack groups where you can ask questions, collaborate with peers, and get direct mentorship."
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-slate-800 flex flex-col relative overflow-hidden select-none">
       
       {/* 🚀 GLOWING HEADER / NAVIGATION BAR */}
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-white/80 backdrop-blur-md border-b border-slate-100 py-3 shadow-sm" : "bg-transparent py-5"}`}>
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-[#FAF8F5]/90 backdrop-blur-md border-b border-slate-200/80 py-3 shadow-sm" : "bg-transparent py-5"}`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           
           <a href="/" className="flex items-center gap-2 group">
@@ -42,24 +94,22 @@ export default function WorkshopsPage() {
           </a>
 
           <nav className="hidden lg:flex flex-wrap items-center justify-center gap-4 xl:gap-6">
-            <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Home</a>
+            <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
             <a href="/workshops" className="text-[11px] xl:text-xs font-bold text-[#C9540A] transition-colors border-b-2 border-[#C9540A] pb-1">Workshops</a>
-            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Community</a>
-            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Blog</a>
-            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Our Programs</a>
-            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Business Plan</a>
-            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Disclaimer</a>
-            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">About us</a>
-            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Contact</a>
+            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a>
+            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Blog</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Our Programs</a>
+            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Plan</a>
+            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Disclaimer</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About us</a>
+            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Contact</a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <a href="/business-plan" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
-              <span>Join for Free</span>
-              <ArrowRight className="w-3 h-3" />
-            </a>
+            <NavAuth />
             
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#0f172a] hover:bg-slate-100 rounded-full transition-colors z-50 relative">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#1A1A1A] hover:bg-gray-200 rounded-full transition-colors z-50 relative">
               {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
@@ -76,12 +126,12 @@ export default function WorkshopsPage() {
             className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md pt-24 px-6 pb-6 overflow-y-auto lg:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 items-center text-center mt-8">
-              {['Home', 'Workshops', 'Community', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
+              {['Home', 'Workshops', 'Community', 'Directory', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
                 <a
                   key={item}
                   href={item === 'Home' ? '/' : item === 'Our Programs' ? '/programs' : item === 'About us' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-lg font-semibold transition-colors ${item === 'Workshops' ? 'text-[#C9540A]' : 'text-[#0f172a] hover:text-[#C9540A]'}`}
+                  className={`text-lg font-semibold transition-colors ${item === 'Workshops' ? 'text-[#C9540A]' : 'text-[#1A1A1A] hover:text-[#C9540A]'}`}
                 >
                   {item}
                 </a>
@@ -96,10 +146,10 @@ export default function WorkshopsPage() {
         )}
       </AnimatePresence>
 
-      <main className="flex-grow pt-32 pb-20">
+      <main className="flex-grow pt-32 pb-0">
         
         {/* HERO SECTION */}
-        <section className="px-6 pb-20 text-center max-w-4xl mx-auto">
+        <section className="px-6 pb-16 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100 text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-6">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Transformative Sessions</span>
@@ -111,164 +161,460 @@ export default function WorkshopsPage() {
           <p className="text-[#334155] text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
             Join our skill development workshops to boost your business and connect with like-minded women.
           </p>
-        </section>
 
-        {/* SECONDARY HERO / IDEAS TO IMPACT */}
-        <section className="py-16 px-6 border-y border-[#E8E4DF] bg-white">
-          <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
-            <div className="w-full md:w-1/2">
-              <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-6">
-                Grow Her Ideas <span className="italic font-serif text-[#C9540A]">into Impact</span>
-              </h2>
-              <p className="text-[#334155] text-lg leading-relaxed">
-                Join our workshops to enhance skills and promote businesses. We provide hands-on training, industry insights, and a supportive community.
-              </p>
-            </div>
-            <div className="w-full md:w-1/2">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full">
-                <Image
-                  src="/images/workshops/workshops_magazine_1779275458338.png"
-                  alt="Secret Women's Business Magazine"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
+          {/* Dynamic Filter Tabs */}
+          <div className="flex items-center sm:justify-center gap-2 mt-12 bg-[#F4F1ED] p-1.5 sm:p-2 rounded-full max-w-md md:max-w-lg mx-auto border border-[#E8E4DF] overflow-x-auto no-scrollbar flex-nowrap whitespace-nowrap px-3 sm:px-2">
+            {(["all", "training", "wellness", "kids"] as const).map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all shrink-0 relative ${
+                  activeCategory === cat
+                    ? "text-white bg-[#C9540A] shadow-sm"
+                    : "text-slate-600 hover:text-slate-900"
+                }`}
+              >
+                {cat === "all" ? "All Workshops" : cat === "training" ? "Skill Training" : cat === "wellness" ? "Wellness" : "Kids Online"}
+              </button>
+            ))}
           </div>
         </section>
 
-        {/* WORKSHOP CATEGORIES */}
+        {/* SECONDARY HERO / IDEAS TO IMPACT */}
+        <AnimatePresence mode="wait">
+          {activeCategory === "all" && (
+            <motion.section
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 0.5 }}
+              className="py-16 px-6 border-y border-[#E8E4DF] bg-white"
+            >
+              <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+                <div className="w-full md:w-1/2">
+                  <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A] mb-6">
+                    Grow Her Ideas <span className="italic font-serif text-[#C9540A]">into Impact</span>
+                  </h2>
+                  <p className="text-[#334155] text-lg leading-relaxed mb-8">
+                    Join our workshops to enhance skills and promote businesses. We provide hands-on training, industry insights, and a supportive community.
+                  </p>
+                  <button 
+                    onClick={() => openRegisterModal("All workshops program")}
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#C9540A] hover:bg-[#A8420A] text-white font-bold text-xs uppercase tracking-wider transition-all"
+                  >
+                    Explore all events
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </div>
+                <div className="w-full md:w-1/2">
+                  <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full group">
+                    <Image
+                      src="/images/workshops/workshops_magazine_1779275458338.png"
+                      alt="Secret Women's Business Magazine"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+          )}
+        </AnimatePresence>
+
+        {/* WORKSHOP CATEGORIES CARDS */}
         <section className="py-24 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             
-            {/* CARD 1 */}
-            <div className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DF] hover:shadow-xl transition-shadow flex flex-col group">
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden">
-                <Image 
-                  src="/images/workshops/workshops_women_flower_1779275541121.png" 
-                  alt="Women collaborating" 
-                  fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-700" 
-                />
-              </div>
-              <div className="p-8 flex flex-col flex-grow">
-                <div className="flex items-center gap-2 text-sm text-[#C9540A] font-bold mb-4 uppercase tracking-wider">
-                  <BookOpen className="w-4 h-4" /> Training
-                </div>
-                <h3 className="text-2xl font-black text-[#1A1A1A] mb-3">Skill Development</h3>
-                <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
-                  Learn essential skills for business growth and promotion. Gain practical knowledge from experts in various fields.
-                </p>
-                <a href="/business-plan" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 bg-[#0f172a] text-white hover:bg-[#C9540A]">
-                  <span>Join</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
+            {/* CARD 1: Training */}
+            <AnimatePresence mode="popLayout">
+              {(activeCategory === "all" || activeCategory === "training") && (
+                <motion.div 
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DF] hover:shadow-xl transition-all duration-300 flex flex-col group"
+                >
+                  <div className="relative h-64 sm:h-80 w-full overflow-hidden">
+                    <Image 
+                      src="/images/workshops/workshops_women_flower_1779275541121.png" 
+                      alt="Women collaborating" 
+                      fill 
+                      className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                    />
+                  </div>
+                  <div className="p-8 flex flex-col flex-grow">
+                    <div className="flex items-center gap-2 text-sm text-[#C9540A] font-bold mb-4 uppercase tracking-wider">
+                      <BookOpen className="w-4 h-4" /> Training
+                    </div>
+                    <h3 className="text-2xl font-black text-[#1A1A1A] mb-3">Skill Development</h3>
+                    <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
+                      Learn essential skills for business growth and promotion. Gain practical knowledge from experts in various digital marketing and startup development fields.
+                    </p>
+                    <button 
+                      onClick={() => openRegisterModal("Skill Development Session")}
+                      className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 bg-[#0f172a] text-white hover:bg-[#C9540A]"
+                    >
+                      <span>Join Workshop</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-            {/* CARD 2 */}
-            <div className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DF] hover:shadow-xl transition-shadow flex flex-col group">
-              <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-50">
-                <Image 
-                  src="/images/workshops/workshops_yoga_1779275490769.png" 
-                  alt="Yoga Wellness" 
-                  fill 
-                  className="object-cover object-top group-hover:scale-105 transition-transform duration-700" 
-                />
-              </div>
-              <div className="p-8 flex flex-col flex-grow">
-                <div className="flex items-center gap-2 text-sm text-[#C9540A] font-bold mb-4 uppercase tracking-wider">
-                  <Sparkles className="w-4 h-4" /> Wellness
-                </div>
-                <h3 className="text-2xl font-black text-[#1A1A1A] mb-3">Yoga Wellness-Fitness</h3>
-                <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
-                  Participate in wellness workshops for holistic empowerment and growth. Keep your mind and body balanced.
-                </p>
-                <a href="/programs" className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 border-2 border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white">
-                  <span>Explore</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-            </div>
+            {/* CARD 2: Wellness */}
+            <AnimatePresence mode="popLayout">
+              {(activeCategory === "all" || activeCategory === "wellness") && (
+                <motion.div 
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.4 }}
+                  className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DF] hover:shadow-xl transition-all duration-300 flex flex-col group"
+                >
+                  <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-50">
+                    <Image 
+                      src="/images/workshops/workshops_yoga_1779275490769.png" 
+                      alt="Yoga Wellness" 
+                      fill 
+                      className="object-cover object-top group-hover:scale-105 transition-transform duration-700" 
+                    />
+                  </div>
+                  <div className="p-8 flex flex-col flex-grow">
+                    <div className="flex items-center gap-2 text-sm text-[#C9540A] font-bold mb-4 uppercase tracking-wider">
+                      <Sparkles className="w-4 h-4" /> Wellness
+                    </div>
+                    <h3 className="text-2xl font-black text-[#1A1A1A] mb-3">Yoga Wellness-Fitness</h3>
+                    <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
+                      Participate in wellness workshops for holistic empowerment and growth. Keep your mind and body balanced while growing your brand and startup.
+                    </p>
+                    <button 
+                      onClick={() => openRegisterModal("Yoga Wellness-Fitness Class")}
+                      className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 border-2 border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white"
+                    >
+                      <span>Reserve Spot</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
 
           </div>
         </section>
 
         {/* DETAILED WORKSHOPS */}
-        <section className="bg-[#1A1A1A] py-24 px-6 text-white relative overflow-hidden">
+        <section className="bg-[#1A1A1A] py-24 px-6 text-white relative overflow-hidden border-b border-[#333333]">
           {/* Background Decorative Rings */}
           <div className="absolute top-0 right-0 -mr-40 -mt-40 w-96 h-96 rounded-full border-[20px] border-[#2A2A2A] opacity-50 blur-xl"></div>
           <div className="absolute bottom-0 left-0 -ml-40 -mb-40 w-96 h-96 rounded-full border-[20px] border-[#C9540A] opacity-20 blur-xl"></div>
           
           <div className="max-w-7xl mx-auto flex flex-col gap-24 relative z-10">
             
-            {/* FEATURED WORKSHOP 1 */}
-            <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-              <div className="w-full lg:w-1/2 relative">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full border border-gray-800">
-                  <Image
-                    src="/images/workshops/workshops_sign_1779275512627.png"
-                    alt="Forcing a Change sign"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-              <div className="w-full lg:w-1/2">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800 text-amber-400 text-xs font-bold tracking-widest uppercase mb-6">
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Featured Workshop</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black mb-6">
-                  Skill Development <span className="italic font-serif text-[#C9540A]">Workshop</span>
-                </h2>
-                <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                  Join our empowering Skill Development Workshop designed for Indian women entrepreneurs. Learn essential skills in brand promotion on Facebook, Instagram, and WhatsApp. Collaborate with fellow women to enhance your business acumen and achieve economic independence through shared resources and support.
-                </p>
-                <a href="/contact" className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-[#C9540A] text-white hover:bg-white hover:text-[#C9540A]">
-                  <span>Register Now</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
+            {/* FEATURED WORKSHOP 1: Skill Development */}
+            <AnimatePresence mode="popLayout">
+              {(activeCategory === "all" || activeCategory === "training") && (
+                <motion.div 
+                  layout
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -40 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16"
+                >
+                  <div className="w-full lg:w-1/2 relative">
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full border border-gray-800">
+                      <Image
+                        src="/images/workshops/workshops_sign_1779275512627.png"
+                        alt="Forcing a Change sign"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                  <div className="w-full lg:w-1/2 flex flex-col justify-center">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800 text-amber-400 text-xs font-bold tracking-widest uppercase mb-6 self-start">
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span>Featured Workshop</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                      Skill Development <span className="italic font-serif text-[#C9540A]">Workshop</span>
+                    </h2>
+                    <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                      Join our empowering Skill Development Workshop designed for Indian women entrepreneurs. Learn essential skills in brand promotion on Facebook, Instagram, and WhatsApp. Collaborate with fellow women to enhance your business acumen and achieve economic independence through shared resources and support.
+                    </p>
+                    <button 
+                      onClick={() => openRegisterModal("Featured Skill Development Masterclass")}
+                      className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-[#C9540A] text-white hover:bg-white hover:text-[#C9540A] self-start"
+                    >
+                      <span>Register Now</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* FEATURED WORKSHOP 2: Kids Online */}
+            <AnimatePresence mode="popLayout">
+              {(activeCategory === "all" || activeCategory === "kids") && (
+                <motion.div 
+                  layout
+                  initial={{ opacity: 0, y: 40 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -40 }}
+                  transition={{ duration: 0.5 }}
+                  className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16"
+                >
+                  <div className="w-full lg:w-1/2 flex flex-col justify-center">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800 text-amber-400 text-xs font-bold tracking-widest uppercase mb-6 self-start">
+                      <Calendar className="w-3.5 h-3.5" />
+                      <span>Next Generation</span>
+                    </div>
+                    <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                      Kids Online <span className="italic font-serif text-[#C9540A]">Workshop</span>
+                    </h2>
+                    <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                      Enroll your kids in our engaging Online Workshop tailored for young minds. This interactive session focuses on skill development and creativity, fostering a supportive environment for children to learn and grow. Empower the next generation of innovators and entrepreneurs today!
+                    </p>
+                    <button 
+                      onClick={() => openRegisterModal("Kids Online Creativity Workshop")}
+                      className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-white text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white self-start"
+                    >
+                      <span>Join Today</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <div className="w-full lg:w-1/2 relative">
+                    <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full border border-gray-800">
+                      <Image
+                        src="/images/workshops/workshops_stone_1779275526393.png"
+                        alt="Holding a stone"
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+          </div>
+        </section>
+
+        {/* FAQ ACCORDION SECTION */}
+        <section className="py-24 px-6 bg-[#FAF8F5] border-b border-[#E8E4DF]">
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-4 block">Got Questions?</span>
+              <h2 className="text-4xl font-black text-[#1A1A1A]">
+                Frequently Asked <span className="italic font-serif text-[#C9540A]">Questions</span>
+              </h2>
             </div>
 
-            {/* FEATURED WORKSHOP 2 */}
-            <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-16">
-              <div className="w-full lg:w-1/2">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-800 text-amber-400 text-xs font-bold tracking-widest uppercase mb-6">
-                  <Calendar className="w-3.5 h-3.5" />
-                  <span>Next Generation</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black mb-6">
-                  Kids Online <span className="italic font-serif text-[#C9540A]">Workshop</span>
-                </h2>
-                <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                  Enroll your kids in our engaging Online Workshop tailored for young minds. This interactive session focuses on skill development and creativity, fostering a supportive environment for children to learn and grow. Empower the next generation of innovators and entrepreneurs today!
-                </p>
-                <a href="/business-plan" className="inline-flex items-center justify-center px-8 py-4 rounded-full text-sm font-bold transition-all gap-2 bg-white text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white">
-                  <span>Join Today</span>
-                  <ArrowRight className="w-4 h-4" />
-                </a>
-              </div>
-              <div className="w-full lg:w-1/2 relative">
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full border border-gray-800">
-                  <Image
-                    src="/images/workshops/workshops_stone_1779275526393.png"
-                    alt="Holding a stone"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
+            <div className="space-y-4">
+              {faqs.map((faq, index) => {
+                const isOpen = openFaqIndex === index;
+                return (
+                  <div 
+                    key={index} 
+                    className="bg-white rounded-2xl border border-[#E8E4DF] overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md"
+                  >
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full px-6 py-5 flex items-center justify-between text-left focus:outline-none"
+                    >
+                      <span className="font-bold text-[#1A1A1A] text-base sm:text-lg pr-4">
+                        {faq.q}
+                      </span>
+                      <motion.div
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="flex-shrink-0 w-8 h-8 rounded-full bg-slate-50 border border-[#E8E4DF] flex items-center justify-center text-[#C9540A]"
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </motion.div>
+                    </button>
+                    
+                    <motion.div
+                      initial={{ height: 0 }}
+                      animate={{ height: isOpen ? "auto" : 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 pb-6 text-[#475569] text-sm sm:text-base leading-relaxed border-t border-slate-50 pt-4">
+                        {faq.a}
+                      </div>
+                    </motion.div>
+                  </div>
+                );
+              })}
             </div>
-
           </div>
         </section>
 
       </main>
 
+      {/* FOOTER - Merrily aligned with no empty padding above */}
       <Footer />
+
+      {/* DYNAMIC REGISTRATION MODAL */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Glass Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsModalOpen(false)}
+              className="absolute inset-0 bg-slate-900/60 backdrop-blur-md"
+            />
+            
+            {/* Modal Body */}
+            <motion.div 
+              initial={{ scale: 0.95, y: 20, opacity: 0 }}
+              animate={{ scale: 1, y: 0, opacity: 1 }}
+              exit={{ scale: 0.95, y: 20, opacity: 0 }}
+              className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full relative z-10 border border-[#E8E4DF] overflow-hidden"
+            >
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-700 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <AnimatePresence mode="wait">
+                {!formSubmitted ? (
+                  <motion.div
+                    key="form"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                  >
+                    <div className="mb-6">
+                      <span className="text-[#C9540A] text-xs font-bold tracking-wider uppercase">Register Free</span>
+                      <h3 className="text-2xl font-black text-[#1A1A1A] mt-1">{selectedWorkshop}</h3>
+                      <p className="text-slate-500 text-xs mt-1">Book your spot in under a minute</p>
+                    </div>
+
+                    <form onSubmit={handleFormSubmit} className="space-y-4">
+                      <div>
+                        <label className="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-1.5">Your Full Name</label>
+                        <input 
+                          type="text" 
+                          required 
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          placeholder="e.g. Aditi Sharma" 
+                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label className="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-1.5">Email Address</label>
+                        <input 
+                          type="email" 
+                          required 
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          placeholder="aditi@example.com" 
+                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-1.5">WhatsApp Number</label>
+                        <div className="relative">
+                          <Phone className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                          <input 
+                            type="tel" 
+                            required 
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                            placeholder="10-digit number" 
+                            className="w-full pl-11 pr-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-1.5">Current Business Phase</label>
+                        <select 
+                          value={formData.phase}
+                          onChange={(e) => setFormData({ ...formData, phase: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                        >
+                          <option>Just an Idea</option>
+                          <option>Partially Launched</option>
+                          <option>Fully Growing</option>
+                        </select>
+                      </div>
+
+                      <button 
+                        type="submit" 
+                        className="w-full py-4 rounded-xl bg-[#C9540A] hover:bg-[#A8420A] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 mt-6"
+                      >
+                        <span>Confirm Free Spot</span>
+                        <ArrowUpRight className="w-4 h-4" />
+                      </button>
+                    </form>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="success"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-8"
+                  >
+                    <motion.div
+                      initial={{ scale: 0 }}
+                      animate={{ scale: 1 }}
+                      transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                      className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 mx-auto mb-6"
+                    >
+                      <CheckCircle2 className="w-10 h-10" />
+                    </motion.div>
+
+                    <h3 className="text-2xl font-black text-slate-900 mb-2">You're Registered!</h3>
+                    <p className="text-slate-600 text-sm leading-relaxed mb-6 max-w-xs mx-auto">
+                      Thank you, <strong className="text-slate-900">{formData.name}</strong>. We've sent the calendar invite and workshop links to <strong className="text-slate-900">{formData.email}</strong>.
+                    </p>
+
+                    <div className="bg-[#FAF8F5] p-4 rounded-2xl border border-[#E8E4DF] mb-8 text-left text-xs text-slate-500 space-y-2">
+                      <div className="flex justify-between">
+                        <span>Event:</span>
+                        <span className="font-bold text-slate-800">{selectedWorkshop}</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Status:</span>
+                        <span className="font-bold text-emerald-600">Free Spot Confirmed</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Calendar:</span>
+                        <span className="font-bold text-slate-800">Added to Google Cal</span>
+                      </div>
+                    </div>
+
+                    <button 
+                      onClick={() => setIsModalOpen(false)}
+                      className="px-6 py-2.5 rounded-full border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 text-xs font-bold transition-all"
+                    >
+                      Close Window
+                    </button>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
     </div>
   );
 }
+

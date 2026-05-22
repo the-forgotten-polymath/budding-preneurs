@@ -1,5 +1,6 @@
 "use client";
 
+import NavAuth from "@/components/NavAuth";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
@@ -51,24 +52,22 @@ export default function ProgramsPage() {
           </a>
 
           <nav className="hidden lg:flex flex-wrap items-center justify-center gap-4 xl:gap-6">
-            <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Home</a>
-            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Workshops</a>
-            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Community</a>
-            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Blog</a>
+            <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
+            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a>
+            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Blog</a>
             <a href="/programs" className="text-[11px] xl:text-xs font-bold text-[#C9540A] transition-colors border-b-2 border-[#C9540A] pb-1">Our Programs</a>
-            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Business Plan</a>
-            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Disclaimer</a>
-            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">About us</a>
-            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#0f172a] hover:text-slate-500 transition-colors">Contact</a>
+            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Plan</a>
+            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Disclaimer</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About us</a>
+            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Contact</a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
-            <a href="/business-plan" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
-              <span>Join for Free</span>
-              <ArrowRight className="w-3 h-3" />
-            </a>
+            <NavAuth />
             
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#0f172a] hover:bg-slate-100 rounded-full transition-colors z-50 relative">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#1A1A1A] hover:bg-gray-200 rounded-full transition-colors z-50 relative">
               {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
@@ -85,12 +84,12 @@ export default function ProgramsPage() {
             className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md pt-24 px-6 pb-6 overflow-y-auto lg:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 items-center text-center mt-8">
-              {['Home', 'Workshops', 'Community', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
+              {['Home', 'Workshops', 'Community', 'Directory', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
                 <a
                   key={item}
                   href={item === 'Home' ? '/' : item === 'Our Programs' ? '/programs' : item === 'About us' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-lg font-semibold transition-colors ${item === 'Our Programs' ? 'text-[#C9540A]' : 'text-[#0f172a] hover:text-[#C9540A]'}`}
+                  className={`text-lg font-semibold transition-colors ${item === 'Our Programs' ? 'text-[#C9540A]' : 'text-[#1A1A1A] hover:text-[#C9540A]'}`}
                 >
                   {item}
                 </a>
@@ -124,12 +123,12 @@ export default function ProgramsPage() {
               </p>
             </div>
             <div className="w-full lg:w-1/2 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square w-full group">
                 <Image
                   src="/images/programs/programs_women_meeting_1779275083144.png"
-                  alt="Woman in black jacket sitting beside woman in white blazer"
+                  alt="Two professional women collaborating and discussing ideas over coffee"
                   fill
-                  className="object-cover"
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
               {/* Decorative elements */}
@@ -176,15 +175,30 @@ export default function ProgramsPage() {
         {/* IMAGE BREAK SECTION */}
         <section className="py-24 px-6 max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-auto md:h-[400px]">
-            <div className="col-span-1 md:col-span-2 relative rounded-3xl overflow-hidden shadow-lg min-h-[300px] bg-gray-100">
-              <Image src="/images/programs/programs_women_team_1779275100861.png" alt="Four diverse women holding each others waist outdoors" fill className="object-contain" />
+            <div className="col-span-1 md:col-span-2 relative rounded-3xl overflow-hidden shadow-lg min-h-[300px] bg-gray-100 group">
+              <Image 
+                src="/images/programs/programs_women_team_1779275100861.png" 
+                alt="Four diverse women holding each others waist outdoors" 
+                fill 
+                className="object-cover group-hover:scale-105 transition-transform duration-700" 
+              />
             </div>
             <div className="col-span-1 flex flex-col gap-6">
-              <div className="relative flex-1 rounded-3xl overflow-hidden shadow-lg min-h-[150px] bg-gray-100">
-                <Image src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=600&q=80" alt="Woman using laptop" fill className="object-contain" />
+              <div className="relative flex-1 rounded-3xl overflow-hidden shadow-lg min-h-[150px] bg-gray-100 group">
+                <Image 
+                  src="/images/our-programs/photo-1508780709619-79562169bc64" 
+                  alt="Close-up of a professional woman typing and working on her laptop" 
+                  fill 
+                  className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                />
               </div>
-              <div className="relative flex-1 rounded-3xl overflow-hidden shadow-lg min-h-[150px] bg-gray-100">
-                <Image src="/images/founder.png" alt="Founder" fill className="object-cover object-top" />
+              <div className="relative flex-1 rounded-3xl overflow-hidden shadow-lg min-h-[150px] bg-gray-100 group">
+                <Image 
+                  src="/images/our-programs/photo-1520333789090-1afc82db536a" 
+                  alt="Creative woman entrepreneur analyzing notes at her desk and smiling while using her smartphone" 
+                  fill 
+                  className="object-cover object-center group-hover:scale-105 transition-transform duration-700" 
+                />
               </div>
             </div>
           </div>
@@ -269,12 +283,12 @@ export default function ProgramsPage() {
         <section className="py-24 px-6 max-w-7xl mx-auto">
           <div className="flex flex-col-reverse lg:flex-row items-center gap-16">
             <div className="w-full lg:w-1/2 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square w-full max-w-lg mx-auto">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square w-full max-w-lg mx-auto group">
                 <Image
                   src="/images/programs/programs_women_computer_1779275119203.png"
                   alt="Two women sitting at a table looking at a computer screen"
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             </div>

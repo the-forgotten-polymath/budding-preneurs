@@ -1,5 +1,6 @@
 "use client";
 
+import NavAuth from "@/components/NavAuth";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X } from "lucide-react";
@@ -39,15 +40,16 @@ export default function DisclaimerPage() {
                 key={link.name}
                 href={link.path}
                 className={`text-[11px] xl:text-xs font-semibold transition-colors ${
-                  link.name === 'Disclaimer' ? "text-[#C9540A] border-b-2 border-[#C9540A] pb-1 font-bold" : "text-[#0f172a] hover:text-slate-500"
+                  link.name === 'Disclaimer' ? "text-[#C9540A] border-b-2 border-[#C9540A] pb-1 font-bold" : "text-[#1A1A1A] hover:text-[#C9540A]"
                 }`}
               >
                 {link.name}
               </a>
             ))}
+          <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a>
           </nav>
           <div className="flex items-center gap-2 sm:gap-4">
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#0f172a] hover:bg-slate-100 rounded-full transition-colors z-50 relative">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#1A1A1A] hover:bg-gray-200 rounded-full transition-colors z-50 relative">
               {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
@@ -66,7 +68,7 @@ export default function DisclaimerPage() {
           >
             <div className="flex flex-col gap-6 items-center text-center mt-8">
               {navLinks.map((link) => (
-                <a key={link.name} href={link.path} onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-semibold transition-colors ${link.name === 'Disclaimer' ? 'text-[#C9540A]' : 'text-[#0f172a] hover:text-[#C9540A]'}`}>
+                <a key={link.name} href={link.path} onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-semibold transition-colors ${link.name === 'Disclaimer' ? 'text-[#C9540A]' : 'text-[#1A1A1A] hover:text-[#C9540A]'}`}>
                   {link.name}
                 </a>
               ))}

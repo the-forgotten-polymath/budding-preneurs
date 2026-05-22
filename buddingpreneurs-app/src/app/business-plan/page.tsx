@@ -1,5 +1,6 @@
 "use client";
 
+import NavAuth from "@/components/NavAuth";
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Menu, X, CheckCircle2 } from "lucide-react";
@@ -47,7 +48,7 @@ export default function BusinessPlanPage() {
                 className={`text-[11px] xl:text-xs font-semibold transition-colors ${
                   link.name === 'Business Plan' 
                     ? "text-[#C9540A] border-b-2 border-[#C9540A] pb-1 font-bold" 
-                    : "text-[#0f172a] hover:text-slate-500"
+                    : "text-[#1A1A1A] hover:text-[#C9540A]"
                 }`}
               >
                 {link.name}
@@ -55,11 +56,11 @@ export default function BusinessPlanPage() {
             ))}
           </nav>
           <div className="flex items-center gap-2 sm:gap-4">
-            <a href="/contact" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#0f172a] hover:bg-slate-800 text-white shadow-sm">
+            <a href="/contact" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#C9540A] hover:bg-[#A8420A] text-white shadow-sm">
               <span>Join for Free</span>
               <ArrowRight className="w-3 h-3" />
             </a>
-            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#0f172a] hover:bg-slate-100 rounded-full transition-colors z-50 relative">
+            <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="lg:hidden p-1.5 sm:p-2 text-[#1A1A1A] hover:bg-gray-200 rounded-full transition-colors z-50 relative">
               {isMobileMenuOpen ? <X className="w-5 h-5 sm:w-6 sm:h-6" /> : <Menu className="w-5 h-5 sm:w-6 sm:h-6" />}
             </button>
           </div>
@@ -78,7 +79,7 @@ export default function BusinessPlanPage() {
           >
             <div className="flex flex-col gap-6 items-center text-center mt-8">
               {navLinks.map((link) => (
-                <a key={link.name} href={link.path} onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-semibold transition-colors ${link.name === 'Business Plan' ? 'text-[#C9540A]' : 'text-[#0f172a] hover:text-[#C9540A]'}`}>
+                <a key={link.name} href={link.path} onClick={() => setIsMobileMenuOpen(false)} className={`text-lg font-semibold transition-colors ${link.name === 'Business Plan' ? 'text-[#C9540A]' : 'text-[#1A1A1A] hover:text-[#C9540A]'}`}>
                   {link.name}
                 </a>
               ))}
@@ -282,7 +283,8 @@ export default function BusinessPlanPage() {
               <li><a href="/" className="hover:text-white transition-colors">Home</a></li>
               <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/programs" className="hover:text-white transition-colors">Programs</a></li>
-              <li><a href="/community" className="hover:text-white transition-colors">Community</a></li>
+              <li><a href="/community" className="hover:text-white transition-colors">Community</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a></li>
               <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
             </ul>
           </div>
