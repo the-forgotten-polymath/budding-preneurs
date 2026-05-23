@@ -290,7 +290,7 @@ export default function Home() {
                   🏅 Startup India Acknowledgment
                 </span>
                 <span className="text-xs md:text-sm font-semibold font-heading text-slate-500 tracking-wide flex items-center gap-2">
-                  ✨ 5/5 Student Rating
+                  💬 WhatsApp Community has 300+ Members
                 </span>
                 <span className="text-xs md:text-sm font-semibold font-heading text-slate-500 tracking-wide flex items-center gap-2">
                   🏢 MSME Certified Platform
@@ -418,6 +418,100 @@ export default function Home() {
               <div>
                 <div className="text-3xl font-black text-[#C9540A] mb-1">10+</div>
                 <div className="text-xs text-[#6B6B6B] uppercase tracking-wider font-semibold">Industry Awards</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 📊 REAL INSIGHTS: COMMUNITY REACH & FACEBOOK GROUP INSIGHTS */}
+      <section className="bg-white py-24 px-6 border-y border-[#E8E4DF] relative">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <span className="text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-3 block">
+              Network Reach
+            </span>
+            <h2 className="text-4xl text-[#1A1A1A] font-bold font-sans">
+              Our Growing <span className="italic text-[#C9540A] font-serif">Community Reach</span>
+            </h2>
+            <p className="text-[#6B6B6B] text-base leading-relaxed mt-4 max-w-xl mx-auto">
+              Connecting women entrepreneurs across major cities in India, fostering economic independence and strategic sisterhood.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            {/* Left Card: WhatsApp Community */}
+            <div className="lg:col-span-4 bg-[#FAF8F5] border border-[#E8E4DF] rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:shadow-md transition-shadow duration-300">
+              <div>
+                <div className="w-14 h-14 rounded-xl bg-[#25D366]/10 text-[#25D366] flex items-center justify-center mb-8">
+                  <MessageSquare className="w-8 h-8" />
+                </div>
+                <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">WhatsApp Community</h3>
+                <p className="text-3xl font-black text-[#C9540A] mb-4">300+ Members</p>
+                <p className="text-sm text-[#6B6B6B] leading-relaxed">
+                  Our exclusive WhatsApp group serves as an active, daily sisterhood hub where aspiring and established women entrepreneurs share business leads, support, and collaborate in real-time.
+                </p>
+              </div>
+              <div className="mt-8">
+                <a 
+                  href="/community" 
+                  className="inline-flex items-center gap-2 py-3 px-6 bg-[#25D366] hover:bg-[#1DA851] text-white font-bold rounded-xl text-xs transition-colors shadow-sm"
+                >
+                  Join Community Group
+                </a>
+              </div>
+            </div>
+
+            {/* Right Card: Facebook Group Insights */}
+            <div className="lg:col-span-8 bg-[#1A1A1A] rounded-2xl p-8 md:p-10 flex flex-col justify-between hover:shadow-lg transition-shadow duration-300 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-[#C9540A]/5 translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+              
+              <div className="relative z-10 w-full">
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                  <div>
+                    <h3 className="text-2xl font-bold text-white mb-2">Facebook Group Insights</h3>
+                    <p className="text-xs text-[#C9540A] font-semibold tracking-wider uppercase font-mono">Top Cities of Influence</p>
+                  </div>
+                  <div className="bg-white/10 backdrop-blur-sm px-3.5 py-1.5 rounded-lg border border-white/10 self-start sm:self-center">
+                    <span className="text-xs font-bold text-white/90">🇮🇳 PAN-India Network</span>
+                  </div>
+                </div>
+
+                <p className="text-sm text-white/70 leading-relaxed mb-8 max-w-xl">
+                  Analytics directly from our verified women entrepreneur community groups, illustrating our active hubs and high-density engagement centers across major Indian metropolises.
+                </p>
+
+                {/* Cities Progress Bars Grid */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
+                  {[
+                    { city: "Pune, Maharashtra", count: 802 },
+                    { city: "Delhi, National Capital", count: 754 },
+                    { city: "Mumbai, Maharashtra", count: 371 },
+                    { city: "Bangalore, Karnataka", count: 302 },
+                    { city: "Kolkata, West Bengal", count: 208 },
+                    { city: "Gurugram, Haryana", count: 200 },
+                    { city: "Thane, Maharashtra", count: 169 },
+                    { city: "Lucknow, Uttar Pradesh", count: 140 },
+                    { city: "Jaipur, Rajasthan", count: 121 },
+                    { city: "Jabalpur, Madhya Pradesh", count: 106 }
+                  ].map((item, index) => {
+                    const percentage = (item.count / 802) * 100;
+                    return (
+                      <div key={index} className="flex flex-col gap-1.5">
+                        <div className="flex justify-between text-xs font-bold">
+                          <span className="text-white/90 font-medium">{item.city}</span>
+                          <span className="text-[#C9540A]">{item.count}</span>
+                        </div>
+                        <div className="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+                          <div 
+                            className="bg-[#C9540A] h-full rounded-full transition-all duration-500" 
+                            style={{ width: `${percentage}%` }}
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>
