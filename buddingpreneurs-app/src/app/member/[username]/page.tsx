@@ -306,7 +306,11 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
       <main className="flex-1 pt-[72px]">
         {/* HERO BANNER */}
         <div className="w-full h-48 md:h-80 relative bg-[#1A1A1A]">
-          <Image src={member.coverImage || "/images/programs/programs_women_meeting_1779275083144.png"} alt="Cover" fill className="object-cover opacity-80" />
+          {member.coverImage && member.coverImage.startsWith("data:image/") ? (
+            <img src={member.coverImage} alt="Cover" className="w-full h-full object-cover opacity-80" />
+          ) : (
+            <Image src={member.coverImage || "/images/programs/programs_women_meeting_1779275083144.png"} alt="Cover" fill className="object-cover opacity-80" />
+          )}
         </div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 relative">

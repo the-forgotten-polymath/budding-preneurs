@@ -96,6 +96,53 @@ export default function DashboardPage() {
   const [savingProfile, setSavingProfile] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
 
+  // Profile cover image upload state
+  const [coverImageState, setCoverImageState] = useState("");
+
+  useEffect(() => {
+    if (member) {
+      setCoverImageState(member.coverImage || "");
+    }
+  }, [member]);
+
+  const handleBannerUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("Image is too large. Please select a file under 10MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const img = new window.Image();
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        const MAX_WIDTH = 1200;
+        let width = img.width;
+        let height = img.height;
+
+        if (width > MAX_WIDTH) {
+          height = Math.round((height * MAX_WIDTH) / width);
+          width = MAX_WIDTH;
+        }
+
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0, width, height);
+          const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
+          setCoverImageState(dataUrl);
+        }
+      };
+      img.src = event.target?.result as string;
+    };
+    reader.readAsDataURL(file);
+  };
+
   // Products and services manager state
   const [services, setServices] = useState<ServiceCatalogItem[]>([]);
   const [newServiceName, setNewServiceName] = useState("");
@@ -647,8 +694,49 @@ END:VCARD`;
                           <input disabled type="text" value={member.username} className="w-full bg-[#FAF8F5] border border-[#E8E4DF] text-gray-400 rounded-lg px-4 py-2.5 text-sm outline-none cursor-not-allowed" />
                         </div>
                         <div className="sm:col-span-2">
-                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">Profile Cover Image URL</label>
-                          <input type="url" name="coverImage" defaultValue={member.coverImage} placeholder="e.g. https://images.unsplash.com/photo-1590650423710-ffa6e7f63440" className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none" />
+                          <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Profile Cover Banner</label>
+                          
+                          {/* Live Thumbnail Preview */}
+                          {coverImageState ? (
+                            <div className="relative w-full h-48 rounded-xl overflow-hidden border border-[#E8E4DF] mb-3 bg-[#F4F1ED] group">
+                              <img src={coverImageState} alt="Cover Preview" className="w-full h-full object-cover" />
+                              <button 
+                                type="button" 
+                                onClick={() => setCoverImageState("")}
+                                className="absolute top-3 right-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md flex items-center gap-1"
+                              >
+                                Remove Banner
+                              </button>
+                            </div>
+                          ) : (
+                            <div className="w-full h-48 rounded-xl border-2 border-dashed border-[#E8E4DF] bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center mb-3">
+                              <div className="w-12 h-12 rounded-full bg-[#F4F1ED] flex items-center justify-center text-lg mb-2">
+                                🖼️
+                              </div>
+                              <p className="text-xs font-bold text-[#1A1A1A] mb-1">No custom banner uploaded yet</p>
+                              <p className="text-[11px] text-[#6B6B6B] max-w-xs mb-3">This banner represents your card image in the public directory list and profile headers.</p>
+                            </div>
+                          )}
+
+                          {/* File input */}
+                          <div className="flex items-center gap-3">
+                            <input 
+                              type="file" 
+                              accept="image/*" 
+                              id="banner-upload-file" 
+                              onChange={handleBannerUpload} 
+                              className="hidden" 
+                            />
+                            <label 
+                              htmlFor="banner-upload-file"
+                              className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1A1A1A] hover:bg-[#2C2C2C] text-white font-bold rounded-xl text-xs cursor-pointer transition-colors shadow-sm"
+                            >
+                              Choose Image File
+                            </label>
+                            <span className="text-[10px] text-[#6B6B6B]">JPG/PNG supported. Resized automatically.</span>
+                          </div>
+
+                          <input type="hidden" name="coverImage" value={coverImageState} />
                         </div>
                       </div>
                     </div>

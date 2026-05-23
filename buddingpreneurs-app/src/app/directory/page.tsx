@@ -336,12 +336,20 @@ export default function DirectoryPage() {
                     >
                       {/* Card Image */}
                       <div className="relative h-48 w-full overflow-hidden bg-[#F4F1ED]">
-                        <Image 
-                          src={member.coverImage || "/images/programs/programs_women_meeting_1779275083144.png"} 
-                          alt={member.name} 
-                          fill 
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+                        {member.coverImage && member.coverImage.startsWith("data:image/") ? (
+                          <img 
+                            src={member.coverImage} 
+                            alt={member.name} 
+                            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
+                          />
+                        ) : (
+                          <Image 
+                            src={member.coverImage || "/images/programs/programs_women_meeting_1779275083144.png"} 
+                            alt={member.name} 
+                            fill 
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                        )}
                         {/* Badges */}
                         <div className="absolute top-3 left-3 flex flex-col gap-2">
                           {member.plan === "Featured" && (
