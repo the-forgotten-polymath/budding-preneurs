@@ -121,6 +121,22 @@ export default function ProgramsPage() {
               <p className="text-[#334155] text-base md:text-lg leading-relaxed mb-8 max-w-xl">
                 Our skill training programs are designed to equip women with practical, income-generating skills tailored for today's digital and creative industries. From crafting and content creation to social media marketing and home-based business management, we ensure each session empowers participants with hands-on knowledge. Whether you're starting from scratch or looking to grow your talents, our workshops help you build the confidence and capability to turn skills into sustainable ventures.
               </p>
+              
+              <div className="flex flex-col gap-3.5 mb-8 bg-orange-50/50 border border-orange-100/50 p-6 rounded-2xl w-full max-w-xl">
+                <h4 className="font-bold text-xs text-[#C9540A] uppercase tracking-wider mb-1 font-mono">🚀 What We Offer</h4>
+                {[
+                  "Membership options for women entrepreneurs",
+                  "Networking opportunities & business collaborations",
+                  "Professional development & skill-building programs",
+                  "Online events, webinars & learning sessions",
+                  "Business promotion & community support"
+                ].map((offer, idx) => (
+                  <div key={idx} className="flex items-start gap-2.5 text-[#334155] text-sm">
+                    <span className="text-[#C9540A] shrink-0 mt-0.5">✨</span>
+                    <span className="font-semibold">{offer}</span>
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="w-full lg:w-1/2 relative">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square w-full group">
@@ -155,6 +171,7 @@ export default function ProgramsPage() {
                 { title: "Quality Platform with a Cream Audience", desc: "Connect with a like-minded, value-driven community of entrepreneurs, mentors, and collaborators from across India." },
                 { title: "Collaboration Opportunities", desc: "Network and grow through partnerships, brand collaborations, and community-led initiatives." },
                 { title: "Skill Development Workshops", desc: "Upskill with expert-led sessions on business, marketing, finance, and personal growth." },
+                { title: "Personal Branding & Mindset Program", desc: "Build a powerful personal brand, cultivate a resilient growth mindset, and unlock your true potential as a female founder." },
                 { title: "Earn Through Paid Campaigns", desc: "Promote brands, offer services, and participate in influencer or ambassador programs to earn while you grow." },
                 { title: "Referral Rewards Program", desc: "Invite others to join and get rewarded for growing our community together." },
                 { title: "Health & Wellness Workshops", desc: "Because a healthy mind and body are essential—join our yoga, mental wellness, and nutrition sessions." },
