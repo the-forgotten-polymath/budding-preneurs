@@ -6,11 +6,6 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || "https://your-projec
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholder";
 const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || "placeholder";
 
-// 1. Browser Client (used in client-side React components)
-export function getSupabaseBrowserClient() {
-  return createBrowserClient(supabaseUrl, supabaseAnonKey);
-}
-
 // 2. Server Client (used in Server Components, Route Handlers, and Server Actions)
 export async function getSupabaseServerClient() {
   const cookieStore = await cookies();
