@@ -203,7 +203,7 @@ export default function ProgramsPage() {
             <div className="col-span-1 flex flex-col gap-6">
               <div className="relative flex-1 rounded-3xl overflow-hidden shadow-lg min-h-[150px] bg-gray-100 group">
                 <Image 
-                  src="/images/our-programs/photo-1508780709619-79562169bc64" 
+                  src="/images/our-programs/programs_woman_laptop.png" 
                   alt="Close-up of a professional woman typing and working on her laptop" 
                   fill 
                   className="object-cover group-hover:scale-105 transition-transform duration-700" 
@@ -211,7 +211,7 @@ export default function ProgramsPage() {
               </div>
               <div className="relative flex-1 rounded-3xl overflow-hidden shadow-lg min-h-[150px] bg-gray-100 group">
                 <Image 
-                  src="/images/our-programs/photo-1520333789090-1afc82db536a" 
+                  src="/images/our-programs/programs_woman_desk.png" 
                   alt="Creative woman entrepreneur analyzing notes at her desk and smiling while using her smartphone" 
                   fill 
                   className="object-cover object-center group-hover:scale-105 transition-transform duration-700" 
