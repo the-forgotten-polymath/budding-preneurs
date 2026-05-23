@@ -31,7 +31,12 @@ function mapDbMemberToFrontend(dbMember: any) {
       facebook: dbMember.facebook || "",
       linkedin: dbMember.linkedin || "",
     },
-    services: dbMember.services || [],
+    services: dbMember.services ? dbMember.services.map((s: any) => ({
+      name: s.name,
+      price: s.price,
+      description: s.description,
+      imageUrl: s.image_url || "",
+    })) : [],
     vcardTheme: dbMember.vcard_theme || "terracotta",
     qrcodeUrl: dbMember.qrcode_url || "",
   };
@@ -50,7 +55,8 @@ export async function GET() {
         services (
           name,
           price,
-          description
+          description,
+          image_url
         )
       `)
       .neq("role", "admin"); // Admin profiles should not show in public directory
@@ -169,6 +175,7 @@ export async function POST(request: Request) {
           name: s.name,
           price: s.price || "",
           description: s.description || "",
+          image_url: s.imageUrl || "",
         }));
 
         const { error: servicesInsertError } = await supabaseAdmin
@@ -189,7 +196,8 @@ export async function POST(request: Request) {
         services (
           name,
           price,
-          description
+          description,
+          image_url
         )
       `)
       .eq("username", body.username)

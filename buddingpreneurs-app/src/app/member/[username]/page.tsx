@@ -24,6 +24,7 @@ interface ServiceCatalogItem {
   name: string;
   price: string;
   description: string;
+  imageUrl?: string;
 }
 
 interface Member {
@@ -364,12 +365,25 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                   <h2 className="text-xl font-bold mb-6 font-display uppercase tracking-wide">Products & <span className="text-[#C9540A] italic font-heading capitalize">Services</span></h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {member.services.map((service, index) => (
-                      <div key={index} className="bg-white rounded-xl border border-[#E8E4DF] overflow-hidden hover:shadow-md transition-shadow group">
-                        <div className="p-5">
-                          <h3 className="font-bold text-[#1A1A1A] mb-2 text-lg">{service.name}</h3>
-                          <p className="text-sm text-[#6B6B6B] mb-4 line-clamp-3">{service.description}</p>
-                          <div className="text-sm font-bold text-[#C9540A] bg-[#F4F1ED] inline-block px-3 py-1.5 rounded-lg">
-                            {service.price}
+                      <div key={index} className="bg-white rounded-xl border border-[#E8E4DF] overflow-hidden hover:shadow-md transition-shadow group flex flex-col h-full">
+                        {service.imageUrl && (
+                          <div className="relative h-48 w-full overflow-hidden bg-[#F4F1ED]">
+                            <img 
+                              src={service.imageUrl} 
+                              alt={service.name} 
+                              className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500" 
+                            />
+                          </div>
+                        )}
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-bold text-[#1A1A1A] mb-2 text-lg">{service.name}</h3>
+                            <p className="text-sm text-[#6B6B6B] mb-4 line-clamp-3">{service.description}</p>
+                          </div>
+                          <div>
+                            <div className="text-sm font-bold text-[#C9540A] bg-[#F4F1ED] inline-block px-3 py-1.5 rounded-lg mt-2">
+                              {service.price}
+                            </div>
                           </div>
                         </div>
                       </div>

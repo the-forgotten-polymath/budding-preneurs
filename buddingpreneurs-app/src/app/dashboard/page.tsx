@@ -34,6 +34,7 @@ interface ServiceCatalogItem {
   name: string;
   price: string;
   description: string;
+  imageUrl?: string;
 }
 
 interface Member {
@@ -100,6 +101,7 @@ export default function DashboardPage() {
   const [newServiceName, setNewServiceName] = useState("");
   const [newServicePrice, setNewServicePrice] = useState("");
   const [newServiceDesc, setNewServiceDesc] = useState("");
+  const [newServiceImageUrl, setNewServiceImageUrl] = useState("");
 
   const fetchDashboardData = async (username: string) => {
     setCurrentUsername(username);
@@ -179,6 +181,7 @@ export default function DashboardPage() {
       category: formData.get("category") as string,
       city: formData.get("city") as string,
       bio: formData.get("bio") as string,
+      coverImage: formData.get("coverImage") as string,
       contact: {
         ...member.contact,
         phone: formData.get("phone") as string,
@@ -643,6 +646,10 @@ END:VCARD`;
                           <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">Username (Read-only)</label>
                           <input disabled type="text" value={member.username} className="w-full bg-[#FAF8F5] border border-[#E8E4DF] text-gray-400 rounded-lg px-4 py-2.5 text-sm outline-none cursor-not-allowed" />
                         </div>
+                        <div className="sm:col-span-2">
+                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">Profile Cover Image URL</label>
+                          <input type="url" name="coverImage" defaultValue={member.coverImage} placeholder="e.g. https://images.unsplash.com/photo-1590650423710-ffa6e7f63440" className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none" />
+                        </div>
                       </div>
                     </div>
 
@@ -684,6 +691,11 @@ END:VCARD`;
                       <div className="flex flex-col gap-3">
                         {services.map((service, index) => (
                           <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#FAF8F5] rounded-xl border border-[#E8E4DF] gap-3">
+                            {service.imageUrl && (
+                              <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-[#F4F1ED] relative border border-[#E8E4DF]">
+                                <img src={service.imageUrl} alt={service.name} className="object-cover w-full h-full" />
+                              </div>
+                            )}
                             <div className="flex-1">
                               <div className="flex items-baseline gap-2 mb-1">
                                 <span className="font-bold text-[#1A1A1A]">{service.name}</span>
@@ -732,14 +744,25 @@ END:VCARD`;
                             />
                           </div>
                         </div>
-                        <div>
-                          <input 
-                            type="text" 
-                            placeholder="Brief description of catalog item deliverables"
-                            value={newServiceDesc}
-                            onChange={(e) => setNewServiceDesc(e.target.value)}
-                            className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
-                          />
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          <div>
+                            <input 
+                              type="text" 
+                              placeholder="Brief description of catalog item deliverables"
+                              value={newServiceDesc}
+                              onChange={(e) => setNewServiceDesc(e.target.value)}
+                              className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
+                            />
+                          </div>
+                          <div>
+                            <input 
+                              type="url" 
+                              placeholder="Product/Service Image URL (e.g. https://...)"
+                              value={newServiceImageUrl}
+                              onChange={(e) => setNewServiceImageUrl(e.target.value)}
+                              className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
+                            />
+                          </div>
                         </div>
                         <button 
                           type="button"
@@ -751,12 +774,14 @@ END:VCARD`;
                             const newItem = {
                               name: newServiceName.trim(),
                               price: newServicePrice.trim() || "Contact for pricing",
-                              description: newServiceDesc.trim() || "Professional female founder consulting service."
+                              description: newServiceDesc.trim() || "Professional female founder consulting service.",
+                              imageUrl: newServiceImageUrl.trim()
                             };
                             setServices([...services, newItem]);
                             setNewServiceName("");
                             setNewServicePrice("");
                             setNewServiceDesc("");
+                            setNewServiceImageUrl("");
                           }}
                           className="py-2 px-4 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-lg text-xs font-bold transition-all self-end"
                         >

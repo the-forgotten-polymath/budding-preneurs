@@ -21,11 +21,34 @@ export const metadata: Metadata = {
   title: siteMetadata.title,
   description: siteMetadata.description,
   keywords: ["women entrepreneurs", "startup training", "empowerment", "Indian startups", "digital marketing", "self-reliance", "networking", "mastermind", "Dehradun"],
+  robots: {
+    index: true,
+    follow: true,
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || "",
+  },
   openGraph: {
     title: siteMetadata.title,
     description: siteMetadata.description,
+    url: "https://buddingpreneurs.in",
+    siteName: "Buddingpreneurs",
+    images: [
+      {
+        url: "/images/home/photo-1590650423710-ffa6e7f63440", // A beautiful cover image for links shared on social networks
+        width: 1200,
+        height: 630,
+        alt: "Celebrating Women-Led Businesses | Buddingpreneurs",
+      },
+    ],
     type: "website",
     locale: "en_IN",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteMetadata.title,
+    description: siteMetadata.description,
+    images: ["/images/home/photo-1590650423710-ffa6e7f63440"],
   },
 };
 

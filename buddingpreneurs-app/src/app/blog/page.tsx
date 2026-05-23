@@ -174,8 +174,8 @@ export default function BlogPage() {
             <div className="w-full lg:w-1/2 relative">
               <div className="relative rounded-3xl overflow-hidden shadow-xl aspect-square w-full">
                 <Image
-                  src="/images/blog/blog_rally_1779276207325.png"
-                  alt="Women gathered for a rally"
+                  src="/images/blog/home_based_woman_entrepreneur.png"
+                  alt="Young Indian woman entrepreneur working at home on her kitchen table"
                   fill
                   className="object-cover"
                 />
