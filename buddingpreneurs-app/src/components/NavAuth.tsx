@@ -61,13 +61,13 @@ export default function NavAuth() {
     <div className="flex items-center gap-2">
       <a
         href="/login"
-        className="px-3 py-2 text-[#1A1A1A] hover:text-[#C9540A] font-semibold text-[11px] xl:text-xs transition-colors"
+        className="px-3 py-2 text-[#1A1A1A] hover:text-[#C9540A] font-semibold text-[11px] xl:text-xs transition-colors whitespace-nowrap"
       >
         Log In
       </a>
       <a
         href="/register"
-        className="px-4 py-2 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-full font-bold text-[11px] xl:text-xs transition-colors shadow-sm"
+        className="hidden md:inline-flex px-4 py-2 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-full font-bold text-[11px] xl:text-xs transition-colors shadow-sm whitespace-nowrap"
       >
         Join Free
       </a>

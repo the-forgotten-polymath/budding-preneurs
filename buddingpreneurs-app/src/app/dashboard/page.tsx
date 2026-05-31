@@ -26,7 +26,11 @@ import {
   ScanLine,
   QrCode,
   Share2,
-  Download
+  Download,
+  BookOpen,
+  Video,
+  ExternalLink,
+  Calendar
 } from "lucide-react";
 import Image from "next/image";
 
@@ -34,7 +38,6 @@ interface ServiceCatalogItem {
   name: string;
   price: string;
   description: string;
-  imageUrl?: string;
 }
 
 interface Member {
@@ -92,63 +95,16 @@ export default function DashboardPage() {
   const [currentUsername, setCurrentUsername] = useState<string>("");
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
+  const [registrations, setRegistrations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [savingProfile, setSavingProfile] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
-
-  // Profile cover image upload state
-  const [coverImageState, setCoverImageState] = useState("");
-
-  useEffect(() => {
-    if (member) {
-      setCoverImageState(member.coverImage || "");
-    }
-  }, [member]);
-
-  const handleBannerUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    if (file.size > 10 * 1024 * 1024) {
-      alert("Image is too large. Please select a file under 10MB.");
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = (event) => {
-      const img = new window.Image();
-      img.onload = () => {
-        const canvas = document.createElement("canvas");
-        const MAX_WIDTH = 1200;
-        let width = img.width;
-        let height = img.height;
-
-        if (width > MAX_WIDTH) {
-          height = Math.round((height * MAX_WIDTH) / width);
-          width = MAX_WIDTH;
-        }
-
-        canvas.width = width;
-        canvas.height = height;
-
-        const ctx = canvas.getContext("2d");
-        if (ctx) {
-          ctx.drawImage(img, 0, 0, width, height);
-          const dataUrl = canvas.toDataURL("image/jpeg", 0.7);
-          setCoverImageState(dataUrl);
-        }
-      };
-      img.src = event.target?.result as string;
-    };
-    reader.readAsDataURL(file);
-  };
 
   // Products and services manager state
   const [services, setServices] = useState<ServiceCatalogItem[]>([]);
   const [newServiceName, setNewServiceName] = useState("");
   const [newServicePrice, setNewServicePrice] = useState("");
   const [newServiceDesc, setNewServiceDesc] = useState("");
-  const [newServiceImageUrl, setNewServiceImageUrl] = useState("");
 
   const fetchDashboardData = async (username: string) => {
     setCurrentUsername(username);
@@ -165,6 +121,11 @@ export default function DashboardPage() {
       const leadsRes = await fetch(`/api/leads?username=${username}`);
       const leadsData = await leadsRes.json();
       if (leadsData.success) setLeads(leadsData.data);
+
+      // Fetch workshop registrations
+      const regRes = await fetch("/api/workshops/register");
+      const regData = await regRes.json();
+      if (regData.success) setRegistrations(regData.data);
     } catch (err) {
       console.error("Failed to load dashboard data:", err);
     } finally {
@@ -228,7 +189,6 @@ export default function DashboardPage() {
       category: formData.get("category") as string,
       city: formData.get("city") as string,
       bio: formData.get("bio") as string,
-      coverImage: formData.get("coverImage") as string,
       contact: {
         ...member.contact,
         phone: formData.get("phone") as string,
@@ -422,6 +382,12 @@ END:VCARD`;
                     {newLeadsCount} New
                   </span>
                 )}
+              </button>
+              <button 
+                onClick={() => { setActiveTab("workshops"); setIsSidebarOpen(false); }}
+                className={`flex items-center gap-3 px-4 py-3 rounded-xl font-semibold transition-colors ${activeTab === "workshops" ? "bg-[#1A1A1A] text-white" : "text-[#6B6B6B] hover:bg-[#F4F1ED] hover:text-[#1A1A1A]"}`}
+              >
+                <BookOpen className="w-5 h-5" /> My Workshops
               </button>
               <button 
                 onClick={() => { setActiveTab("profile"); setIsSidebarOpen(false); }}
@@ -693,51 +659,6 @@ END:VCARD`;
                           <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">Username (Read-only)</label>
                           <input disabled type="text" value={member.username} className="w-full bg-[#FAF8F5] border border-[#E8E4DF] text-gray-400 rounded-lg px-4 py-2.5 text-sm outline-none cursor-not-allowed" />
                         </div>
-                        <div className="sm:col-span-2">
-                          <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Profile Cover Banner</label>
-                          
-                          {/* Live Thumbnail Preview */}
-                          {coverImageState ? (
-                            <div className="relative w-full h-48 rounded-xl overflow-hidden border border-[#E8E4DF] mb-3 bg-[#F4F1ED] group">
-                              <img src={coverImageState} alt="Cover Preview" className="w-full h-full object-cover" />
-                              <button 
-                                type="button" 
-                                onClick={() => setCoverImageState("")}
-                                className="absolute top-3 right-3 bg-red-600 hover:bg-red-700 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition-all shadow-md flex items-center gap-1"
-                              >
-                                Remove Banner
-                              </button>
-                            </div>
-                          ) : (
-                            <div className="w-full h-48 rounded-xl border-2 border-dashed border-[#E8E4DF] bg-[#FAF8F5] flex flex-col items-center justify-center p-6 text-center mb-3">
-                              <div className="w-12 h-12 rounded-full bg-[#F4F1ED] flex items-center justify-center text-lg mb-2">
-                                🖼️
-                              </div>
-                              <p className="text-xs font-bold text-[#1A1A1A] mb-1">No custom banner uploaded yet</p>
-                              <p className="text-[11px] text-[#6B6B6B] max-w-xs mb-3">This banner represents your card image in the public directory list and profile headers.</p>
-                            </div>
-                          )}
-
-                          {/* File input */}
-                          <div className="flex items-center gap-3">
-                            <input 
-                              type="file" 
-                              accept="image/*" 
-                              id="banner-upload-file" 
-                              onChange={handleBannerUpload} 
-                              className="hidden" 
-                            />
-                            <label 
-                              htmlFor="banner-upload-file"
-                              className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#1A1A1A] hover:bg-[#2C2C2C] text-white font-bold rounded-xl text-xs cursor-pointer transition-colors shadow-sm"
-                            >
-                              Choose Image File
-                            </label>
-                            <span className="text-[10px] text-[#6B6B6B]">JPG/PNG supported. Resized automatically.</span>
-                          </div>
-
-                          <input type="hidden" name="coverImage" value={coverImageState} />
-                        </div>
                       </div>
                     </div>
 
@@ -779,11 +700,6 @@ END:VCARD`;
                       <div className="flex flex-col gap-3">
                         {services.map((service, index) => (
                           <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#FAF8F5] rounded-xl border border-[#E8E4DF] gap-3">
-                            {service.imageUrl && (
-                              <div className="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-[#F4F1ED] relative border border-[#E8E4DF]">
-                                <img src={service.imageUrl} alt={service.name} className="object-cover w-full h-full" />
-                              </div>
-                            )}
                             <div className="flex-1">
                               <div className="flex items-baseline gap-2 mb-1">
                                 <span className="font-bold text-[#1A1A1A]">{service.name}</span>
@@ -832,25 +748,14 @@ END:VCARD`;
                             />
                           </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <input 
-                              type="text" 
-                              placeholder="Brief description of catalog item deliverables"
-                              value={newServiceDesc}
-                              onChange={(e) => setNewServiceDesc(e.target.value)}
-                              className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
-                            />
-                          </div>
-                          <div>
-                            <input 
-                              type="url" 
-                              placeholder="Product/Service Image URL (e.g. https://...)"
-                              value={newServiceImageUrl}
-                              onChange={(e) => setNewServiceImageUrl(e.target.value)}
-                              className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
-                            />
-                          </div>
+                        <div>
+                          <input 
+                            type="text" 
+                            placeholder="Brief description of catalog item deliverables"
+                            value={newServiceDesc}
+                            onChange={(e) => setNewServiceDesc(e.target.value)}
+                            className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
+                          />
                         </div>
                         <button 
                           type="button"
@@ -862,14 +767,12 @@ END:VCARD`;
                             const newItem = {
                               name: newServiceName.trim(),
                               price: newServicePrice.trim() || "Contact for pricing",
-                              description: newServiceDesc.trim() || "Professional female founder consulting service.",
-                              imageUrl: newServiceImageUrl.trim()
+                              description: newServiceDesc.trim() || "Professional female founder consulting service."
                             };
                             setServices([...services, newItem]);
                             setNewServiceName("");
                             setNewServicePrice("");
                             setNewServiceDesc("");
-                            setNewServiceImageUrl("");
                           }}
                           className="py-2 px-4 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-lg text-xs font-bold transition-all self-end"
                         >
@@ -1002,6 +905,84 @@ END:VCARD`;
 
                 </div>
 
+              </div>
+            </motion.div>
+          )}
+
+          {/* TAB: MY WORKSHOPS */}
+          {activeTab === "workshops" && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+              <div className="mb-8">
+                <h1 className="text-3xl font-black text-[#1A1A1A] font-display uppercase tracking-tight mb-2">My Registered <span className="text-[#C9540A] italic font-heading capitalize">Workshops</span></h1>
+                <p className="text-[#6B6B6B]">View your registered growth-focused sessions and workshop credentials.</p>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {registrations.length > 0 ? (
+                  registrations.map((reg: any) => (
+                    <div key={reg.id} className="bg-white rounded-2xl shadow-sm border border-[#E8E4DF] overflow-hidden hover:shadow-md transition-all flex flex-col">
+                      <div className="p-6 flex-1">
+                        <div className="flex items-center justify-between gap-2 mb-3">
+                          <span className="inline-flex text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md bg-[#FAF8F5] border border-[#E8E4DF] text-[#C9540A]">
+                            Confirmed Registration
+                          </span>
+                          <span className="text-xs text-[#6B6B6B] font-medium flex items-center gap-1">
+                            <Calendar className="w-3.5 h-3.5" />
+                            {new Date(reg.created_at || Date.now()).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                          </span>
+                        </div>
+                        <h3 className="font-bold text-lg text-[#1A1A1A] mb-2">{reg.workshop_name}</h3>
+                        <div className="flex flex-col gap-2 mb-4 text-sm text-[#6B6B6B]">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-[#1A1A1A]">Attendee:</span> {reg.name}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-[#1A1A1A]">WhatsApp:</span> {reg.phone}
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-[#1A1A1A]">Email:</span> {reg.email}
+                          </div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-[#FAF8F5] px-6 py-4 border-t border-[#E8E4DF] flex items-center justify-between gap-3">
+                        <a 
+                          href="https://meet.google.com/abc-defg-hij" 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="flex-1 py-2.5 px-4 bg-[#0f172a] hover:bg-[#1e293b] text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2 text-xs text-center"
+                        >
+                          <Video className="w-4 h-4" /> Join Session
+                        </a>
+                        <a 
+                          href={`data:text/calendar;charset=utf-8,${encodeURIComponent(
+                            `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:${reg.workshop_name}\nDESCRIPTION:Join Buddingpreneurs Workshop!\nURL:https://meet.google.com/abc-defg-hij\nEND:VEVENT\nEND:VCALENDAR`
+                          )}`}
+                          download="workshop_invite.ics"
+                          className="py-2.5 px-4 bg-white border border-[#E8E4DF] hover:border-[#1A1A1A] text-[#1A1A1A] rounded-xl font-bold transition-all flex items-center justify-center gap-2 text-xs"
+                        >
+                          <Calendar className="w-4 h-4" /> Add to Calendar
+                        </a>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <div className="col-span-2 bg-white border border-dashed border-[#E8E4DF] p-12 text-center rounded-2xl">
+                    <div className="w-12 h-12 rounded-full bg-[#FAF8F5] border border-[#E8E4DF] flex items-center justify-center mx-auto mb-4">
+                      <BookOpen className="w-6 h-6 text-[#C9540A]" />
+                    </div>
+                    <h3 className="font-bold text-lg text-[#1A1A1A] mb-1">No Registered Workshops</h3>
+                    <p className="text-sm text-[#6B6B6B] mb-6 max-w-sm mx-auto">
+                      You haven't registered for any workshops yet. View our catalog of high-impact learning sessions and scale your brand!
+                    </p>
+                    <a 
+                      href="/workshops" 
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#C9540A] hover:bg-[#A8420A] text-white font-bold rounded-xl text-sm transition-all shadow-md"
+                    >
+                      Explore Workshops <ExternalLink className="w-4 h-4" />
+                    </a>
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
