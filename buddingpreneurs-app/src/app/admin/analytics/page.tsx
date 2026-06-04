@@ -73,8 +73,8 @@ export default function AdminAnalyticsPage() {
       const [membersJson, statsJson, meJson, regJson, promoJson] = await Promise.all([
         membersRes.json(),
         statsRes.json(),
-        meJson.json(),
-        regJson.json(),
+        meRes.json(),
+        regRes.json(),
         promoRes.json()
       ]);
 
