@@ -345,7 +345,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 items-center">
           <div className="w-full md:w-5/12 relative rounded-2xl overflow-hidden shadow-md">
             <Image 
-              src="/images/home/founder-new.png" 
+              src="/images/home/founder.png" 
               width={800}
               height={1000}
               className="w-full h-auto object-cover object-top" 
@@ -489,6 +489,7 @@ export default function Home() {
                     src={program.image}
                     alt={program.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 25vw, 20vw"
                     className="object-contain p-2 group-hover:scale-[1.02] transition-transform duration-300"
                   />
                 </div>
@@ -816,6 +817,7 @@ export default function Home() {
                     src={selectedProgram.image} 
                     alt={selectedProgram.title} 
                     fill 
+                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-contain"
                   />
                 </div>

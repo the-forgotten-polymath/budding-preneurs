@@ -46,9 +46,9 @@ export const TestimonialsColumn = (props: {
                   <img
                     width={40}
                     height={40}
-                    src={image}
+                    src="/images/logo/logo.png"
                     alt={name}
-                    className="h-10 w-10 rounded-full object-cover border-2 border-[#C9540A]/20"
+                    className="h-10 w-10 rounded-full object-contain border-2 border-[#C9540A]/20 bg-[#FAF8F5] p-0.5"
                   />
                   <div className="flex flex-col">
                     <div className="font-bold text-[#1A1A1A] text-sm leading-5">{name}</div>

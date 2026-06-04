@@ -18,6 +18,7 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   title: siteMetadata.title,
   description: siteMetadata.description,
   keywords: ["women entrepreneurs", "startup training", "empowerment", "Indian startups", "digital marketing", "self-reliance", "networking", "mastermind", "Dehradun"],
