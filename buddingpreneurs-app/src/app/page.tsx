@@ -28,6 +28,7 @@ import {
 } from "lucide-react";
 import { tabsData, siteMetadata, TabData } from "../data/siteData";
 import Footer from "@/components/Footer";
+import { TestimonialsColumn } from "@/components/ui/testimonials-columns";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState<string>("platform");
@@ -36,41 +37,80 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const testimonials = [
+  const allTestimonials = [
     {
-      quote: "Buddingpreneurs changed my life. I went from having a simple idea to running a fully operational home business. The technical skills and brand promotion strategies I learned here were invaluable.",
+      text: "Buddingpreneurs completely changed my life. I went from a simple idea scribbled in a notebook to running a fully operational home business. The digital marketing skills and brand promotion strategies I learned here were absolutely invaluable.",
       name: "Priya Sharma",
-      role: "Startup Founder, India",
-      image: "/images/home/photo-1562088287-bde35a1ea917"
+      role: "Startup Founder, Pune",
+      image: "https://images.unsplash.com/photo-1502764613149-7f1d229e230f?w=80&h=80&fit=crop&crop=face"
     },
     {
-      quote: "The community support is unmatched. Being able to connect with other women who are on the exact same journey gave me the confidence to finally launch my brand.",
+      text: "The community support at Buddingpreneurs is truly unmatched. Connecting with 7,000+ women on the same journey gave me the courage and confidence I needed to finally launch my boutique.",
       name: "Ananya Desai",
       role: "Boutique Owner, Mumbai",
-      image: "/images/home/photo-1590650423710-ffa6e7f63440"
+      image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face"
     },
     {
-      quote: "The workshops on digital marketing completely transformed how I approach my customers online. Within a month, my sales tripled thanks to the practical strategies taught by the mentors.",
+      text: "Within just one month of attending the digital marketing workshop, my online sales literally tripled. The practical strategies here are real, actionable, and tailored for women entrepreneurs like me.",
       name: "Ritu Verma",
       role: "Freelance Designer, Delhi",
-      image: "/images/home/whatsapp-image-2025-05-16-at-12.12.19-pm-3-AQExRqeN1vFRVM34.jpeg"
+      image: "https://images.unsplash.com/photo-1614204424926-197290e96b97?w=80&h=80&fit=crop&crop=face"
     },
     {
-      quote: "I always wanted to start my own bakery, but the technicalities scared me. Buddingpreneurs held my hand through the entire setup process. I'm now economically independent.",
+      text: "I always dreamed of my own bakery but the business setup process scared me. Buddingpreneurs guided me step by step, from GST registration to Instagram branding. Today I'm economically independent!",
       name: "Meera Patel",
-      role: "Home Baker, Ahmedabad",
-      image: "/images/home/whatsapp-image-2025-05-16-at-12.12.19-pm-1-m5KM3EkNp0TbbGoG.jpeg"
+      role: "Home Baker & Founder, Ahmedabad",
+      image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "The B2B networking sessions connected me to clients I never would have found on my own. Within two months of joining, I signed three corporate deals for my consultancy firm.",
+      name: "Sunita Agarwal",
+      role: "Business Consultant, Bangalore",
+      image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "As a single mother starting from scratch, I was terrified. Buddingpreneurs not only gave me skills but a sisterhood. My handmade jewellery brand now ships Pan-India and I have 40+ wholesale clients.",
+      name: "Kavitha Nair",
+      role: "Jewellery Entrepreneur, Kochi",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "The visibility I gained through Buddingpreneurs' directory and features was phenomenal. My coaching practice went from 3 clients to a full waitlist in under 6 months!",
+      name: "Deepika Malhotra",
+      role: "Life Coach & Speaker, Gurugram",
+      image: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Buddingpreneurs' workshops on AI tools for business were a game-changer. I automated my entire content calendar and saved 15 hours a week, which I now invest in growing my brand.",
+      name: "Nisha Gupta",
+      role: "Content Creator & D2C Founder, Jaipur",
+      image: "https://images.unsplash.com/photo-1521252659862-eec69941b071?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "I came from a small town with big dreams and zero network. Buddingpreneurs connected me to mentors, collaborators, and customers across India. My saree brand is now a thriving D2C success story.",
+      name: "Rekha Yadav",
+      role: "Ethnic Wear Founder, Lucknow",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "The pricing and financial literacy sessions completely changed how I valued my work. I stopped under-pricing my services and doubled my revenue in just 3 months after the workshop.",
+      name: "Pooja Iyer",
+      role: "Graphic Designer, Chennai",
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Joining Buddingpreneurs was the best business decision I ever made. The strategic partnerships I formed here helped me land my first B2B client worth ₹5 lakhs within 60 days.",
+      name: "Shruti Kapoor",
+      role: "HR Consultant, Hyderabad",
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "The mentorship and the real-world case studies at Buddingpreneurs workshops gave me practical knowledge no MBA program could. My food startup is now profitable and expanding to 3 new cities!",
+      name: "Lalita Sharma",
+      role: "Food Startup Founder, Bhopal",
+      image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=80&h=80&fit=crop&crop=face"
     }
   ];
-
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveTestimonial((prev) => (prev + 1) % testimonials.length);
-    }, 6000); // 6 seconds
-    return () => clearInterval(interval);
-  }, [testimonials.length]);
 
   // Track mouse coordinates for dynamic 3D Parallax effect
   useEffect(() => {
@@ -269,13 +309,7 @@ export default function Home() {
       </section>
 
       {/* 🏆 TRUST & RECOGNITION MARQUEE (Moved outside hero section to sit completely below the image) */}
-      <div className="w-full z-20 relative bg-[#f8fafc] pt-6 pb-2 border-b border-slate-200/50">
-        <div className="text-center mb-5">
-          <span className="text-[10px] font-bold tracking-widest text-slate-400 uppercase flex items-center justify-center gap-2">
-            🏆 ACCREDITATIONS & RECOGNITIONS
-          </span>
-        </div>
-
+      <div className="w-full z-20 relative bg-[#f8fafc] border-b border-slate-200/50">
         <div className="relative w-full overflow-hidden py-4 bg-white border-y border-slate-200/50 flex items-center select-none shadow-sm">
           <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
@@ -310,7 +344,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-8 items-center">
           <div className="w-full md:w-5/12 relative rounded-2xl overflow-hidden shadow-md">
             <Image 
-              src="/images/home/founder.png" 
+              src="/images/home/founder-new.png" 
               width={800}
               height={1000}
               className="w-full h-auto object-cover object-top" 
@@ -344,39 +378,33 @@ export default function Home() {
             </div>
           </div>
           
-          {/* Grid */}
+          {/* Grid of Programs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Card 1 */}
-            <div className="bg-[#F4F1ED] rounded-xl p-8 transition-transform hover:-translate-y-2 hover:shadow-lg duration-300">
-              <Sparkles className="w-8 h-8 text-[#C9540A] mb-6" strokeWidth={1.5} />
-              <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">Brand Promotion</h3>
-              <p className="text-[#6B6B6B] text-sm leading-relaxed mb-6">Participate in workshops focused on brand promotion and technical skills for aspiring women entrepreneurs.</p>
-              <a href="/workshops" className="text-xs font-semibold text-[#1A1A1A] uppercase tracking-wider border-b border-[#1A1A1A] pb-1 hover:text-[#C9540A] hover:border-[#C9540A] transition-colors">Read More</a>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-[#F4F1ED] rounded-xl p-8 transition-transform hover:-translate-y-2 hover:shadow-lg duration-300">
-              <TrendingUp className="w-8 h-8 text-[#C9540A] mb-6" strokeWidth={1.5} />
-              <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">Marketing Strategies</h3>
-              <p className="text-[#6B6B6B] text-sm leading-relaxed mb-6">Leverage our community resources for effective marketing strategies and organic reach to your target audience.</p>
-              <a href="/community" className="text-xs font-semibold text-[#1A1A1A] uppercase tracking-wider border-b border-[#1A1A1A] pb-1 hover:text-[#C9540A] hover:border-[#C9540A] transition-colors">Read More</a>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-[#F4F1ED] rounded-xl p-8 transition-transform hover:-translate-y-2 hover:shadow-lg duration-300">
-              <Heart className="w-8 h-8 text-[#C9540A] mb-6" strokeWidth={1.5} />
-              <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">Holistic Wellness</h3>
-              <p className="text-[#6B6B6B] text-sm leading-relaxed mb-6">Promoting inner strength and balance through guided yoga, meditation, and holistic wellness practices tailored for women.</p>
-              <a href="/programs" className="text-xs font-semibold text-[#1A1A1A] uppercase tracking-wider border-b border-[#1A1A1A] pb-1 hover:text-[#C9540A] hover:border-[#C9540A] transition-colors">Read More</a>
-            </div>
-
-            {/* Card 4 */}
-            <div className="bg-[#F4F1ED] rounded-xl p-8 transition-transform hover:-translate-y-2 hover:shadow-lg duration-300">
-              <Laptop className="w-8 h-8 text-[#C9540A] mb-6" strokeWidth={1.5} />
-              <h3 className="text-lg font-bold text-[#1A1A1A] mb-3">Start-up Program</h3>
-              <p className="text-[#6B6B6B] text-sm leading-relaxed mb-6">With the right skills, guidance, and community, women can turn simple ideas into powerful ventures and achieve independence.</p>
-              <a href="/business-plan" className="text-xs font-semibold text-[#1A1A1A] uppercase tracking-wider border-b border-[#1A1A1A] pb-1 hover:text-[#C9540A] hover:border-[#C9540A] transition-colors">Read More</a>
-            </div>
+            {[
+              { title: "BP Podcast Series", image: "/images/programs/podcast-series.jpeg", link: "#podcast" },
+              { title: "Virtual Networking Meet", image: "/images/programs/virtual-networking.jpeg", link: "#networking" },
+              { title: "Women of Impact Awards 2026", image: "/images/programs/women-of-impact.jpeg", link: "#awards" },
+              { title: "Live Showcase", image: "/images/programs/live-showcase.jpeg", link: "#showcase" },
+              { title: "Associate Partner Program", image: "/images/programs/associate-partner.jpeg", link: "#partner" },
+              { title: "Digital Skills & Growth", image: "/images/programs/digital-skills.jpeg", link: "#skills" },
+              { title: "Membership Benefits", image: "/images/programs/membership-benefits.jpeg", link: "#membership" },
+              { title: "Mentorship & Leadership", image: "/images/programs/mentorship-leadership.jpeg", link: "#mentorship" }
+            ].map((program, index) => (
+              <div key={index} className="bg-white rounded-xl overflow-hidden transition-transform hover:-translate-y-2 hover:shadow-xl duration-300 border border-[#E8E4DF] flex flex-col">
+                <div className="relative w-full aspect-[4/5] bg-[#FAF8F5]">
+                  <Image 
+                    src={program.image}
+                    alt={program.title}
+                    fill
+                    className="object-contain p-2"
+                  />
+                </div>
+                <div className="p-5 flex-grow flex flex-col justify-between border-t border-[#E8E4DF]">
+                  <h3 className="text-md font-bold text-[#1A1A1A] mb-3 leading-tight line-clamp-2">{program.title}</h3>
+                  <a href={program.link} className="text-[10px] font-bold text-[#C9540A] uppercase tracking-wider hover:text-[#1A1A1A] transition-colors self-start mt-2">View Details &rarr;</a>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -397,28 +425,36 @@ export default function Home() {
           
           {/* Right About Us */}
           <div className="w-full lg:w-7/12">
-            <span className="text-[#C9540A] text-sm font-semibold italic mb-4 block">About Us</span>
+            <span className="text-[#C9540A] text-sm font-semibold italic mb-4 block">About Buddingpreneurs®</span>
             <h2 className="text-4xl text-[#1A1A1A] font-bold font-sans mb-6">
               Celebrating <span className="italic text-[#C9540A] font-serif">Women-Led</span> Businesses
             </h2>
-            <p className="text-[#6B6B6B] text-base leading-relaxed mb-10 max-w-2xl">
-              Turning Skills into Startups for Indian Women. Connect, Collaborate, Grow. Whether it’s starting a home business, learning new skills, or building a personal brand — we grow stronger, together.
-            </p>
             
-            {/* Stats Row */}
-            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-[#E8E4DF]">
-              <div>
-                <div className="text-3xl font-black text-[#C9540A] mb-1">500+</div>
-                <div className="text-xs text-[#6B6B6B] uppercase tracking-wider font-semibold">Women Empowered</div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-[#C9540A] mb-1">50+</div>
-                <div className="text-xs text-[#6B6B6B] uppercase tracking-wider font-semibold">Workshops Hosted</div>
-              </div>
-              <div>
-                <div className="text-3xl font-black text-[#C9540A] mb-1">10+</div>
-                <div className="text-xs text-[#6B6B6B] uppercase tracking-wider font-semibold">Industry Awards</div>
-              </div>
+            {/* Metadata strip */}
+            <div className="flex flex-wrap gap-2.5 mb-8 bg-[#F4F1ED] p-4 rounded-xl border border-[#E8E4DF]">
+              {[
+                "Est. 9th January 2017",
+                "7,000+ Women Founders",
+                "D2C to B2B",
+                "Pan-India",
+                "Online"
+              ].map((item, idx) => (
+                <span key={idx} className="text-xs font-bold text-[#1A1A1A] bg-white px-3 py-1.5 rounded-lg border border-[#E8E4DF] flex items-center">
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            <div className="text-[#6B6B6B] text-[15px] leading-relaxed mb-6 max-w-2xl space-y-4">
+              <p>
+                For over 9 years, <strong>Buddingpreneurs®</strong> has been empowering women entrepreneurs through networking, learning, visibility, collaborations, and business growth opportunities.
+              </p>
+              <p>
+                From D2C brands and service providers to coaches, consultants, freelancers, creators, professionals, and B2B founders, <strong>Buddingpreneurs®</strong> serves as a growth-focused ecosystem where women connect, learn, collaborate, and thrive.
+              </p>
+              <p>
+                Whether you're launching your first product, acquiring your first client, scaling your business, or building strategic partnerships, <strong>Buddingpreneurs®</strong> provides the support, network, and opportunities to help you move forward.
+              </p>
             </div>
           </div>
         </div>
@@ -518,59 +554,104 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 5.7 Testimonials Section */}
-      <section className="bg-[#2C1F14] py-24 px-6 relative overflow-hidden flex items-center">
-        {/* Background Image right half */}
-        <div className="absolute right-0 top-0 bottom-0 w-full lg:w-1/2 opacity-20 pointer-events-none">
-          <Image src="/images/home/photo-1590650423710-ffa6e7f63440" fill className="object-cover" alt="Background" />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#2C1F14] to-transparent"></div>
+      {/* 5.7 Testimonials Section — Scrolling Columns */}
+      <section className="bg-[#FAF8F5] py-24 px-6 relative overflow-hidden border-y border-[#E8E4DF]">
+        {/* Soft background accent */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 60% 50%, rgba(201,84,10,0.04) 0%, transparent 70%)" }} />
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center justify-center text-center max-w-xl mx-auto mb-14"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#E8E4DF] bg-white text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-5 shadow-sm">
+              <Star className="w-3.5 h-3.5 fill-[#C9540A] text-[#C9540A]" />
+              Community Voices
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-[#1A1A1A] leading-[1.15] mb-4">
+              What Our <span className="italic font-serif text-[#C9540A]">Women Founders</span> Say
+            </h2>
+            <p className="text-[#6B6B6B] text-base leading-relaxed">
+              Real stories from 7,000+ women entrepreneurs across India who transformed their lives through Buddingpreneurs.
+            </p>
+          </motion.div>
+
+          {/* Scrolling Columns Container */}
+          <div className="flex justify-center gap-5 mt-4 [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] max-h-[720px] overflow-hidden">
+            <TestimonialsColumn
+              testimonials={allTestimonials.slice(0, 4)}
+              duration={18}
+            />
+            <TestimonialsColumn
+              testimonials={allTestimonials.slice(4, 8)}
+              className="hidden md:block"
+              duration={22}
+            />
+            <TestimonialsColumn
+              testimonials={allTestimonials.slice(8, 12)}
+              className="hidden lg:block"
+              duration={20}
+            />
+          </div>
         </div>
-        
-        <div className="max-w-7xl mx-auto w-full relative z-10">
-          <span className="text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-4 block">Testimonials</span>
-          <h2 className="text-4xl text-white font-sans font-bold mb-16">
-            Voices of <span className="italic text-white font-serif">Appreciation</span>
-          </h2>
-          
-          <div className="max-w-2xl min-h-[300px]">
-            <div className="flex gap-1 mb-6">
-              {[...Array(5)].map((_, i) => <Star key={i} className="w-5 h-5 text-amber-400 fill-amber-400" />)}
+      </section>
+
+      {/* 🏆 AWARDS & RECOGNITION — Image Auto-Scroll */}
+      <section className="bg-white py-16 px-6 border-y border-[#E8E4DF] relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            viewport={{ once: true }}
+            className="flex flex-col items-center text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[#E8E4DF] bg-[#FAF8F5] text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-4 shadow-sm">
+              <Award className="w-3.5 h-3.5" />
+              Awards & Recognition
             </div>
-            
-            <div className="relative">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTestimonial}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -20 }}
-                  transition={{ duration: 0.5 }}
-                >
-                  <p className="text-2xl text-white/90 leading-relaxed font-sans mb-10 min-h-[160px]">
-                    "{testimonials[activeTestimonial].quote}"
-                  </p>
-                  <div className="flex items-center gap-4">
-                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#C9540A]">
-                      <img src={testimonials[activeTestimonial].image} className="w-full h-full object-cover" alt={testimonials[activeTestimonial].name} />
+            <h2 className="text-3xl md:text-4xl font-black text-[#1A1A1A] leading-tight">
+              Trusted & <span className="italic font-serif text-[#C9540A]">Recognised</span> Nationally
+            </h2>
+            <p className="text-[#6B6B6B] text-sm mt-3 max-w-md">
+              Proud recipients of national acknowledgements celebrating women entrepreneurship in India.
+            </p>
+          </motion.div>
+
+          {/* Auto-scrolling Image Strip */}
+          <div className="relative w-full overflow-hidden">
+            {/* Gradient masks */}
+            <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
+            <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
+
+            <div className="flex w-max gap-10 animate-marquee-horizontal flex-nowrap items-center">
+              {[...Array(4)].map((_, groupIdx) => (
+                <div key={groupIdx} className="flex items-center gap-10 flex-shrink-0">
+                  {[
+                    { src: "/images/home/Trophy.png", alt: "Women Business Council Excellence Trophy" },
+                    { src: "/images/home/Certificate1.png", alt: "MSME Certification" },
+                    { src: "/images/home/Certificate2.png", alt: "Startup India Acknowledgment" },
+                    { src: "/images/home/Certificate3.png", alt: "Uttarakhand Digital Skill Atelier Certificate" },
+                  ].map((img, i) => (
+                    <div
+                      key={i}
+                      className="w-56 h-40 flex-shrink-0 rounded-2xl overflow-hidden border border-[#E8E4DF] bg-[#FAF8F5] shadow-sm hover:shadow-md transition-shadow duration-300 flex items-center justify-center p-3"
+                    >
+                      <Image
+                        src={img.src}
+                        alt={img.alt}
+                        width={200}
+                        height={140}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <div>
-                      <h4 className="text-white font-bold">{testimonials[activeTestimonial].name}</h4>
-                      <p className="text-[#C9540A] text-sm">{testimonials[activeTestimonial].role}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-            
-            {/* Progress indicators */}
-            <div className="flex gap-2 mt-8">
-              {testimonials.map((_, idx) => (
-                <button 
-                  key={idx}
-                  onClick={() => setActiveTestimonial(idx)}
-                  className={`h-1 rounded-full transition-all duration-300 ${activeTestimonial === idx ? 'w-8 bg-[#C9540A]' : 'w-4 bg-white/20 hover:bg-white/40'}`}
-                  aria-label={`Go to testimonial ${idx + 1}`}
-                />
+                  ))}
+                </div>
               ))}
             </div>
           </div>

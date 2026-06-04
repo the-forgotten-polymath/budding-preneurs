@@ -16,7 +16,15 @@ import {
   ChevronDown,
   CheckCircle2,
   Phone,
-  ArrowUpRight
+  ArrowUpRight,
+  TrendingUp,
+  Megaphone,
+  ShoppingBag,
+  Briefcase,
+  Cpu,
+  Users,
+  Mic,
+  Star
 } from "lucide-react";
 import { siteMetadata } from "../../data/siteData";
 import Footer from "@/components/Footer";
@@ -26,13 +34,15 @@ export default function WorkshopsPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   // Category Filter State
-  const [activeCategory, setActiveCategory] = useState<"all" | "training" | "wellness" | "kids">("all");
+  const [activeCategory, setActiveCategory] = useState<"all" | "marketing" | "management" | "community">("all");
   
   // Registration Modal States
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedWorkshop, setSelectedWorkshop] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
-  const [formData, setFormData] = useState({ name: "", email: "", phone: "", phase: "Idea Stage" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", phase: "Just an Idea" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
 
   // FAQ Accordion State (stores index of open item, null if closed)
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
@@ -47,14 +57,43 @@ export default function WorkshopsPage() {
 
   const openRegisterModal = (workshopName: string) => {
     setSelectedWorkshop(workshopName);
-    setFormData({ name: "", email: "", phone: "", phase: "Idea Stage" });
+    setFormData({ name: "", email: "", phone: "", phase: "Just an Idea" });
     setIsModalOpen(true);
     setFormSubmitted(false);
+    setSubmitError("");
+    setIsSubmitting(false);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setIsSubmitting(true);
+    setSubmitError("");
+    
+    try {
+      const response = await fetch("/api/workshops/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          phase: formData.phase,
+          workshop: selectedWorkshop
+        })
+      });
+
+      const resData = await response.json();
+      if (resData.success) {
+        setFormSubmitted(true);
+      } else {
+        setSubmitError(resData.error || "Something went wrong. Please try again.");
+      }
+    } catch (err) {
+      console.error("Workshop registration error:", err);
+      setSubmitError("Failed to register. Please check your network and try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const toggleFaq = (index: number) => {
@@ -152,31 +191,43 @@ export default function WorkshopsPage() {
         <section className="px-6 pb-16 text-center max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-orange-100 text-[#C9540A] text-xs font-bold tracking-widest uppercase mb-6">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>Transformative Sessions</span>
+            <span>Interactive Cohorts</span>
           </div>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-[#1A1A1A] leading-[1.1] mb-8">
-            Enable Women to <br />
-            <span className="italic font-serif text-[#C9540A]">Lead and Launch</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1A1A1A] leading-[1.15] mb-6 font-sans">
+            Buddingpreneurs® <br />
+            <span className="italic font-serif text-[#C9540A]">Workshops</span> & Learning Sessions
           </h1>
-          <p className="text-[#334155] text-lg md:text-xl leading-relaxed mb-10 max-w-2xl mx-auto">
-            Join our skill development workshops to boost your business and connect with like-minded women.
+          <p className="text-[#334155] text-base md:text-lg leading-relaxed mb-10 max-w-2xl mx-auto font-sans">
+            Buddingpreneurs regularly conducts practical, growth-focused workshops to help women entrepreneurs build skills, confidence, and business success.
           </p>
 
-          {/* Dynamic Filter Tabs */}
-          <div className="flex items-center sm:justify-center gap-2 mt-12 bg-[#F4F1ED] p-1.5 sm:p-2 rounded-full max-w-md md:max-w-lg mx-auto border border-[#E8E4DF] overflow-x-auto no-scrollbar flex-nowrap whitespace-nowrap px-3 sm:px-2">
-            {(["all", "training", "wellness", "kids"] as const).map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider transition-all shrink-0 relative ${
-                  activeCategory === cat
-                    ? "text-white bg-[#C9540A] shadow-sm"
-                    : "text-slate-600 hover:text-slate-900"
-                }`}
-              >
-                {cat === "all" ? "All Workshops" : cat === "training" ? "Skill Training" : cat === "wellness" ? "Wellness" : "Kids Online"}
-              </button>
-            ))}
+          {/* Dynamic Filter Tabs - Glassmorphism & Fluid Sliding Bubble */}
+          <div className="flex items-center justify-start md:justify-between gap-3 sm:gap-4 mt-8 bg-white/40 backdrop-blur-md p-2.5 rounded-full max-w-5xl w-full mx-auto border border-white/60 shadow-[0_12px_40px_rgba(0,0,0,0.06)] overflow-x-auto no-scrollbar flex-nowrap whitespace-nowrap px-4 sm:px-6 relative">
+            {(["all", "marketing", "management", "community"] as const).map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat as any)}
+                  className={`px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors duration-300 shrink-0 md:flex-1 text-center relative z-10 ${
+                    isActive ? "text-white" : "text-slate-600 hover:text-[#C9540A]"
+                  }`}
+                >
+                  <span className="relative z-20">
+                    {cat === "all" ? "All Sessions" : cat === "marketing" ? "Growth & Marketing" : cat === "management" ? "Management & Tech" : "Community & Leadership"}
+                  </span>
+                  
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeCategoryPill"
+                      className="absolute inset-0 bg-[#C9540A] rounded-full shadow-[0_6px_20px_rgba(201,84,10,0.3)]"
+                      style={{ originY: "0px" }}
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </button>
+              );
+            })}
           </div>
         </section>
 
@@ -221,87 +272,217 @@ export default function WorkshopsPage() {
           )}
         </AnimatePresence>
 
-        {/* WORKSHOP CATEGORIES CARDS */}
-        <section className="py-24 px-6 max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        {/* WORKSHOP GRID SECTION */}
+        <section className="py-16 px-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            {/* CARD 1: Training */}
-            <AnimatePresence mode="popLayout">
-              {(activeCategory === "all" || activeCategory === "training") && (
-                <motion.div 
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DF] hover:shadow-xl transition-all duration-300 flex flex-col group"
+            {/* 1. Business Growth & Sales */}
+            {(activeCategory === "all" || activeCategory === "marketing") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <TrendingUp className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    Business Growth <span className="italic text-[#C9540A] font-serif">& Sales</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Sales Mastery", "Lead Generation Strategies", "Client Acquisition Techniques", "Business Scaling Frameworks", "B2B Business Development"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("Business Growth & Sales Workshop")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
                 >
-                  <div className="relative h-64 sm:h-80 w-full overflow-hidden">
-                    <Image 
-                      src="/images/workshops/workshops_women_flower_1779275541121.png" 
-                      alt="Women collaborating" 
-                      fill 
-                      className="object-cover group-hover:scale-105 transition-transform duration-700" 
-                    />
-                  </div>
-                  <div className="p-8 flex flex-col flex-grow">
-                    <div className="flex items-center gap-2 text-sm text-[#C9540A] font-bold mb-4 uppercase tracking-wider">
-                      <BookOpen className="w-4 h-4" /> Training
-                    </div>
-                    <h3 className="text-2xl font-black text-[#1A1A1A] mb-3">Skill Development</h3>
-                    <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
-                      Learn essential skills for business growth and promotion. Gain practical knowledge from experts in various digital marketing and startup development fields.
-                    </p>
-                    <button 
-                      onClick={() => openRegisterModal("Skill Development Session")}
-                      className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 bg-[#0f172a] text-white hover:bg-[#C9540A]"
-                    >
-                      <span>Join Workshop</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  Register Interest →
+                </button>
+              </div>
+            )}
 
-            {/* CARD 2: Wellness */}
-            <AnimatePresence mode="popLayout">
-              {(activeCategory === "all" || activeCategory === "wellness") && (
-                <motion.div 
-                  layout
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.4 }}
-                  className="bg-white rounded-3xl overflow-hidden border border-[#E8E4DF] hover:shadow-xl transition-all duration-300 flex flex-col group"
+            {/* 2. Marketing & Branding */}
+            {(activeCategory === "all" || activeCategory === "marketing") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <Megaphone className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    Marketing <span className="italic text-[#C9540A] font-serif">& Branding</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Digital Marketing Basics", "Social Media Marketing", "Content Creation & Strategy", "Personal Branding", "Brand Positioning", "Instagram & LinkedIn Growth"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("Marketing & Branding Workshop")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
                 >
-                  <div className="relative h-64 sm:h-80 w-full overflow-hidden bg-slate-50">
-                    <Image 
-                      src="/images/workshops/workshops_yoga_1779275490769.png" 
-                      alt="Yoga Wellness" 
-                      fill 
-                      className="object-cover object-top group-hover:scale-105 transition-transform duration-700" 
-                    />
-                  </div>
-                  <div className="p-8 flex flex-col flex-grow">
-                    <div className="flex items-center gap-2 text-sm text-[#C9540A] font-bold mb-4 uppercase tracking-wider">
-                      <Sparkles className="w-4 h-4" /> Wellness
-                    </div>
-                    <h3 className="text-2xl font-black text-[#1A1A1A] mb-3">Yoga Wellness-Fitness</h3>
-                    <p className="text-[#6B6B6B] leading-relaxed mb-8 flex-grow">
-                      Participate in wellness workshops for holistic empowerment and growth. Keep your mind and body balanced while growing your brand and startup.
-                    </p>
-                    <button 
-                      onClick={() => openRegisterModal("Yoga Wellness-Fitness Class")}
-                      className="inline-flex items-center justify-center w-full px-6 py-3 rounded-full text-sm font-bold transition-all gap-2 border-2 border-[#0f172a] text-[#0f172a] hover:bg-[#0f172a] hover:text-white"
-                    >
-                      <span>Reserve Spot</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  Register Interest →
+                </button>
+              </div>
+            )}
+
+            {/* 3. E-Commerce & D2C */}
+            {(activeCategory === "all" || activeCategory === "marketing") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <ShoppingBag className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    E-Commerce <span className="italic text-[#C9540A] font-serif">& D2C</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Online Selling Strategies", "Marketplace Selling", "Website & Store Setup", "Customer Retention Techniques", "D2C Brand Growth"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("E-Commerce & D2C Workshop")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
+                >
+                  Register Interest →
+                </button>
+              </div>
+            )}
+
+            {/* 4. Business Management */}
+            {(activeCategory === "all" || activeCategory === "management") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <Briefcase className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    Business <span className="italic text-[#C9540A] font-serif font-bold">Management</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Business Planning", "Pricing Strategies", "GST & Business Compliance", "Financial Literacy for Entrepreneurs", "Proposal & Pitch Deck Creation"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("Business Management Workshop")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
+                >
+                  Register Interest →
+                </button>
+              </div>
+            )}
+
+            {/* 5. AI & Technology */}
+            {(activeCategory === "all" || activeCategory === "management") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <Cpu className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    AI <span className="italic text-[#C9540A] font-serif">& Technology</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Introduction to AI Tools", "ChatGPT for Business", "AI for Content Creation", "Productivity & Automation Tools", "AI-Powered Marketing"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("AI & Technology Workshop")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
+                >
+                  Register Interest →
+                </button>
+              </div>
+            )}
+
+            {/* 6. Networking & Collaboration */}
+            {(activeCategory === "all" || activeCategory === "community") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <Users className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    Networking <span className="italic text-[#C9540A] font-serif">& Collaboration</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Networking Masterclasses", "Referral Marketing", "Collaboration Strategies", "Partnership Building", "Community Growth"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("Networking & Collaboration Workshop")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
+                >
+                  Register Interest →
+                </button>
+              </div>
+            )}
+
+            {/* 7. Leadership & Personal Development */}
+            {(activeCategory === "all" || activeCategory === "community") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <Mic className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    Leadership <span className="italic text-[#C9540A] font-serif">& Development</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Public Speaking", "Confidence Building", "Leadership Skills", "Women in Business Leadership", "Time Management & Productivity"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("Leadership & Personal Development Workshop")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
+                >
+                  Register Interest →
+                </button>
+              </div>
+            )}
+
+            {/* 8. Special Sessions */}
+            {(activeCategory === "all" || activeCategory === "community") && (
+              <div className="bg-[#F4F1ED] rounded-xl p-8 border border-[#E8E4DF] transition-all hover:-translate-y-1 hover:shadow-lg duration-300 flex flex-col justify-between">
+                <div>
+                  <Star className="w-8 h-8 text-[#C9540A] mb-4" strokeWidth={1.5} />
+                  <h3 className="text-xl font-bold text-[#1A1A1A] mb-4">
+                    Special <span className="italic text-[#C9540A] font-serif">Sessions</span>
+                  </h3>
+                  <ul className="space-y-2.5 mb-8">
+                    {["Founder Stories & Success Talks", "Expert Panel Discussions", "Industry Insights Sessions", "Business Clinics & Q&A", "Community Orientation Sessions"].map((item) => (
+                      <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
+                        <span className="text-[#C9540A] mt-1 text-xs">◆</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <button 
+                  onClick={() => openRegisterModal("Special Workshop Sessions")}
+                  className="w-full py-3 rounded-full text-xs font-bold transition-all uppercase tracking-wider bg-[#C9540A] text-white hover:bg-[#A8420A] shadow-sm"
+                >
+                  Register Interest →
+                </button>
+              </div>
+            )}
 
           </div>
         </section>
@@ -316,7 +497,7 @@ export default function WorkshopsPage() {
             
             {/* FEATURED WORKSHOP 1: Skill Development */}
             <AnimatePresence mode="popLayout">
-              {(activeCategory === "all" || activeCategory === "training") && (
+              {(activeCategory === "all" || activeCategory === "marketing") && (
                 <motion.div 
                   layout
                   initial={{ opacity: 0, y: 40 }}
@@ -360,7 +541,7 @@ export default function WorkshopsPage() {
 
             {/* FEATURED WORKSHOP 2: Kids Online */}
             <AnimatePresence mode="popLayout">
-              {(activeCategory === "all" || activeCategory === "kids") && (
+              {(activeCategory === "all" || activeCategory === "community") && (
                 <motion.div 
                   layout
                   initial={{ opacity: 0, y: 40 }}
@@ -503,15 +684,22 @@ export default function WorkshopsPage() {
                     </div>
 
                     <form onSubmit={handleFormSubmit} className="space-y-4">
+                      {submitError && (
+                        <div className="p-3.5 mb-2 rounded-xl bg-red-50 border border-red-200 text-red-600 text-xs font-bold leading-relaxed">
+                          ⚠️ {submitError}
+                        </div>
+                      )}
+                      
                       <div>
                         <label className="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-1.5">Your Full Name</label>
                         <input 
                           type="text" 
                           required 
+                          disabled={isSubmitting}
                           value={formData.name}
                           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                           placeholder="e.g. Aditi Sharma" 
-                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50 disabled:opacity-60"
                         />
                       </div>
                       
@@ -520,10 +708,11 @@ export default function WorkshopsPage() {
                         <input 
                           type="email" 
                           required 
+                          disabled={isSubmitting}
                           value={formData.email}
                           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                           placeholder="aditi@example.com" 
-                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50 disabled:opacity-60"
                         />
                       </div>
 
@@ -534,10 +723,11 @@ export default function WorkshopsPage() {
                           <input 
                             type="tel" 
                             required 
+                            disabled={isSubmitting}
                             value={formData.phone}
                             onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             placeholder="10-digit number" 
-                            className="w-full pl-11 pr-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                            className="w-full pl-11 pr-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50 disabled:opacity-60"
                           />
                         </div>
                       </div>
@@ -546,8 +736,9 @@ export default function WorkshopsPage() {
                         <label className="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-1.5">Current Business Phase</label>
                         <select 
                           value={formData.phase}
+                          disabled={isSubmitting}
                           onChange={(e) => setFormData({ ...formData, phase: e.target.value })}
-                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50"
+                          className="w-full px-4 py-3 rounded-xl border border-[#E8E4DF] focus:outline-none focus:border-[#C9540A] text-sm text-slate-800 transition-colors bg-slate-50 disabled:opacity-60"
                         >
                           <option>Just an Idea</option>
                           <option>Partially Launched</option>
@@ -557,10 +748,13 @@ export default function WorkshopsPage() {
 
                       <button 
                         type="submit" 
-                        className="w-full py-4 rounded-xl bg-[#C9540A] hover:bg-[#A8420A] text-white font-bold text-sm uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 mt-6"
+                        disabled={isSubmitting}
+                        className={`w-full py-4 rounded-xl text-white font-bold text-sm uppercase tracking-wider transition-all shadow-sm flex items-center justify-center gap-2 mt-6 ${
+                          isSubmitting ? "bg-slate-400 cursor-wait" : "bg-[#C9540A] hover:bg-[#A8420A]"
+                        }`}
                       >
-                        <span>Confirm Free Spot</span>
-                        <ArrowUpRight className="w-4 h-4" />
+                        <span>{isSubmitting ? "Registering..." : "Confirm Free Spot"}</span>
+                        {!isSubmitting && <ArrowUpRight className="w-4 h-4" />}
                       </button>
                     </form>
                   </motion.div>

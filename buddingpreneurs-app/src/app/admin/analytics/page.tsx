@@ -34,6 +34,8 @@ export default function AdminAnalyticsPage() {
 
   // Live Data States
   const [members, setMembers] = useState<any[]>([]);
+  const [registrations, setRegistrations] = useState<any[]>([]);
+  const [searchRegistrant, setSearchRegistrant] = useState("");
   const [stats, setStats] = useState<any>({
     totalMembers: 0,
     activeMembers: 0,
@@ -52,19 +54,28 @@ export default function AdminAnalyticsPage() {
   const [memberToDelete, setMemberToDelete] = useState<any | null>(null);
   const [dropdownOpenMember, setDropdownOpenMember] = useState<string | null>(null);
 
+  // Promo Code States
+  const [promoCode, setPromoCode] = useState("BPFREE");
+  const [savingPromo, setSavingPromo] = useState(false);
+  const [promoSuccess, setPromoSuccess] = useState(false);
+
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      const [membersRes, statsRes, meRes] = await Promise.all([
+      const [membersRes, statsRes, meRes, regRes, promoRes] = await Promise.all([
         fetch("/api/members"),
         fetch("/api/admin/stats"),
-        fetch("/api/auth/me")
+        fetch("/api/auth/me"),
+        fetch("/api/workshops/register"),
+        fetch("/api/admin/promo")
       ]);
       
-      const [membersJson, statsJson, meJson] = await Promise.all([
+      const [membersJson, statsJson, meJson, regJson, promoJson] = await Promise.all([
         membersRes.json(),
         statsRes.json(),
-        meRes.json()
+        meJson.json(),
+        regJson.json(),
+        promoRes.json()
       ]);
 
       if (membersJson.success) {
@@ -76,10 +87,43 @@ export default function AdminAnalyticsPage() {
       if (meJson.success && meJson.user) {
         setAdminName(meJson.user.name);
       }
+      if (regJson.success) {
+        setRegistrations(regJson.data);
+      }
+      if (promoJson.success) {
+        setPromoCode(promoJson.promoCode);
+      }
     } catch (err) {
       console.error("Error fetching admin dashboard data:", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleUpdatePromoCode = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!promoCode.trim()) return;
+    try {
+      setSavingPromo(true);
+      setPromoSuccess(false);
+      const res = await fetch("/api/admin/promo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ promoCode: promoCode.trim() })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setPromoCode(data.promoCode);
+        setPromoSuccess(true);
+        setTimeout(() => setPromoSuccess(false), 3000);
+      } else {
+        alert("Failed to update promo code: " + (data.error || "Unknown error"));
+      }
+    } catch (err) {
+      console.error("Error updating promo code:", err);
+      alert("Error updating promo code. Please try again.");
+    } finally {
+      setSavingPromo(false);
     }
   };
 
@@ -211,6 +255,14 @@ export default function AdminAnalyticsPage() {
     (m.city || "").toLowerCase().includes(searchMember.toLowerCase())
   );
 
+  const filteredRegistrations = registrations.filter(reg =>
+    (reg.name || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+    (reg.email || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+    (reg.workshop || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+    (reg.phone || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+    (reg.phase || "").toLowerCase().includes(searchRegistrant.toLowerCase())
+  );
+
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#1A1A1A] font-sans flex flex-col">
       
@@ -242,6 +294,12 @@ export default function AdminAnalyticsPage() {
             >
               Member Management
             </button>
+            <button 
+              onClick={() => setActiveTab("workshops")}
+              className={`text-sm font-semibold transition-colors ${activeTab === "workshops" ? "text-[#C9540A]" : "text-gray-300 hover:text-white"}`}
+            >
+              Workshop Registrations
+            </button>
           </nav>
         </div>
 
@@ -272,6 +330,12 @@ export default function AdminAnalyticsPage() {
           className={`px-4 py-3 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors ${activeTab === "members" ? "border-[#C9540A] text-[#C9540A]" : "border-transparent text-[#6B6B6B]"}`}
         >
           Member Management
+        </button>
+        <button 
+          onClick={() => setActiveTab("workshops")}
+          className={`px-4 py-3 text-sm font-semibold whitespace-nowrap border-b-2 transition-colors ${activeTab === "workshops" ? "border-[#C9540A] text-[#C9540A]" : "border-transparent text-[#6B6B6B]"}`}
+        >
+          Workshop Registrations
         </button>
       </div>
 
@@ -329,6 +393,44 @@ export default function AdminAnalyticsPage() {
                       <span className="text-sm text-[#6B6B6B] font-semibold mb-1">{stats.avgConversionRate} Avg Rate</span>
                     </div>
                   </div>
+                </div>
+
+                {/* Registration Promo Code Management */}
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#E8E4DF] mb-8">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                    <div>
+                      <h3 className="font-bold text-lg text-[#1A1A1A] mb-1">Registration Gatekeeper Code</h3>
+                      <p className="text-xs text-[#6B6B6B]">New vendors must type this code when registering to sign up successfully.</p>
+                    </div>
+                    
+                    <form onSubmit={handleUpdatePromoCode} className="flex items-center gap-3">
+                      <div className="relative">
+                        <input 
+                          type="text" 
+                          placeholder="PROMO CODE" 
+                          value={promoCode}
+                          onChange={(e) => setPromoCode(e.target.value.toUpperCase())}
+                          className="w-48 bg-[#F4F1ED] border-2 border-transparent font-bold tracking-wider uppercase text-center rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-[#C9540A] text-[#1A1A1A] transition-colors"
+                        />
+                      </div>
+                      <button 
+                        type="submit" 
+                        disabled={savingPromo}
+                        className="px-5 py-2.5 bg-[#C9540A] hover:bg-[#AC4708] text-white text-sm font-semibold rounded-xl transition-all disabled:opacity-50 shadow-md"
+                      >
+                        {savingPromo ? "Updating..." : "Update Code"}
+                      </button>
+                    </form>
+                  </div>
+                  {promoSuccess && (
+                    <motion.p 
+                      initial={{ opacity: 0, y: -5 }} 
+                      animate={{ opacity: 1, y: 0 }} 
+                      className="text-xs font-bold text-emerald-600 mt-3"
+                    >
+                      ✓ Promo code successfully updated in your Supabase configuration!
+                    </motion.p>
+                  )}
                 </div>
 
                 {/* Charts Area Placeholder */}

@@ -9,6 +9,26 @@ import Footer from "@/components/Footer";import { siteMetadata } from "../../dat
 export default function BusinessPlanPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
+  const toggleFaq = (index: number) => {
+    setOpenFaqIndex(openFaqIndex === index ? null : index);
+  };
+
+  const faqs = [
+    { q: "Why is the 1-Month Trial only ₹999?", a: "To help you experience BP before making a long-term commitment." },
+    { q: "Can I get clients in 3 months?", a: "Active participation can increase your chances of getting leads, referrals, and clients by up to 75%." },
+    { q: "What if I'm not earning ₹50K/month yet?", a: "Start with Trial or Basic and grow with the community." },
+    { q: "Is there a refund policy?", a: "Yes, a 24-hour refund policy applies to new memberships." },
+    { q: "Do I need an established business to join?", a: "No, beginners and aspiring entrepreneurs are welcome." },
+    { q: "Will BP promote my business?", a: "Yes, through networking, showcases, promotions, and visibility opportunities." },
+    { q: "Is attendance mandatory?", a: "No, but active members gain the actual result and maximum benefits." },
+    { q: "Can I upgrade my membership later?", a: "Yes, you can upgrade anytime." },
+    { q: "How is BP different from social media groups?", a: "BP offers structured networking, learning, visibility, and growth opportunities." },
+    { q: "Can I become a leader or mentor in BP?", a: "Yes, active members can apply for leadership and mentorship roles." },
+    { q: "Who can join BP?", a: "Entrepreneurs, professionals, freelancers, coaches, creators, and business owners." },
+    { q: "What is the biggest benefit of joining BP?", a: "Access to a supportive ecosystem for learning, networking, visibility, and business growth" }
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -108,79 +128,82 @@ export default function BusinessPlanPage() {
           <div className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
             <h2 className="text-3xl font-black mb-8 border-b pb-4 text-center">Membership Tiers</h2>
             
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-              {/* Free Membership */}
-              <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
-                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Free Membership</h3>
-                <p className="text-slate-500 mb-6 text-xs min-h-[40px]">Ideal For: Beginners or curious aspiring entrepreneurs</p>
-                <div className="mb-6">
-                  <span className="text-3xl font-black text-[#1A1A1A]">Free</span>
-                </div>
-                <ul className="space-y-3 mb-8 flex-1 text-xs">
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Lifetime Access to free community space (WhatsApp/FB group)</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Monthly newsletter with curated business content</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Occasional free events or webinars</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Invite friends and get Saturday and Sunday Free promo</li>
-                </ul>
-                <a href="/contact" className="flex items-center justify-center w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold text-sm hover:bg-[#1A1A1A] hover:text-white transition-colors">Join Free</a>
-              </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               
-              {/* Startup Membership */}
+              {/* Basic Plan */}
               <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
-                <div className="bg-[#C9540A] text-white text-[10px] font-bold px-3 py-1 rounded-full w-fit mb-4 uppercase tracking-wider">Launch Offer</div>
-                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Startup</h3>
-                <p className="text-slate-500 mb-6 text-xs min-h-[40px]">Ideal For: Startup business or early-stage founders</p>
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Basic Plan</h3>
+                <p className="text-slate-500 mb-6 text-xs min-h-[40px]">For founders ready to get visible</p>
                 <div className="mb-6">
                   <span className="text-3xl font-black text-[#1A1A1A]">Contact Us</span>
                 </div>
+                <div className="text-xs font-bold text-[#1A1A1A] mb-4">Everything in Trial, plus:</div>
                 <ul className="space-y-3 mb-8 flex-1 text-xs">
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> All benefits from Free membership plan</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Showcase your venture on fb, WhatsApp and Instagram</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Access to all monthly events/workshops & Networking meetups</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Fb and Instagram live / pre recorded video</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Fb and insta organic reach & Get featured / brand shout out</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Featured for your Startup journey (video interview or prerecorded)</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Full posting access in Inner Circle WhatsApp</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Verified Member Badge for your profile</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 1 Welcome Post with your photo on Facebook</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 3 Promotion Posts for your business in 3 months</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Host 1 Facebook Live of 20 minutes to showcase your expertise</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 15-min Onboarding Call to set you up for success</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 3 Content Hooks crafted for your business</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Post Your Ask on Ask-Give Friday once</li>
                 </ul>
-                <a href="/contact" className="flex items-center justify-center w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold text-sm hover:bg-[#1A1A1A] hover:text-white transition-colors">Get Started</a>
+                <a href="/contact" className="flex items-center justify-center w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold text-sm hover:bg-[#1A1A1A] hover:text-white transition-colors">Get Visible Now &rarr;</a>
               </div>
 
-              {/* Premium Membership */}
+              {/* Standard Plan */}
               <div className="bg-[#1A1A1A] text-white rounded-2xl p-6 border border-slate-800 relative shadow-2xl flex flex-col">
-                <div className="absolute top-0 right-0 bg-[#C9540A] text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">POPULAR</div>
-                <h3 className="text-xl font-bold mb-2 mt-4 md:mt-0">Premium</h3>
-                <p className="text-gray-400 mb-6 text-xs min-h-[40px]">Ideal For: Scaling businesses growth, small teams</p>
+                <div className="absolute top-0 right-0 bg-[#C9540A] text-[10px] font-bold px-3 py-1 rounded-bl-xl rounded-tr-xl">MOST POPULAR</div>
+                <h3 className="text-xl font-bold mb-2 mt-4 md:mt-0">Standard Plan</h3>
+                <p className="text-gray-400 mb-6 text-xs min-h-[40px]">For founders ready to get clients</p>
                 <div className="mb-6">
                   <span className="text-3xl font-black">Contact Us</span>
                 </div>
+                <div className="text-xs font-bold text-white mb-4">Everything in Basic, plus:</div>
                 <ul className="space-y-3 mb-8 flex-1 text-xs text-gray-300">
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> All Startups benefits</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Monthly group coaching or hot-seat sessions</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Pitch/feedback events</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Promotion in community spotlights</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Access to job board or collaboration directory</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Co-working sessions or accountability groups</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> E-certificate from Buddingpreneurs</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Priority Replies in WhatsApp Inner Circle</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Welcome Post on Facebook + WhatsApp Story</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 6 Promotion Posts in 6 months across platforms</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 1 Brand Shoutout by Buddingpreneurs®</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Host 3 Live Sessions to build authority</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 1 Professional Reel created and posted for you</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 30-min Strategy Call for business guidance</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 7-Day Content Idea List customized for you</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> We Post 1 Customer Review for social proof</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Community Spotlight Feature</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 1 Welcome Post on our Instagram</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Post Your Ask on Ask-Give Friday every month</li>
                 </ul>
-                <a href="/contact" className="flex items-center justify-center w-full py-3 rounded-xl bg-[#C9540A] font-bold text-sm hover:bg-white hover:text-[#C9540A] transition-colors">Join Premium</a>
+                <a href="/contact" className="flex items-center justify-center w-full py-3 rounded-xl bg-[#C9540A] font-bold text-sm hover:bg-white hover:text-[#C9540A] transition-colors">Get Started &rarr;</a>
               </div>
               
-              {/* VIP Membership */}
+              {/* Premium Plan */}
               <div className="bg-slate-50 rounded-2xl p-6 border border-slate-200 hover:shadow-md transition-shadow flex flex-col">
-                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">VIP/Pro</h3>
-                <p className="text-slate-500 mb-6 text-xs min-h-[40px]">Ideal For: Funded startups, experienced entrepreneurs</p>
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Premium Plan</h3>
+                <p className="text-slate-500 mb-6 text-xs min-h-[40px]">For founders ready to lead</p>
                 <div className="mb-6">
                   <span className="text-3xl font-black text-[#1A1A1A]">Contact Us</span>
                 </div>
+                <div className="text-xs font-bold text-[#1A1A1A] mb-4">Everything in Standard, plus:</div>
                 <ul className="space-y-3 mb-8 flex-1 text-xs">
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Includes all Startups + Premium benefits</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 1-on-1 mentoring (monthly/quarterly)</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Live interview on "Coffee Tales with Buddingpreneurs"</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Premium mastermind groups & Personalized intros</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Get featured on our website & Speaking opportunities</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> VIP-only retreats or private events</li>
-                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Recognition and E-certificate by Buddingpreneurs</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> VIP Access in WhatsApp with admin team replies</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Listed on Buddingpreneurs® Official Member Page</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 12 Promotion Posts - 1 every month for full year</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 2 Brand Shoutouts by Buddingpreneurs®</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Host 6 Live Sessions across the year</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 3 Professional Reels created for you</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Two 30-min Strategy Calls with our team</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 15-Day Content Plan for your business</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> We Post 2 Customer Reviews for you</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 2 Community Spotlight Features</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 2 Posts on our Instagram in 12 months</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Curated Introduction to 3 Members for collaborations</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Free Access to 1 Premium Skill Session</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> Pin Your Ask on Ask-Give Friday once every quarter</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 10-min Welcome Call with Team Lead</li>
+                  <li className="flex gap-2"><CheckCircle2 className="w-4 h-4 text-[#C9540A] shrink-0"/> 24-Hour Early Access to brand deals</li>
                 </ul>
-                <a href="/contact" className="flex items-center justify-center w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold text-sm hover:bg-[#1A1A1A] hover:text-white transition-colors">Contact Us</a>
+                <a href="/contact" className="flex items-center justify-center w-full py-3 rounded-xl border-2 border-[#1A1A1A] font-bold text-sm hover:bg-[#1A1A1A] hover:text-white transition-colors">Become a Leader &rarr;</a>
               </div>
             </div>
 
@@ -244,6 +267,43 @@ export default function BusinessPlanPage() {
                 <p className="text-gray-400">Our programs focus on practical, actionable steps that directly translate to brand visibility and income.</p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* FAQ SECTION */}
+        <section className="py-24 px-6 max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black mb-6 text-[#1A1A1A]">Frequently Asked <span className="italic font-serif text-[#C9540A]">Questions</span></h2>
+          </div>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm transition-all hover:border-[#C9540A]/30">
+                  <button 
+                    className="w-full px-6 py-5 flex items-center justify-between text-left font-bold text-[#1A1A1A] focus:outline-none"
+                    onClick={() => toggleFaq(index)}
+                  >
+                    <span className="text-lg pr-8">{faq.q}</span>
+                    <span className={`text-[#C9540A] text-2xl transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>+</span>
+                  </button>
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <div className="px-6 pb-6 text-slate-600 leading-relaxed border-t border-slate-100 pt-4">
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
           </div>
         </section>
 

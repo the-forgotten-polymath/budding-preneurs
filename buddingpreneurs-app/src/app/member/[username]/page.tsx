@@ -306,7 +306,7 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
       <main className="flex-1 pt-[72px]">
         {/* HERO BANNER */}
         <div className="w-full h-48 md:h-80 relative bg-[#1A1A1A]">
-          {member.coverImage && member.coverImage.startsWith("data:image/") ? (
+          {member.coverImage && (member.coverImage.startsWith("data:image/") || member.coverImage.startsWith("http")) ? (
             <img src={member.coverImage} alt="Cover" className="w-full h-full object-cover opacity-80" />
           ) : (
             <Image src={member.coverImage || "/images/programs/programs_women_meeting_1779275083144.png"} alt="Cover" fill className="object-cover opacity-80" />
@@ -326,7 +326,11 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                   
                   {/* Profile Photo */}
                   <div className="relative w-32 h-32 rounded-full border-4 border-white shadow-md overflow-hidden bg-[#F4F1ED] shrink-0 flex items-center justify-center font-bold text-3xl text-white bg-[#C9540A]">
-                    {member.logo ? member.logo : member.name.substring(0,2).toUpperCase()}
+                    {member.logo ? (
+                      <img src={member.logo} alt={member.name} className="w-full h-full object-cover" />
+                    ) : (
+                      member.name.substring(0,2).toUpperCase()
+                    )}
                   </div>
                   
                   {/* Title and Badges */}

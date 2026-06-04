@@ -4,12 +4,19 @@ import { getSupabaseServerClient, getSupabaseAdminClient } from "@/lib/supabase"
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, username, category, city, email, phone, password, tagline, bio, plan } = body;
+    const { name, username, category, city, email, phone, password, tagline, bio, promoCode } = body;
 
     // Validate required fields
     if (!name || !username || !email || !phone || !password) {
       return NextResponse.json(
         { success: false, error: "Name, username, email, phone, and password are required." },
+        { status: 400 }
+      );
+    }
+
+    if (!promoCode) {
+      return NextResponse.json(
+        { success: false, error: "Registration promo code is required." },
         { status: 400 }
       );
     }
@@ -23,6 +30,42 @@ export async function POST(request: Request) {
 
     const supabase = await getSupabaseServerClient();
     const supabaseAdmin = getSupabaseAdminClient();
+
+    // Validate Promo Code
+    let activePromoCode = "BPFREE"; // default fallback
+    try {
+      // 1. Try querying the settings table first
+      const { data: settingData, error: settingError } = await supabaseAdmin
+        .from("settings")
+        .select("value")
+        .eq("key", "promo_code")
+        .maybeSingle();
+
+      if (!settingError && settingData) {
+        activePromoCode = settingData.value || "BPFREE";
+      } else {
+        // 2. Fallback: Query the admin member's tagline field
+        const { data: adminMember, error: adminError } = await supabaseAdmin
+          .from("members")
+          .select("tagline")
+          .eq("role", "admin")
+          .limit(1)
+          .maybeSingle();
+
+        if (!adminError && adminMember && adminMember.tagline) {
+          activePromoCode = adminMember.tagline;
+        }
+      }
+    } catch (e) {
+      // Fallback in case table queries fail completely
+    }
+
+    if (promoCode.trim().toUpperCase() !== activePromoCode.toUpperCase()) {
+      return NextResponse.json(
+        { success: false, error: "Invalid registration promo code. Please ask the admin for a valid code." },
+        { status: 400 }
+      );
+    }
 
     // 1. Check if username is already taken in the public members table
     const { data: existingMember, error: checkError } = await supabaseAdmin
@@ -117,7 +160,7 @@ export async function POST(request: Request) {
         reviews_count: 0,
         verified: false,
         join_date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
-        plan: plan || "Basic",
+        plan: "Basic",
         logo: name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase(),
         cover_image: "/images/programs/programs_women_meeting_1779275083144.png",
         email,

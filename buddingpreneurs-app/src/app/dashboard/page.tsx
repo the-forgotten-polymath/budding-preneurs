@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
+import { getSupabaseBrowserClient } from "@/lib/supabase-client";
 import {
   Users,
   Eye,
@@ -100,6 +101,13 @@ export default function DashboardPage() {
   const [savingProfile, setSavingProfile] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
 
+  // Logo & Cover Image State (URL for display, File for upload)
+  const [logo, setLogo] = useState<string>("");
+  const [coverImage, setCoverImage] = useState<string>("");
+  const [logoFile, setLogoFile] = useState<File | null>(null);
+  const [coverImageFile, setCoverImageFile] = useState<File | null>(null);
+  const [uploadingImages, setUploadingImages] = useState(false);
+
   // Products and services manager state
   const [services, setServices] = useState<ServiceCatalogItem[]>([]);
   const [newServiceName, setNewServiceName] = useState("");
@@ -116,6 +124,8 @@ export default function DashboardPage() {
         if (found) {
           setMember(found);
           setServices(found.services || []);
+          setLogo(found.logo || "");
+          setCoverImage(found.coverImage || "");
         }
       }
       const leadsRes = await fetch(`/api/leads?username=${username}`);
@@ -183,22 +193,68 @@ export default function DashboardPage() {
     setSaveSuccess(false);
 
     const formData = new FormData(e.currentTarget);
-    const updatedMember = {
-      username: member.username,
-      name: formData.get("name") as string,
-      category: formData.get("category") as string,
-      city: formData.get("city") as string,
-      bio: formData.get("bio") as string,
-      contact: {
-        ...member.contact,
-        phone: formData.get("phone") as string,
-        whatsapp: formData.get("whatsapp") as string,
-        website: formData.get("website") as string,
-      },
-      services // Sync up-to-date custom catalog
-    };
+
+    // Upload new images to Supabase Storage if selected
+    let finalLogoUrl = logo;
+    let finalCoverImageUrl = coverImage;
 
     try {
+      if (logoFile || coverImageFile) {
+        setUploadingImages(true);
+        const supabase = getSupabaseBrowserClient();
+
+        if (logoFile) {
+          const logoPath = `${member.username}/logo-${Date.now()}.${logoFile.name.split('.').pop()}`;
+          const { error: logoError } = await supabase.storage
+            .from("vendor_profiles")
+            .upload(logoPath, logoFile, { upsert: true, contentType: logoFile.type });
+
+          if (logoError) {
+            throw new Error(`Logo upload failed: ${logoError.message}`);
+          }
+
+          const { data: logoPublicUrl } = supabase.storage
+            .from("vendor_profiles")
+            .getPublicUrl(logoPath);
+          finalLogoUrl = logoPublicUrl.publicUrl;
+        }
+
+        if (coverImageFile) {
+          const coverPath = `${member.username}/cover-${Date.now()}.${coverImageFile.name.split('.').pop()}`;
+          const { error: coverError } = await supabase.storage
+            .from("vendor_profiles")
+            .upload(coverPath, coverImageFile, { upsert: true, contentType: coverImageFile.type });
+
+          if (coverError) {
+            throw new Error(`Cover image upload failed: ${coverError.message}`);
+          }
+
+          const { data: coverPublicUrl } = supabase.storage
+            .from("vendor_profiles")
+            .getPublicUrl(coverPath);
+          finalCoverImageUrl = coverPublicUrl.publicUrl;
+        }
+
+        setUploadingImages(false);
+      }
+
+      const updatedMember = {
+        username: member.username,
+        name: formData.get("name") as string,
+        category: formData.get("category") as string,
+        city: formData.get("city") as string,
+        bio: formData.get("bio") as string,
+        logo: finalLogoUrl,
+        coverImage: finalCoverImageUrl,
+        contact: {
+          ...member.contact,
+          phone: formData.get("phone") as string,
+          whatsapp: formData.get("whatsapp") as string,
+          website: formData.get("website") as string,
+        },
+        services // Sync up-to-date custom catalog
+      };
+
       const res = await fetch("/api/members", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -207,16 +263,39 @@ export default function DashboardPage() {
       const data = await res.json();
       if (data.success) {
         setMember(data.data);
+        setLogoFile(null);
+        setCoverImageFile(null);
         setSaveSuccess(true);
         // Refresh in real-time to sync all state
         await fetchDashboardData(member.username);
         setTimeout(() => setSaveSuccess(false), 3000);
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error("Failed to save profile:", err);
-      alert("Error saving profile details.");
+      alert(err.message || "Error saving profile details. Please check your Supabase Storage bucket setup.");
     } finally {
       setSavingProfile(false);
+      setUploadingImages(false);
+    }
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, type: "logo" | "cover") => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      alert("Image is too large. Please select an image under 5MB.");
+      return;
+    }
+
+    // Store the file for upload, and generate a local preview URL
+    const previewUrl = URL.createObjectURL(file);
+    if (type === "logo") {
+      setLogoFile(file);
+      setLogo(previewUrl);
+    } else {
+      setCoverImageFile(file);
+      setCoverImage(previewUrl);
     }
   };
 
@@ -336,8 +415,12 @@ END:VCARD`;
 
             <div className="p-6 pb-2 border-b border-[#E8E4DF]">
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-full bg-[#C9540A] text-white flex items-center justify-center font-bold text-lg shadow-sm border border-white shrink-0">
-                  {member.logo ? member.logo : member.name.substring(0, 2).toUpperCase()}
+                <div className="w-12 h-12 rounded-full bg-[#C9540A] text-white flex items-center justify-center font-bold text-lg shadow-sm border border-white shrink-0 overflow-hidden">
+                  {logo ? (
+                    <img src={logo} alt="Logo" className="w-full h-full object-cover" />
+                  ) : (
+                    member.name.substring(0, 2).toUpperCase()
+                  )}
                 </div>
                 <div>
                   <h3 className="font-bold text-[#1A1A1A] leading-tight truncate max-w-[160px]">{member.name}</h3>
@@ -636,6 +719,111 @@ END:VCARD`;
                     <div className="flex flex-col gap-6">
                       <h3 className="font-bold text-xl text-[#1A1A1A] border-b border-[#E8E4DF] pb-2">Basic Information</h3>
                       
+                      {/* Logo and Cover Image upload zone */}
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4 bg-[#FAF8F5] rounded-2xl border border-[#E8E4DF]">
+                        {/* Profile Logo Upload */}
+                        <div>
+                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">Profile Picture (Logo/Avatar)</label>
+                          <div className="flex items-center gap-4">
+                            <div className="group w-20 h-20 rounded-full bg-[#C9540A] text-white flex items-center justify-center font-bold text-2xl shadow-sm border border-[#E8E4DF] shrink-0 overflow-hidden relative">
+                              {logo ? (
+                                <>
+                                  <img src={logo} alt="Profile preview" className="w-full h-full object-cover" />
+                                  <label 
+                                    htmlFor="avatar-file-upload" 
+                                    className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition-opacity text-white text-[10px] font-bold uppercase"
+                                  >
+                                    Change
+                                  </label>
+                                </>
+                              ) : (
+                                member.name.substring(0, 2).toUpperCase()
+                              )}
+                            </div>
+                            <div className="flex-1 flex flex-col gap-1.5">
+                              <input 
+                                type="file" 
+                                accept="image/*" 
+                                onChange={(e) => handleFileChange(e, "logo")}
+                                className="hidden" 
+                                id="avatar-file-upload" 
+                              />
+                              <div className="flex items-center gap-2">
+                                <label 
+                                  htmlFor="avatar-file-upload" 
+                                  className="inline-block px-3 py-1.5 bg-white hover:bg-slate-50 border border-[#E8E4DF] text-xs font-bold rounded-lg cursor-pointer transition-all shadow-sm"
+                                >
+                                  Upload Photo
+                                </label>
+                                {(logoFile || logo) && (
+                                  <button
+                                    type="button"
+                                    onClick={() => {
+                                      setLogoFile(null);
+                                      setLogo("");
+                                    }}
+                                    className="px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition-colors"
+                                  >
+                                    Remove
+                                  </button>
+                                )}
+                              </div>
+                              <p className="text-[10px] text-[#6B6B6B]">Max size 5MB. Square ratio recommended.</p>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Profile Cover/Banner Upload */}
+                        <div>
+                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">Profile Cover Banner</label>
+                          <div className="flex flex-col gap-3">
+                            <div className="group w-full h-20 rounded-xl bg-slate-100 border border-[#E8E4DF] overflow-hidden relative">
+                              {coverImage ? (
+                                <>
+                                  <img src={coverImage} alt="Cover preview" className="w-full h-full object-cover" />
+                                  <label 
+                                    htmlFor="cover-file-upload" 
+                                    className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center cursor-pointer transition-opacity text-white text-xs font-bold uppercase"
+                                  >
+                                    Change Banner
+                                  </label>
+                                </>
+                              ) : (
+                                <div className="w-full h-full flex items-center justify-center text-slate-400 text-xs font-semibold">No cover image uploaded</div>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <input 
+                                type="file" 
+                                accept="image/*" 
+                                onChange={(e) => handleFileChange(e, "cover")}
+                                className="hidden" 
+                                id="cover-file-upload" 
+                              />
+                              <label 
+                                htmlFor="cover-file-upload" 
+                                className="inline-block px-3 py-1.5 bg-white hover:bg-slate-50 border border-[#E8E4DF] text-xs font-bold rounded-lg cursor-pointer transition-all shadow-sm"
+                              >
+                                Upload Banner
+                              </label>
+                              {(coverImageFile || coverImage) && (
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setCoverImageFile(null);
+                                    setCoverImage("");
+                                  }}
+                                  className="px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition-colors"
+                                >
+                                  Remove
+                                </button>
+                              )}
+                              <span className="text-[10px] text-[#6B6B6B]">Max size 5MB. Wide ratio.</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                         <div>
                           <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">Business Name *</label>
@@ -787,7 +975,7 @@ END:VCARD`;
                         disabled={savingProfile}
                         className="px-8 py-3.5 bg-[#C9540A] hover:bg-[#A8420A] disabled:bg-gray-400 text-white font-bold rounded-xl transition-all shadow-md flex items-center justify-center gap-2"
                       >
-                        {savingProfile ? "Saving Profile..." : "Save Changes"}
+                        {savingProfile ? (uploadingImages ? "Uploading Images..." : "Saving Profile...") : "Save Changes"}
                       </button>
                     </div>
                   </div>

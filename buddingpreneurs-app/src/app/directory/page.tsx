@@ -336,7 +336,7 @@ export default function DirectoryPage() {
                     >
                       {/* Card Image */}
                       <div className="relative h-48 w-full overflow-hidden bg-[#F4F1ED]">
-                        {member.coverImage && member.coverImage.startsWith("data:image/") ? (
+                        {member.coverImage && (member.coverImage.startsWith("data:image/") || member.coverImage.startsWith("http")) ? (
                           <img 
                             src={member.coverImage} 
                             alt={member.name} 

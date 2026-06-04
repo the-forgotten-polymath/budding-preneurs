@@ -24,7 +24,7 @@ export default function RegisterPage() {
   const [form, setForm] = useState({
     name: "", username: "", email: "", phone: "",
     password: "", confirmPassword: "", category: "Interior Design",
-    city: "", tagline: "", bio: "", plan: "Basic",
+    city: "", tagline: "", bio: "", promoCode: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -47,6 +47,10 @@ export default function RegisterPage() {
     e.preventDefault();
     setError("");
 
+    if (!form.promoCode.trim()) {
+      setError("Please enter a valid registration promo code.");
+      return;
+    }
     if (form.password !== form.confirmPassword) {
       setError("Passwords do not match.");
       return;
@@ -71,7 +75,7 @@ export default function RegisterPage() {
           city: form.city,
           tagline: form.tagline,
           bio: form.bio,
-          plan: form.plan,
+          promoCode: form.promoCode.trim(),
         }),
       });
       const data = await res.json();
@@ -293,21 +297,20 @@ export default function RegisterPage() {
                     </div>
                   </div>
 
-                  {/* Plan Selector */}
+                  {/* Registration Promo Code Input */}
                   <div>
-                    <label className="block text-sm font-bold text-[#1A1A1A] mb-3">Membership Plan</label>
-                    <div className="flex flex-col gap-2">
-                      {PLANS.map(p => (
-                        <label key={p.value} className={`flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all ${form.plan === p.value ? "border-[#C9540A] bg-[#C9540A]/5" : "border-[#E8E4DF] hover:border-[#C9540A]/40"}`}>
-                          <input type="radio" name="plan" value={p.value} checked={form.plan === p.value}
-                            onChange={(e) => set("plan", e.target.value)} className="accent-[#C9540A]" />
-                          <div>
-                            <p className="font-bold text-sm text-[#1A1A1A]">{p.label}</p>
-                            <p className="text-xs text-[#6B6B6B]">{p.desc}</p>
-                          </div>
-                        </label>
-                      ))}
-                    </div>
+                    <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Registration Promo Code *</label>
+                    <input 
+                      required 
+                      type="text" 
+                      placeholder="Enter promo code (e.g. BPFREE)"
+                      value={form.promoCode} 
+                      onChange={(e) => set("promoCode", e.target.value)}
+                      className="w-full bg-[#F4F1ED] border-2 border-transparent rounded-xl px-4 py-3.5 text-sm font-bold uppercase tracking-wider text-[#1A1A1A] placeholder:normal-case placeholder:font-medium placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#C9540A] transition-colors" 
+                    />
+                    <p className="text-[11px] text-[#9A9A9A] mt-1.5 leading-relaxed">
+                      Please enter the registration promo code provided to you by the Buddingpreneurs admin team.
+                    </p>
                   </div>
 
                   <div className="flex gap-3 mt-2">
