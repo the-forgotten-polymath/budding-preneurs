@@ -37,6 +37,44 @@ export default function Home() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState<any | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Programs Carousel Ref and Scroll Handlers
+  const programsScrollRef = useRef<HTMLDivElement>(null);
+  const [isProgramsHovered, setIsProgramsHovered] = useState(false);
+
+  const scrollPrograms = (direction: "left" | "right") => {
+    if (!programsScrollRef.current) return;
+    const container = programsScrollRef.current;
+    const scrollAmount = container.clientWidth * 0.8;
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth"
+    });
+  };
+
+  // Smooth Auto-scroll program slider loop
+  useEffect(() => {
+    const container = programsScrollRef.current;
+    if (!container) return;
+
+    let intervalId: NodeJS.Timeout;
+
+    if (!isProgramsHovered) {
+      intervalId = setInterval(() => {
+        const { scrollLeft, scrollWidth, clientWidth } = container;
+        // If we are at the end, wrap back to the beginning
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          container.scrollTo({ left: 0, behavior: "smooth" });
+        } else {
+          container.scrollBy({ left: clientWidth * 0.8, behavior: "smooth" });
+        }
+      }, 4000);
+    }
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+    };
+  }, [isProgramsHovered]);
 
   const allTestimonials = [
     {
@@ -374,13 +412,31 @@ export default function Home() {
               Our <span className="italic text-[#C9540A] font-serif">Programs</span>
             </h2>
             <div className="flex gap-4 mt-6 sm:mt-0">
-              <button className="w-10 h-10 rounded-full border border-[#E8E4DF] flex items-center justify-center hover:border-[#C9540A] hover:text-[#C9540A] transition-colors"><ChevronLeft className="w-5 h-5" /></button>
-              <button className="w-10 h-10 rounded-full border border-[#E8E4DF] flex items-center justify-center hover:border-[#C9540A] hover:text-[#C9540A] transition-colors"><ChevronRight className="w-5 h-5" /></button>
+              <button 
+                onClick={() => scrollPrograms("left")}
+                className="w-10 h-10 rounded-full border border-[#E8E4DF] flex items-center justify-center hover:border-[#C9540A] hover:text-[#C9540A] transition-colors"
+                title="Scroll Left"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button 
+                onClick={() => scrollPrograms("right")}
+                className="w-10 h-10 rounded-full border border-[#E8E4DF] flex items-center justify-center hover:border-[#C9540A] hover:text-[#C9540A] transition-colors"
+                title="Scroll Right"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
             </div>
           </div>
           
-          {/* Grid of Programs */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Scrollable Container of Programs */}
+          <div 
+            ref={programsScrollRef}
+            onMouseEnter={() => setIsProgramsHovered(true)}
+            onMouseLeave={() => setIsProgramsHovered(false)}
+            className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-6 hide-scrollbar"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {[
               { 
                 title: "BP Podcast Series", 
@@ -482,7 +538,7 @@ export default function Home() {
               <div 
                 key={index} 
                 onClick={() => setSelectedProgram(program)}
-                className="bg-white rounded-xl overflow-hidden transition-transform hover:-translate-y-2 hover:shadow-xl duration-300 border border-[#E8E4DF] flex flex-col cursor-pointer group"
+                className="w-[280px] sm:w-[320px] shrink-0 snap-start bg-white rounded-xl overflow-hidden transition-transform hover:-translate-y-2 hover:shadow-xl duration-300 border border-[#E8E4DF] flex flex-col cursor-pointer group"
               >
                 <div className="relative w-full aspect-[4/5] bg-[#FAF8F5]">
                   <Image 
@@ -895,6 +951,9 @@ export default function Home() {
         }
         .animate-spin-slow {
           animation: spin 12s linear infinite;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </div>
