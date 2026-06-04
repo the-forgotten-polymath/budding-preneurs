@@ -35,6 +35,7 @@ export default function Home() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState<any | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const allTestimonials = [
@@ -381,27 +382,124 @@ export default function Home() {
           {/* Grid of Programs */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "BP Podcast Series", image: "/images/programs/podcast-series.jpeg", link: "#podcast" },
-              { title: "Virtual Networking Meet", image: "/images/programs/virtual-networking.jpeg", link: "#networking" },
-              { title: "Women of Impact Awards 2026", image: "/images/programs/women-of-impact.jpeg", link: "#awards" },
-              { title: "Live Showcase", image: "/images/programs/live-showcase.jpeg", link: "#showcase" },
-              { title: "Associate Partner Program", image: "/images/programs/associate-partner.jpeg", link: "#partner" },
-              { title: "Digital Skills & Growth", image: "/images/programs/digital-skills.jpeg", link: "#skills" },
-              { title: "Membership Benefits", image: "/images/programs/membership-benefits.jpeg", link: "#membership" },
-              { title: "Mentorship & Leadership", image: "/images/programs/mentorship-leadership.jpeg", link: "#mentorship" }
+              { 
+                title: "BP Podcast Series", 
+                tagline: "Amplifying Entrepreneurial Voices, One Story at a Time",
+                image: "/images/programs/podcast-series.jpeg", 
+                desc: "Join the Buddingpreneurs® Podcast Series, where we feature inspiring stories from women founders across India. Get key business insights, learn expert strategies, discover marketing tips, and learn how to build your own personal brand. Broadcasted live on active social platforms weekly.",
+                bullets: [
+                  "Inspiring Founder Stories from real women building home businesses",
+                  "Business Growth Insights & expert tips on scaling your brand",
+                  "Marketing & Visibility tips tailored for digital platforms",
+                  "Personal Branding strategies to stand out in your industry"
+                ]
+              },
+              { 
+                title: "Virtual Networking Meet", 
+                tagline: "Connect, Collaborate, & Grow Together",
+                image: "/images/programs/virtual-networking.jpeg", 
+                desc: "Virtual Meets designed specifically for networking and collaborative partnerships. Connect with a powerful community of women entrepreneurs, exchange high-value referrals, and establish partnerships to grow your business.",
+                bullets: [
+                  "Ice Breaker & introductory round tables to showcase your business",
+                  "Structured Networking sessions designed to build real relationships",
+                  "Collaboration & Partnership Opportunities for business growth",
+                  "Referral Exchanges & direct customer leads within the community"
+                ]
+              },
+              { 
+                title: "Women of Impact Awards 2026", 
+                tagline: "Celebrating Vision, Fostering Impact, Inspiring Generations",
+                image: "/images/programs/women-of-impact.jpeg", 
+                desc: "The flagship annual awards recognition program celebrating outstanding achievements by women entrepreneurs, social impact pioneers, and grassroots leaders. Be nominated, recognized, and celebrate alongside the top minds in the industry.",
+                bullets: [
+                  "Recognizing excellence in women-led startups across India",
+                  "Honoring social impact pioneers making a tangible difference",
+                  "Inspiring generations of aspiring young women entrepreneurs",
+                  "Annual gala and community showcase celebration event"
+                ]
+              },
+              { 
+                title: "Live Showcase", 
+                tagline: "Your Stage, Your Story, Your Impact",
+                image: "/images/programs/live-showcase.jpeg", 
+                desc: "Take the stage to highlight your business offerings directly. Host a dedicated interactive session via Zoom, stream live to our Facebook community, engage with a highly supportive group, and answer live Q&A to drive leads and build authority.",
+                bullets: [
+                  "Zoom Live Showcase session to present your deliverables",
+                  "Cross-posted Facebook Live reaching thousands of active viewers",
+                  "Real-time customer Q&A to build trust and authority",
+                  "Direct lead collection and customer inquiry routing"
+                ]
+              },
+              { 
+                title: "Associate Partner Program", 
+                tagline: "Empowering Women, Building Stronger Futures",
+                image: "/images/programs/associate-partner.jpeg", 
+                desc: "A collaborative partnership framework for active networkers, community builders, and local organizers. Gain co-branding rights, speaker visibility, referral commissions, co-host opportunities, and VIP WhatsApp access with our administrative support.",
+                bullets: [
+                  "Official co-branding rights & Associate Partner digital badge",
+                  "Co-hosting privileges for local meets & workshops",
+                  "High-tier affiliate commission rates on new memberships",
+                  "Direct support line with Buddingpreneurs administrator team"
+                ]
+              },
+              { 
+                title: "Digital Skills & Growth", 
+                tagline: "Learn, Upskill, Grow, & Succeed",
+                image: "/images/programs/digital-skills.jpeg", 
+                desc: "A comprehensive digital skill training roadmap covering Business Strategy, Social Media Marketing, E-commerce Operations, Sales & Client Acquisition, Canva Design, Canva Pro tricks, Personal Branding, and Growth Mentorship to help scale your daily output.",
+                bullets: [
+                  "Step-by-step Social Media Marketing & content creation guides",
+                  "Digital tools & automation checklists (using AI tools)",
+                  "Branding, design templates & Canva skill-building courses",
+                  "E-commerce setup guidance from domain industry experts"
+                ]
+              },
+              { 
+                title: "Membership Benefits", 
+                tagline: "Empowering Women Startups Since January 2017",
+                image: "/images/programs/membership-benefits.jpeg", 
+                desc: "Become a member of the Buddingpreneurs network to gain business visibility, direct networking access, speaking opportunities, lead generation pipelines, digital training workshops, resource access, and exclusive WhatsApp group access.",
+                bullets: [
+                  "Full WhatsApp Inner Circle posting access & VIP support",
+                  "Premium member profile in the verified business directory",
+                  "Priority leads distribution & customer matchmaking",
+                  "Free entry to all live monthly workshops & meets"
+                ]
+              },
+              { 
+                title: "Mentorship & Leadership", 
+                tagline: "Lead. Inspire. Empower. Grow Together.",
+                image: "/images/programs/mentorship-leadership.jpeg", 
+                desc: "A curated coaching accelerator program connecting emerging founders with established mentors. Features 1-on-1 strategy sessions, peer-to-peer accountability circles, leadership development, business audit checklists, and scaling advice.",
+                bullets: [
+                  "1-on-1 mentorship strategy sessions with industry leaders",
+                  "Leadership training, public speaking & brand strategy coaching",
+                  "Peer mastermind circles to discuss business challenges",
+                  "Business audit checklists and goal-tracking milestones"
+                ]
+              }
             ].map((program, index) => (
-              <div key={index} className="bg-white rounded-xl overflow-hidden transition-transform hover:-translate-y-2 hover:shadow-xl duration-300 border border-[#E8E4DF] flex flex-col">
+              <div 
+                key={index} 
+                onClick={() => setSelectedProgram(program)}
+                className="bg-white rounded-xl overflow-hidden transition-transform hover:-translate-y-2 hover:shadow-xl duration-300 border border-[#E8E4DF] flex flex-col cursor-pointer group"
+              >
                 <div className="relative w-full aspect-[4/5] bg-[#FAF8F5]">
                   <Image 
                     src={program.image}
                     alt={program.title}
                     fill
-                    className="object-contain p-2"
+                    className="object-contain p-2 group-hover:scale-[1.02] transition-transform duration-300"
                   />
                 </div>
                 <div className="p-5 flex-grow flex flex-col justify-between border-t border-[#E8E4DF]">
                   <h3 className="text-md font-bold text-[#1A1A1A] mb-3 leading-tight line-clamp-2">{program.title}</h3>
-                  <a href={program.link} className="text-[10px] font-bold text-[#C9540A] uppercase tracking-wider hover:text-[#1A1A1A] transition-colors self-start mt-2">View Details &rarr;</a>
+                  <button 
+                    type="button"
+                    className="text-[10px] font-bold text-[#C9540A] uppercase tracking-wider group-hover:text-[#1A1A1A] transition-colors self-start mt-2"
+                  >
+                    View Details &rarr;
+                  </button>
                 </div>
               </div>
             ))}
@@ -680,6 +778,106 @@ export default function Home() {
       </section>
 
       <Footer />
+
+      {/* Program Details Modal Overlay */}
+      <AnimatePresence>
+        {selectedProgram && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.6 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+              onClick={() => setSelectedProgram(null)}
+            />
+            
+            {/* Modal Box */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="bg-white rounded-3xl overflow-hidden shadow-2xl relative z-10 w-full max-w-4xl max-h-[90vh] md:max-h-[85vh] flex flex-col md:flex-row border border-[#E8E4DF]"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setSelectedProgram(null)}
+                className="absolute top-4 right-4 z-20 p-2.5 bg-black/60 hover:bg-black/80 md:bg-white/80 md:hover:bg-white text-white md:text-[#1A1A1A] rounded-full transition-colors shadow-md"
+                title="Close"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Left Column: Poster Image Preview */}
+              <div className="w-full md:w-1/2 bg-[#FAF8F5] relative flex items-center justify-center p-6 border-b md:border-b-0 md:border-r border-[#E8E4DF] h-[260px] md:h-auto shrink-0 md:shrink">
+                <div className="relative w-full h-full max-h-[350px] md:max-h-full">
+                  <Image 
+                    src={selectedProgram.image} 
+                    alt={selectedProgram.title} 
+                    fill 
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+
+              {/* Right Column: Scrollable Textual Description */}
+              <div className="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto flex flex-col justify-between">
+                <div>
+                  {/* Category label */}
+                  <span className="text-[10px] font-black uppercase tracking-wider text-[#C9540A] bg-[#C9540A]/10 px-2.5 py-1 rounded-md inline-block mb-3">
+                    Buddingpreneurs Program
+                  </span>
+                  
+                  {/* Title & Tagline */}
+                  <h2 className="text-2xl md:text-3xl font-black text-[#1A1A1A] font-display uppercase tracking-tight mb-2 leading-tight">
+                    {selectedProgram.title}
+                  </h2>
+                  <p className="text-sm font-semibold italic text-[#C9540A] font-serif mb-5 leading-relaxed">
+                    {selectedProgram.tagline}
+                  </p>
+                  
+                  {/* Main Description */}
+                  <p className="text-[#6B6B6B] text-sm leading-relaxed mb-6 font-medium">
+                    {selectedProgram.desc}
+                  </p>
+                  
+                  {/* Bullet points */}
+                  <div className="mb-8">
+                    <h4 className="text-xs font-black uppercase tracking-wider text-[#1A1A1A] mb-3">Program Highlights:</h4>
+                    <ul className="space-y-2.5">
+                      {selectedProgram.bullets.map((bullet: string, idx: number) => (
+                        <li key={idx} className="flex items-start gap-2.5 text-xs text-[#6B6B6B] font-medium leading-relaxed">
+                          <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+
+                {/* CTAs */}
+                <div className="flex flex-col sm:flex-row gap-3 pt-6 border-t border-[#E8E4DF] mt-auto">
+                  <a 
+                    href="/contact" 
+                    onClick={() => setSelectedProgram(null)}
+                    className="flex-1 py-3 px-6 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-xl text-center text-xs font-bold transition-all shadow-md flex items-center justify-center gap-1.5"
+                  >
+                    Join Program Now <ArrowRight className="w-4 h-4" />
+                  </a>
+                  <button 
+                    type="button"
+                    onClick={() => setSelectedProgram(null)}
+                    className="py-3 px-6 bg-[#FAF8F5] hover:bg-[#F4F1ED] text-[#1A1A1A] border border-[#E8E4DF] rounded-xl text-center text-xs font-bold transition-all"
+                  >
+                    Back to Programs
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* ADDITIONAL BRAND STYLING: Marquee continuous animation styles */}
       <style jsx global>{`
