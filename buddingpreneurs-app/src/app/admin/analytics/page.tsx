@@ -59,6 +59,64 @@ export default function AdminAnalyticsPage() {
   const [savingPromo, setSavingPromo] = useState(false);
   const [promoSuccess, setPromoSuccess] = useState(false);
 
+  // Filters State
+  const [workshopFilter, setWorkshopFilter] = useState("all");
+
+  // CSV Export Utilities
+  const downloadCSVMembers = () => {
+    if (members.length === 0) return;
+    const headers = ["Name", "Username", "Category", "City", "Plan", "Views", "Leads", "Conversions", "Verified", "Email", "Phone"];
+    const rows = members.map(m => [
+      m.name || "",
+      m.username || "",
+      m.category || "",
+      m.city || "",
+      m.plan || "Basic",
+      m.views || 0,
+      m.leadsCount ?? m.leads ?? 0,
+      m.conversions || 0,
+      m.verified ? "Yes" : "No",
+      m.contact?.email || m.email || "",
+      m.contact?.phone || m.phone || ""
+    ]);
+
+    const csvContent = [headers.join(","), ...rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "buddingpreneurs_members.csv");
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const downloadCSVRegistrations = () => {
+    if (registrations.length === 0) return;
+    const headers = ["Attendee Name", "Email", "Workshop", "Phone", "Vesting Stage", "City", "Registered Date"];
+    const rows = registrations.map(r => [
+      r.name || "",
+      r.email || "",
+      r.workshop || r.workshop_name || "",
+      r.phone || "",
+      r.phase || "N/A",
+      r.city || "",
+      new Date(r.created_at || Date.now()).toLocaleDateString()
+    ]);
+
+    const csvContent = [headers.join(","), ...rows.map(e => e.map(val => `"${String(val).replace(/"/g, '""')}"`).join(","))].join("\n");
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "workshop_registrations.csv");
+    link.style.visibility = "hidden";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
@@ -255,13 +313,22 @@ export default function AdminAnalyticsPage() {
     (m.city || "").toLowerCase().includes(searchMember.toLowerCase())
   );
 
-  const filteredRegistrations = registrations.filter(reg =>
-    (reg.name || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-    (reg.email || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-    (reg.workshop || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-    (reg.phone || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-    (reg.phase || "").toLowerCase().includes(searchRegistrant.toLowerCase())
-  );
+  const filteredRegistrations = registrations.filter(reg => {
+    // 1. Dropdown Workshop selection filter
+    if (workshopFilter !== "all") {
+      const wName = (reg.workshop || reg.workshop_name || "").toLowerCase();
+      if (!wName.includes(workshopFilter.toLowerCase())) return false;
+    }
+
+    // 2. Search query filter
+    return (
+      (reg.name || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+      (reg.email || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+      (reg.workshop || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+      (reg.phone || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+      (reg.phase || "").toLowerCase().includes(searchRegistrant.toLowerCase())
+    );
+  });
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#1A1A1A] font-sans flex flex-col">
@@ -489,7 +556,10 @@ export default function AdminAnalyticsPage() {
                         className="w-full sm:w-64 bg-white border border-[#E8E4DF] rounded-xl pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none shadow-sm"
                       />
                     </div>
-                    <button className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E8E4DF] hover:border-[#1A1A1A] text-[#1A1A1A] font-semibold rounded-xl shadow-sm transition-colors text-sm">
+                    <button 
+                      onClick={downloadCSVMembers}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E8E4DF] hover:border-[#1A1A1A] text-[#1A1A1A] font-semibold rounded-xl shadow-sm transition-colors text-sm"
+                    >
                       <Download className="w-4 h-4" /> CSV
                     </button>
                   </div>
@@ -648,6 +718,23 @@ export default function AdminAnalyticsPage() {
                   </div>
                   
                   <div className="flex items-center gap-3">
+                    {/* Session Dropdown Filter */}
+                    <select
+                      value={workshopFilter}
+                      onChange={(e) => setWorkshopFilter(e.target.value)}
+                      className="bg-white border border-[#E8E4DF] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#C9540A] focus:ring-1 focus:ring-[#C9540A] text-[#1A1A1A]"
+                    >
+                      <option value="all">All Workshops</option>
+                      <option value="BP Podcast Series">BP Podcast Series</option>
+                      <option value="Virtual Networking Meet">Virtual Networking Meet</option>
+                      <option value="Women of Impact Awards">Women of Impact Awards</option>
+                      <option value="Live Showcase">Live Showcase</option>
+                      <option value="MSME registration and compliance clinic">MSME clinic</option>
+                      <option value="Financial Literacy workshop">Financial Literacy</option>
+                      <option value="Digital Marketing workshop">Digital Marketing</option>
+                      <option value="Intellectual property guidance session">Intellectual property</option>
+                    </select>
+
                     <div className="relative">
                       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B6B6B]" />
                       <input 
@@ -658,6 +745,13 @@ export default function AdminAnalyticsPage() {
                         className="w-full sm:w-64 bg-white border border-[#E8E4DF] rounded-xl pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none shadow-sm"
                       />
                     </div>
+
+                    <button 
+                      onClick={downloadCSVRegistrations}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-white border border-[#E8E4DF] hover:border-[#1A1A1A] text-[#1A1A1A] font-semibold rounded-xl shadow-sm transition-colors text-sm"
+                    >
+                      <Download className="w-4 h-4" /> CSV
+                    </button>
                   </div>
                 </div>
 
