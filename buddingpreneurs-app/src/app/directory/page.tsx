@@ -42,7 +42,28 @@ interface Member {
   };
 }
 
-const CATEGORIES = ["All", "Interior Design", "Fashion Designer", "Digital Marketing", "Food", "Legal"];
+const CATEGORIES = [
+  "All",
+  "Handicrafts & Art",
+  "Jewellery & Apparel",
+  "Clothing & Fashion",
+  "Beauty & Personal Care",
+  "Home Decor",
+  "Gifts & Customization",
+  "Food & Baking",
+  "Organic & Wellness Products",
+  "Coaching & Consulting",
+  "Digital Marketing",
+  "Graphic Design",
+  "Website Development",
+  "Content Writer",
+  "Financial Services",
+  "Trainers & Mentors",
+  "Educators",
+  "Doctors & Healthcare Professionals",
+  "Influencers",
+  "Podcasters"
+];
 const BUDGETS = ["All", "<5k", "5k-20k", "20k-50k", "50k+"];
 
 export default function DirectoryPage() {

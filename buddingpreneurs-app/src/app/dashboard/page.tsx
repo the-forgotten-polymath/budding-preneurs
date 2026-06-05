@@ -123,10 +123,26 @@ export default function DashboardPage() {
   const [customCategory, setCustomCategory] = useState("");
 
   const CATEGORIES = [
-    "Interior Design", "Apparel & Fashion", "Digital Marketing",
-    "Crafts & Gifting", "Baking & Confectionery", "Beauty & Wellness",
-    "Education & Coaching", "Food & Catering", "Jewellery & Accessories",
-    "Photography & Content", "Consulting & Finance", "Other"
+    "Handicrafts & Art",
+    "Jewellery & Apparel",
+    "Clothing & Fashion",
+    "Beauty & Personal Care",
+    "Home Decor",
+    "Gifts & Customization",
+    "Food & Baking",
+    "Organic & Wellness Products",
+    "Coaching & Consulting",
+    "Digital Marketing",
+    "Graphic Design",
+    "Website Development",
+    "Content Writer",
+    "Financial Services",
+    "Trainers & Mentors",
+    "Educators",
+    "Doctors & Healthcare Professionals",
+    "Influencers",
+    "Podcasters",
+    "Other"
   ];
 
   const fetchDashboardData = async (username: string) => {
@@ -883,9 +899,32 @@ END:VCARD`;
                             }}
                             className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none text-[#1A1A1A]"
                           >
-                            {CATEGORIES.map((cat) => (
-                              <option key={cat} value={cat}>{cat}</option>
-                            ))}
+                            <optgroup label="Products">
+                              <option value="Handicrafts & Art">Handicrafts & Art</option>
+                              <option value="Jewellery & Apparel">Jewellery & Apparel</option>
+                              <option value="Clothing & Fashion">Clothing & Fashion</option>
+                              <option value="Beauty & Personal Care">Beauty & Personal Care</option>
+                              <option value="Home Decor">Home Decor</option>
+                              <option value="Gifts & Customization">Gifts & Customization</option>
+                              <option value="Food & Baking">Food & Baking</option>
+                              <option value="Organic & Wellness Products">Organic & Wellness Products</option>
+                            </optgroup>
+                            <optgroup label="Services">
+                              <option value="Coaching & Consulting">Coaching & Consulting</option>
+                              <option value="Digital Marketing">Digital Marketing</option>
+                              <option value="Graphic Design">Graphic Design</option>
+                              <option value="Website Development">Website Development</option>
+                              <option value="Content Writer">Content Writer</option>
+                              <option value="Financial Services">Financial Services</option>
+                            </optgroup>
+                            <optgroup label="Professionals">
+                              <option value="Trainers & Mentors">Trainers & Mentors</option>
+                              <option value="Educators">Educators</option>
+                              <option value="Doctors & Healthcare Professionals">Doctors & Healthcare Professionals</option>
+                              <option value="Influencers">Influencers</option>
+                              <option value="Podcasters">Podcasters</option>
+                            </optgroup>
+                            <option value="Other">Other</option>
                           </select>
                           
                           {selectedCategory === "Other" && (
