@@ -9,16 +9,23 @@ export default function FloatingWhatsApp() {
       href={siteMetadata.socialLinks.whatsappDirect}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:bg-[#20ba5a] transition-all duration-300 hover:scale-110 flex items-center justify-center group"
+      className="fixed bottom-6 right-6 z-50 flex items-center gap-3 group"
       aria-label="Contact us on WhatsApp"
     >
-      {/* Pulse effect */}
-      <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-40 animate-ping group-hover:animate-none" />
-      
-      {/* WhatsApp SVG Icon */}
-      <svg className="w-6 h-6 relative z-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path fillRule="evenodd" d="M12.004 2C6.48 2 2 6.48 2 12.004c0 1.944.557 3.763 1.528 5.297l-1.077 3.931 4.027-1.056c1.48.81 3.175 1.277 4.981 1.277 5.523 0 10.003-4.48 10.003-10.003C21.562 6.48 17.08 2 12.004 2zm5.753 14.225c-.244.688-1.218 1.25-1.684 1.328-.465.078-.97.108-3.05-.733-2.434-.984-3.993-3.463-4.115-3.628-.122-.165-1.01-1.343-1.01-2.56 0-1.219.643-1.819.871-2.072.228-.253.5-.316.666-.316.166 0 .332.003.477.01.155.006.363-.057.57.447.243.593.83 2.031.902 2.178.072.146.12.316.023.51-.097.193-.146.313-.292.484-.146.17-.308.38-.44.51-.15.148-.306.31-.132.61.174.3.774 1.278 1.66 2.069.871.777 1.583 1.03 1.905 1.164.322.133.51.11.7-.11.19-.22.812-.944 1.03-1.265.218-.323.435-.27.732-.16.297.11 1.884.887 2.207 1.047.322.16.536.24.614.373.078.133.078.769-.166 1.457z" clipRule="evenodd" />
-      </svg>
+      {/* Real-looking interactive WhatsApp tooltip */}
+      <div className="bg-white text-slate-800 text-[11px] font-extrabold px-3.5 py-2 rounded-xl shadow-xl border border-slate-100/80 opacity-0 -translate-x-3 scale-95 pointer-events-none group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100 transition-all duration-300 whitespace-nowrap hidden sm:block">
+        Need help? Chat with us!
+      </div>
+
+      <div className="relative bg-[#25D366] text-white p-3.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.15)] shadow-emerald-500/20 hover:bg-[#20ba5a] transition-all duration-300 hover:scale-110 flex items-center justify-center">
+        {/* Pulse effect */}
+        <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-35 animate-ping group-hover:animate-none" />
+        
+        {/* Official WhatsApp SVG Icon */}
+        <svg viewBox="0 0 448 512" className="w-6 h-6 text-white relative z-10 fill-current">
+          <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L32 503l141.1-37c32.7 17.8 69.4 27.2 107.1 27.2 122.4 0 222-99.6 222-222 0-59.3-23-115.1-65-157.1zM223.9 453c-33.2 0-65.7-8.9-94-25.7l-6.7-4-83.9 22 22.4-81.8-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 54 81.2 54 130.4 0 101.7-82.8 184.5-184.6 184.5zm100.8-137.5c-5.5-2.8-32.6-16.1-37.7-17.9-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.6-13.4 37.2-26.3 4.6-13 4.6-24.1 3.2-26.3-1.4-2.2-5.1-3.5-10.6-6.3z"/>
+        </svg>
+      </div>
     </a>
   );
 }
