@@ -637,6 +637,86 @@ export default function AdminAnalyticsPage() {
 
               </motion.div>
             )}
+
+            {/* WORKSHOPS TAB */}
+            {activeTab === "workshops" && (
+              <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                  <div>
+                    <h1 className="text-3xl font-black text-[#1A1A1A] font-display uppercase tracking-tight mb-2">Workshop <span className="text-[#C9540A] italic font-heading capitalize">Registrations</span></h1>
+                    <p className="text-[#6B6B6B]">View attendee registrations and workshop session details.</p>
+                  </div>
+                  
+                  <div className="flex items-center gap-3">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B6B6B]" />
+                      <input 
+                        type="text" 
+                        placeholder="Search registrations..." 
+                        value={searchRegistrant}
+                        onChange={(e) => setSearchRegistrant(e.target.value)}
+                        className="w-full sm:w-64 bg-white border border-[#E8E4DF] rounded-xl pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none shadow-sm"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white rounded-2xl shadow-sm border border-[#E8E4DF] overflow-hidden">
+                  <div className="overflow-x-auto">
+                    <table className="w-full text-left border-collapse min-w-[1000px]">
+                      <thead>
+                        <tr className="bg-[#F4F1ED] border-b border-[#E8E4DF]">
+                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Attendee Info</th>
+                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Workshop Session</th>
+                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Contact</th>
+                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Vesting Stage</th>
+                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Registered At</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-[#E8E4DF]">
+                        {filteredRegistrations.length === 0 ? (
+                          <tr>
+                            <td colSpan={5} className="p-8 text-center text-gray-500 font-semibold">
+                              No registrations found matching your search.
+                            </td>
+                          </tr>
+                        ) : (
+                          filteredRegistrations.map((reg) => (
+                            <tr key={reg.id || reg._id} className="hover:bg-[#FAF8F5] transition-colors">
+                              <td className="p-4">
+                                <div className="font-bold text-[#1A1A1A] text-sm">{reg.name}</div>
+                                <div className="text-[10px] text-[#6B6B6B] mt-0.5">Email: {reg.email}</div>
+                              </td>
+                              <td className="p-4">
+                                <span className="inline-flex text-[11px] font-bold text-[#C9540A] bg-[#C9540A]/5 border border-[#C9540A]/10 px-2 py-1 rounded-md">
+                                  {reg.workshop || reg.workshop_name}
+                                </span>
+                              </td>
+                              <td className="p-4 text-xs font-semibold text-[#1A1A1A]">
+                                <div>Phone: {reg.phone}</div>
+                                {reg.city && <div className="text-[#6B6B6B] mt-0.5">City: {reg.city}</div>}
+                              </td>
+                              <td className="p-4">
+                                <span className="inline-flex text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-700">
+                                  {reg.phase || "N/A"}
+                                </span>
+                              </td>
+                              <td className="p-4 text-xs text-[#6B6B6B]">
+                                {new Date(reg.created_at || Date.now()).toLocaleDateString("en-US", { 
+                                  month: "short", 
+                                  day: "numeric", 
+                                  year: "numeric" 
+                                })}
+                              </td>
+                            </tr>
+                          ))
+                        )}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </motion.div>
+            )}
           </>
         )}
       </main>
