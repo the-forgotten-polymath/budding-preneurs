@@ -311,8 +311,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[#334155] text-sm sm:text-base md:text-[18px] max-w-xl mx-auto leading-relaxed mb-8 font-semibold font-sans"
           >
-            Connect with like-minded creators and founders for growth,<br className="hidden sm:inline" />
-            sisterhood, and business opportunities.
+            Join India's Women Entrepreneurs Community for Growth,<br className="hidden sm:inline" />
+            Visibility & Business Opportunities
           </motion.p>
 
           {/* Centered Buttons */}
@@ -363,7 +363,7 @@ export default function Home() {
                   🏅 Startup India Acknowledgment
                 </span>
                 <span className="text-xs md:text-sm font-semibold font-heading text-slate-500 tracking-wide flex items-center gap-2">
-                  💬 WhatsApp Community has 300+ Members
+                  💬 WhatsApp Community has 500+ Members
                 </span>
                 <span className="text-xs md:text-sm font-semibold font-heading text-slate-500 tracking-wide flex items-center gap-2">
                   🏢 MSME Certified Platform
@@ -638,7 +638,7 @@ export default function Home() {
                   <MessageSquare className="w-8 h-8" />
                 </div>
                 <h3 className="text-2xl font-bold text-[#1A1A1A] mb-4">WhatsApp Community</h3>
-                <p className="text-3xl font-black text-[#C9540A] mb-4">300+ Members</p>
+                <p className="text-3xl font-black text-[#C9540A] mb-4">500+ Members</p>
                 <p className="text-sm text-[#6B6B6B] leading-relaxed">
                   Our exclusive WhatsApp group serves as an active, daily sisterhood hub where aspiring and established women entrepreneurs share business leads, support, and collaborate in real-time.
                 </p>
