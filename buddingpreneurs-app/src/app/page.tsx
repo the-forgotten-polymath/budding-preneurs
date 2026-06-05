@@ -293,6 +293,20 @@ export default function Home() {
         {/* Text and buttons wrapper overlaid on top */}
         <div className="max-w-4xl mx-auto text-center z-10 relative flex flex-col items-center pt-24 sm:pt-32 pb-16">
           
+          {/* Brand Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E8E4DF] text-slate-600 text-xs font-bold tracking-wide mb-6 shadow-sm"
+          >
+            <span>Established 2017</span>
+            <span className="text-slate-300">|</span>
+            <span>Registered Brand ®</span>
+            <span className="text-slate-300">|</span>
+            <span className="text-[#C9540A]">Pan-India Women Entrepreneurs Community</span>
+          </motion.div>
+
           {/* Centered Heading */}
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
