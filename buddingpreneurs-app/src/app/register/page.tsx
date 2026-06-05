@@ -268,11 +268,33 @@ export default function RegisterPage() {
                       <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Category *</label>
                       <div className="relative">
                         <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9A9A9A]" />
-                        <select value={form.category} onChange={(e) => set("category", e.target.value)}
-                          className="w-full bg-[#F4F1ED] border-2 border-transparent rounded-xl pl-11 pr-4 py-3.5 text-sm font-medium text-[#1A1A1A] focus:outline-none focus:border-[#C9540A] transition-colors appearance-none">
+                        <select 
+                          value={CATEGORIES.includes(form.category) ? form.category : "Other"} 
+                          onChange={(e) => {
+                            if (e.target.value === "Other") {
+                              set("category", "");
+                            } else {
+                              set("category", e.target.value);
+                            }
+                          }}
+                          className="w-full bg-[#F4F1ED] border-2 border-transparent rounded-xl pl-11 pr-4 py-3.5 text-sm font-medium text-[#1A1A1A] focus:outline-none focus:border-[#C9540A] transition-colors appearance-none"
+                        >
                           {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
                         </select>
                       </div>
+                      
+                      {(!CATEGORIES.includes(form.category) || form.category === "") && (
+                        <div className="mt-2.5">
+                          <input 
+                            required 
+                            type="text" 
+                            placeholder="Enter your custom business category..." 
+                            value={form.category} 
+                            onChange={(e) => set("category", e.target.value)}
+                            className="w-full bg-[#F4F1ED] border-2 border-transparent rounded-xl px-4 py-2.5 text-xs font-semibold text-[#1A1A1A] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#C9540A] transition-colors" 
+                          />
+                        </div>
+                      )}
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-[#1A1A1A] mb-2">City *</label>

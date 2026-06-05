@@ -118,6 +118,17 @@ export default function DashboardPage() {
   const [catalogLinks, setCatalogLinks] = useState<string[]>([]);
   const [newCatalogLink, setNewCatalogLink] = useState("");
 
+  // Edit Category State
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [customCategory, setCustomCategory] = useState("");
+
+  const CATEGORIES = [
+    "Interior Design", "Apparel & Fashion", "Digital Marketing",
+    "Crafts & Gifting", "Baking & Confectionery", "Beauty & Wellness",
+    "Education & Coaching", "Food & Catering", "Jewellery & Accessories",
+    "Photography & Content", "Consulting & Finance", "Other"
+  ];
+
   const fetchDashboardData = async (username: string) => {
     setCurrentUsername(username);
     try {
@@ -130,6 +141,15 @@ export default function DashboardPage() {
           setServices(found.services || []);
           setLogo(found.logo || "");
           setCoverImage(found.coverImage || "");
+
+          // Initialize category selector states
+          if (CATEGORIES.includes(found.category)) {
+            setSelectedCategory(found.category);
+            setCustomCategory("");
+          } else {
+            setSelectedCategory("Other");
+            setCustomCategory(found.category || "");
+          }
           
           // Parse website field which could contain a JSON array of strings
           try {
@@ -263,7 +283,7 @@ export default function DashboardPage() {
       const updatedMember = {
         username: member.username,
         name: formData.get("name") as string,
-        category: formData.get("category") as string,
+        category: selectedCategory === "Other" ? customCategory : selectedCategory,
         city: formData.get("city") as string,
         bio: formData.get("bio") as string,
         logo: finalLogoUrl,
@@ -853,13 +873,33 @@ END:VCARD`;
                         </div>
                         <div>
                           <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">Category *</label>
-                          <select name="category" defaultValue={member.category} className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none text-[#1A1A1A]">
-                            <option value="Interior Design">Interior Design</option>
-                            <option value="Apparel & Fashion">Apparel & Fashion</option>
-                            <option value="Digital Marketing">Digital Marketing</option>
-                            <option value="Crafts & Gifting">Crafts & Gifting</option>
-                            <option value="Baking & Confectionery">Baking & Confectionery</option>
+                          <select 
+                            value={selectedCategory} 
+                            onChange={(e) => {
+                              setSelectedCategory(e.target.value);
+                              if (e.target.value !== "Other") {
+                                setCustomCategory("");
+                              }
+                            }}
+                            className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none text-[#1A1A1A]"
+                          >
+                            {CATEGORIES.map((cat) => (
+                              <option key={cat} value={cat}>{cat}</option>
+                            ))}
                           </select>
+                          
+                          {selectedCategory === "Other" && (
+                            <div className="mt-2">
+                              <input 
+                                required 
+                                type="text" 
+                                placeholder="Enter custom category..." 
+                                value={customCategory} 
+                                onChange={(e) => setCustomCategory(e.target.value)}
+                                className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none text-[#1A1A1A]" 
+                              />
+                            </div>
+                          )}
                         </div>
                         <div>
                           <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">City *</label>
