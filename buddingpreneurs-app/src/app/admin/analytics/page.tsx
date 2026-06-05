@@ -62,6 +62,19 @@ export default function AdminAnalyticsPage() {
   // Filters State
   const [workshopFilter, setWorkshopFilter] = useState("all");
 
+  // Sorting State
+  const [sortField, setSortField] = useState<string>("created_at"); // default sort by registration date
+  const [sortDirection, setSortDirection] = useState<"asc" | "desc">("desc"); // default desc
+
+  const toggleSort = (field: string) => {
+    if (sortField === field) {
+      setSortDirection(prev => (prev === "asc" ? "desc" : "asc"));
+    } else {
+      setSortField(field);
+      setSortDirection("asc");
+    }
+  };
+
   // CSV Export Utilities
   const downloadCSVMembers = () => {
     if (members.length === 0) return;
@@ -313,22 +326,46 @@ export default function AdminAnalyticsPage() {
     (m.city || "").toLowerCase().includes(searchMember.toLowerCase())
   );
 
-  const filteredRegistrations = registrations.filter(reg => {
-    // 1. Dropdown Workshop selection filter
-    if (workshopFilter !== "all") {
-      const wName = (reg.workshop || reg.workshop_name || "").toLowerCase();
-      if (!wName.includes(workshopFilter.toLowerCase())) return false;
-    }
+  const filteredRegistrations = registrations
+    .filter(reg => {
+      // 1. Dropdown Workshop selection filter
+      if (workshopFilter !== "all") {
+        const wName = (reg.workshop || reg.workshop_name || "").toLowerCase();
+        if (!wName.includes(workshopFilter.toLowerCase())) return false;
+      }
 
-    // 2. Search query filter
-    return (
-      (reg.name || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-      (reg.email || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-      (reg.workshop || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-      (reg.phone || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
-      (reg.phase || "").toLowerCase().includes(searchRegistrant.toLowerCase())
-    );
-  });
+      // 2. Search query filter
+      return (
+        (reg.name || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+        (reg.email || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+        (reg.workshop || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+        (reg.phone || "").toLowerCase().includes(searchRegistrant.toLowerCase()) ||
+        (reg.phase || "").toLowerCase().includes(searchRegistrant.toLowerCase())
+      );
+    })
+    .sort((a, b) => {
+      let valA = a[sortField] || "";
+      let valB = b[sortField] || "";
+
+      // Standardize key values if they are nested/represented differently
+      if (sortField === "name") {
+        valA = (a.name || "").toLowerCase();
+        valB = (b.name || "").toLowerCase();
+      } else if (sortField === "workshop") {
+        valA = (a.workshop || a.workshop_name || "").toLowerCase();
+        valB = (b.workshop || b.workshop_name || "").toLowerCase();
+      } else if (sortField === "phase") {
+        valA = (a.phase || "").toLowerCase();
+        valB = (b.phase || "").toLowerCase();
+      } else if (sortField === "created_at") {
+        valA = new Date(a.created_at || 0).getTime();
+        valB = new Date(b.created_at || 0).getTime();
+      }
+
+      if (valA < valB) return sortDirection === "asc" ? -1 : 1;
+      if (valA > valB) return sortDirection === "asc" ? 1 : -1;
+      return 0;
+    });
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-[#1A1A1A] font-sans flex flex-col">
@@ -760,11 +797,31 @@ export default function AdminAnalyticsPage() {
                     <table className="w-full text-left border-collapse min-w-[1000px]">
                       <thead>
                         <tr className="bg-[#F4F1ED] border-b border-[#E8E4DF]">
-                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Attendee Info</th>
-                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Workshop Session</th>
-                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Contact</th>
-                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Vesting Stage</th>
-                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Registered At</th>
+                          <th 
+                            onClick={() => toggleSort("name")}
+                            className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors select-none"
+                          >
+                            Attendee Info {sortField === "name" && (sortDirection === "asc" ? "▲" : "▼")}
+                          </th>
+                          <th 
+                            onClick={() => toggleSort("workshop")}
+                            className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors select-none"
+                          >
+                            Workshop Session {sortField === "workshop" && (sortDirection === "asc" ? "▲" : "▼")}
+                          </th>
+                          <th className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider select-none">Contact</th>
+                          <th 
+                            onClick={() => toggleSort("phase")}
+                            className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors select-none"
+                          >
+                            Vesting Stage {sortField === "phase" && (sortDirection === "asc" ? "▲" : "▼")}
+                          </th>
+                          <th 
+                            onClick={() => toggleSort("created_at")}
+                            className="p-4 font-bold text-xs text-[#1A1A1A] uppercase tracking-wider cursor-pointer hover:bg-slate-100 transition-colors select-none"
+                          >
+                            Registered At {sortField === "created_at" && (sortDirection === "asc" ? "▲" : "▼")}
+                          </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-[#E8E4DF]">
