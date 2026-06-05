@@ -1147,6 +1147,22 @@ END:VCARD`;
                       >
                         <Users className="w-4 h-4" /> LinkedIn
                       </a>
+                      <a 
+                        href={`https://twitter.com/intent/tweet?text=Check+out+my+professional+portfolio+on+Buddingpreneurs:&url=${encodeURIComponent(publicProfileLink)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-3 px-4 bg-[#1DA1F2]/10 text-[#1DA1F2] hover:bg-[#1DA1F2] hover:text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2 text-sm text-center"
+                      >
+                        <Share2 className="w-4 h-4" /> Twitter (X)
+                      </a>
+                      <a 
+                        href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(publicProfileLink)}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="py-3 px-4 bg-[#1877F2]/10 text-[#1877F2] hover:bg-[#1877F2] hover:text-white rounded-xl font-bold transition-colors flex items-center justify-center gap-2 text-sm text-center"
+                      >
+                        <Share2 className="w-4 h-4" /> Facebook
+                      </a>
                     </div>
                   </div>
                   
