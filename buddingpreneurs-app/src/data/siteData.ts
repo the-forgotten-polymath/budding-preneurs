@@ -153,11 +153,11 @@ export const siteMetadata = {
   location: "Dehradun, Uttarakhand & Pune, Maharashtra, India",
   channels: ["WhatsApp Business", "Facebook Group", "Instagram"],
   socialLinks: {
-    whatsappCommunity: "https://chat.whatsapp.com/BP-Community-Placeholder",
+    whatsappCommunity: "https://chat.whatsapp.com/H9hwJNJF35u4LKG2tkhRtJ",
     whatsappDirect: "https://wa.me/918534027633", 
-    facebookGroup: "https://www.facebook.com/groups/buddingpreneurs",
-    facebookPage: "https://www.facebook.com/buddingpreneurs",
-    instagram: "https://www.instagram.com/buddingpreneurs",
-    linkedin: "https://www.linkedin.com/company/buddingpreneurs"
+    facebookGroup: "https://www.facebook.com/groups/543871825820662/",
+    facebookPage: "https://www.facebook.com/share/g/1BJQE9DGxw/",
+    instagram: "https://www.instagram.com/buddingpreneurspune/",
+    linkedin: "https://www.linkedin.com/in/sasmita-b-4945a8232/"
   }
 };
