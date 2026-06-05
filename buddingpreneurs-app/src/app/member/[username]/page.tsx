@@ -433,11 +433,31 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                 <div className="mt-8 pt-6 border-t border-[#E8E4DF]">
                   <h4 className="text-sm font-bold text-[#6B6B6B] mb-4 uppercase tracking-wider">Social Links</h4>
                   <div className="flex flex-col gap-2">
-                    {member.contact.website && (
-                      <a href={member.contact.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold">
-                        <Globe className="w-4 h-4" /> Website
-                      </a>
-                    )}
+                    {(() => {
+                      if (!member.contact.website) return null;
+                      try {
+                        const parsed = JSON.parse(member.contact.website);
+                        if (Array.isArray(parsed)) {
+                          return parsed.map((link, idx) => (
+                            <a 
+                              key={idx} 
+                              href={link} 
+                              target="_blank" 
+                              rel="noopener noreferrer" 
+                              className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold"
+                            >
+                              <Globe className="w-4 h-4" /> Catalogue Link {parsed.length > 1 ? `#${idx + 1}` : ""}
+                            </a>
+                          ));
+                        }
+                      } catch {}
+                      
+                      return (
+                        <a href={member.contact.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold">
+                          <Globe className="w-4 h-4" /> Catalogue Link
+                        </a>
+                      );
+                    })()}
                     {member.social.instagram && (
                       <a href={member.social.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold">
                         Instagram

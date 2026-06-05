@@ -114,6 +114,10 @@ export default function DashboardPage() {
   const [newServicePrice, setNewServicePrice] = useState("");
   const [newServiceDesc, setNewServiceDesc] = useState("");
 
+  // Catalogue Links State
+  const [catalogLinks, setCatalogLinks] = useState<string[]>([]);
+  const [newCatalogLink, setNewCatalogLink] = useState("");
+
   const fetchDashboardData = async (username: string) => {
     setCurrentUsername(username);
     try {
@@ -126,6 +130,24 @@ export default function DashboardPage() {
           setServices(found.services || []);
           setLogo(found.logo || "");
           setCoverImage(found.coverImage || "");
+          
+          // Parse website field which could contain a JSON array of strings
+          try {
+            const parsed = JSON.parse(found.contact.website);
+            if (Array.isArray(parsed)) {
+              setCatalogLinks(parsed);
+            } else if (found.contact.website) {
+              setCatalogLinks([found.contact.website]);
+            } else {
+              setCatalogLinks([]);
+            }
+          } catch {
+            if (found.contact.website) {
+              setCatalogLinks([found.contact.website]);
+            } else {
+              setCatalogLinks([]);
+            }
+          }
         }
       }
       const leadsRes = await fetch(`/api/leads?username=${username}`);
@@ -250,7 +272,7 @@ export default function DashboardPage() {
           ...member.contact,
           phone: formData.get("phone") as string,
           whatsapp: formData.get("whatsapp") as string,
-          website: formData.get("website") as string,
+          website: JSON.stringify(catalogLinks),
         },
         services // Sync up-to-date custom catalog
       };
@@ -864,8 +886,53 @@ END:VCARD`;
                           <input required type="tel" name="whatsapp" defaultValue={member.contact.whatsapp} className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none" />
                         </div>
                         <div className="sm:col-span-2">
-                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-1.5">Website</label>
-                          <input type="url" name="website" defaultValue={member.contact.website} className="w-full bg-[#F4F1ED] border-none rounded-lg px-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none" />
+                          <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">Catalogue Links</label>
+                          <div className="flex flex-col gap-2 mb-3">
+                            {catalogLinks.map((link, idx) => (
+                              <div key={idx} className="flex items-center gap-2">
+                                <input
+                                  type="url"
+                                  value={link}
+                                  onChange={(e) => {
+                                    const updated = [...catalogLinks];
+                                    updated[idx] = e.target.value;
+                                    setCatalogLinks(updated);
+                                  }}
+                                  placeholder="https://example.com/catalogue"
+                                  className="flex-1 bg-[#F4F1ED] border-none rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => setCatalogLinks(catalogLinks.filter((_, i) => i !== idx))}
+                                  className="px-3 py-2 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg border border-red-200 transition-colors"
+                                >
+                                  Remove
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          <div className="flex items-center gap-2">
+                            <input
+                              type="url"
+                              value={newCatalogLink}
+                              onChange={(e) => setNewCatalogLink(e.target.value)}
+                              placeholder="Add a new catalogue link (e.g. Google Drive, WhatsApp Catalogue...)"
+                              className="flex-1 bg-[#F4F1ED] border-none rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none"
+                            />
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (newCatalogLink.trim()) {
+                                  setCatalogLinks([...catalogLinks, newCatalogLink.trim()]);
+                                  setNewCatalogLink("");
+                                }
+                              }}
+                              className="px-4 py-2 bg-[#C9540A] hover:bg-[#A8420A] text-white font-bold rounded-lg text-xs transition-colors"
+                            >
+                              Add Link
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
