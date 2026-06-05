@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { siteMetadata } from "../data/siteData";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -62,6 +63,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`${outfit.variable} ${plusJakartaSans.variable}`}>
       <body suppressHydrationWarning className="antialiased bg-bg-dark text-gray-100 min-h-screen">
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   );

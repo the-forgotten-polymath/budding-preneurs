@@ -150,5 +150,13 @@ export const siteMetadata = {
   description: "Fostering economic independence and digital branding for women-led startups in India. Connect, collaborate, and grow with our supportive sisterhood.",
   contactEmail: "buddingpreneursinfo@gmail.com",
   location: "Dehradun, Uttarakhand & Pune, Maharashtra, India",
-  channels: ["WhatsApp Business", "Facebook Group", "Instagram"]
+  channels: ["WhatsApp Business", "Facebook Group", "Instagram"],
+  socialLinks: {
+    whatsappCommunity: "https://chat.whatsapp.com/BP-Community-Placeholder",
+    whatsappDirect: "https://wa.me/919720162208", 
+    facebookGroup: "https://www.facebook.com/groups/buddingpreneurs",
+    facebookPage: "https://www.facebook.com/buddingpreneurs",
+    instagram: "https://www.instagram.com/buddingpreneurs",
+    linkedin: "https://www.linkedin.com/company/buddingpreneurs"
+  }
 };
