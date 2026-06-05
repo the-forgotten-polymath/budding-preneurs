@@ -291,7 +291,7 @@ export default function Home() {
         </div>
 
         {/* Text and buttons wrapper overlaid on top */}
-        <div className="max-w-4xl mx-auto text-center z-10 relative flex flex-col items-center pt-24 sm:pt-32 pb-16">
+        <div className="max-w-4xl mx-auto text-center z-10 relative flex flex-col items-center pt-36 sm:pt-40 pb-16">
           
           {/* Brand Badge */}
           <motion.div
