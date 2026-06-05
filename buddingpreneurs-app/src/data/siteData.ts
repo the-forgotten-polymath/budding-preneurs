@@ -149,11 +149,12 @@ export const siteMetadata = {
   title: "Buddingpreneurs – Startup Training & Empowerment Platform for Indian Women",
   description: "Fostering economic independence and digital branding for women-led startups in India. Connect, collaborate, and grow with our supportive sisterhood.",
   contactEmail: "buddingpreneursinfo@gmail.com",
+  contactPhone: "8534027633",
   location: "Dehradun, Uttarakhand & Pune, Maharashtra, India",
   channels: ["WhatsApp Business", "Facebook Group", "Instagram"],
   socialLinks: {
     whatsappCommunity: "https://chat.whatsapp.com/BP-Community-Placeholder",
-    whatsappDirect: "https://wa.me/919720162208", 
+    whatsappDirect: "https://wa.me/918534027633", 
     facebookGroup: "https://www.facebook.com/groups/buddingpreneurs",
     facebookPage: "https://www.facebook.com/buddingpreneurs",
     instagram: "https://www.instagram.com/buddingpreneurs",
