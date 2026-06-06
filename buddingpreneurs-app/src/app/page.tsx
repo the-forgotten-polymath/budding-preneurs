@@ -235,17 +235,22 @@ export default function Home() {
           
           {/* Buddingpreneurs Brand Logo */}
           <a href="/" className={`flex items-center gap-2.5 group transition-all duration-300 ${isScrolled ? "opacity-100 translate-y-0" : "lg:opacity-0 lg:-translate-y-4 lg:pointer-events-none"}`}>
-            <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-200 bg-white relative flex-shrink-0">
+            <div className="w-9 h-9 rounded-full overflow-hidden border border-slate-200 bg-white relative flex-shrink-0">
               <img 
                 src="/brand_logo.png" 
                 alt="Buddingpreneurs Brand Logo" 
                 className="object-cover w-full h-full"
               />
             </div>
-            <span className="text-xl font-black tracking-tight text-[#0f172a] font-sans relative">
-              Buddingpreneurs
-              <span className="absolute -top-0.5 -right-3 inline-flex items-center justify-center border border-[#0f172a] rounded-full w-2.5 h-2.5 text-[6px] font-bold leading-none select-none">R</span>
-            </span>
+            <div className="flex flex-col items-start leading-tight">
+              <span className="text-sm font-black tracking-tight text-[#0f172a] font-sans relative pr-3">
+                Buddingpreneurs
+                <span className="absolute top-0 right-0 inline-flex items-center justify-center border border-[#0f172a] rounded-full w-2 h-2 text-[5px] font-bold leading-none select-none">R</span>
+              </span>
+              <span className="text-[7.5px] font-bold text-[#C9540A] tracking-tight font-sans">
+                A Collaborative Ecosystem for Women Entrepreneurs
+              </span>
+            </div>
           </a>
 
           {/* Center Navigation links */}
