@@ -46,7 +46,7 @@ export const TestimonialsColumn = (props: {
                   <img
                     width={40}
                     height={40}
-                    src={image || "/brand_logo.png"}
+                    src="/brand_logo.png"
                     alt={name}
                     className="h-10 w-10 rounded-full object-cover border-2 border-[#C9540A]/20 bg-[#FAF8F5] p-0.5"
                   />
