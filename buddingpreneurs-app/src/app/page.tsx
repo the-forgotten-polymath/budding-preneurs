@@ -336,29 +336,34 @@ export default function Home() {
         {/* Text and buttons wrapper overlaid on top */}
         <div className="max-w-4xl mx-auto text-center z-10 relative flex flex-col items-center pt-20 sm:pt-24 pb-16">
           
-          {/* Brand Logo, Name & Tagline horizontal layout (No container) */}
+          {/* Brand Logo & Name */}
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex flex-row items-center justify-center gap-5 sm:gap-6 mb-8 select-none pointer-events-none max-w-full"
+            className="flex flex-col items-center gap-3.5 mb-6 select-none pointer-events-none"
           >
-            <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full overflow-hidden border-2 border-slate-200 bg-white relative shadow-md flex-shrink-0">
+            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-slate-200 bg-white relative shadow-sm">
               <img 
                 src="/brand_logo.png" 
                 alt="Buddingpreneurs Brand Logo" 
                 className="object-cover w-full h-full"
               />
             </div>
-            <div className="flex flex-col justify-center items-start text-left">
-              <span className="text-3xl sm:text-5xl font-black tracking-tight text-[#0f172a] font-sans relative pr-5 leading-none">
-                Buddingpreneurs
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center border border-[#0f172a] rounded-full w-2.5 h-2.5 text-[5px] font-bold leading-none select-none">R</span>
-              </span>
-              <span className="text-xs sm:text-base font-bold text-[#C9540A] tracking-tight font-sans mt-2 leading-none">
-                A Collaborative Ecosystem for Women Entrepreneurs
-              </span>
-            </div>
+            <span className="text-3xl font-black tracking-tight text-[#0f172a] font-sans relative">
+              Buddingpreneurs
+              <span className="absolute -top-0.5 -right-3.5 inline-flex items-center justify-center border border-[#0f172a] rounded-full w-3 h-3 text-[6px] font-bold leading-none select-none">R</span>
+            </span>
+          </motion.div>
+
+          {/* Brand Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E8E4DF] text-slate-600 text-xs font-bold tracking-wide mb-6 shadow-sm"
+          >
+            <span className="text-[#C9540A]">A Collaborative Ecosystem for Women Entrepreneurs</span>
           </motion.div>
 
           {/* Centered Heading */}
