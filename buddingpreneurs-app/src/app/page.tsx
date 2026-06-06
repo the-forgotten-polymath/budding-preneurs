@@ -338,8 +338,6 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E8E4DF] text-slate-600 text-xs font-bold tracking-wide mb-6 shadow-sm"
           >
-            <span>Registered Brand ®</span>
-            <span className="text-slate-300">|</span>
             <span className="text-[#C9540A]">A Collaborative Ecosystem for Women Entrepreneurs</span>
           </motion.div>
 
