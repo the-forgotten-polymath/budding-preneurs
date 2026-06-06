@@ -102,34 +102,58 @@ export default function Home() {
       image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face"
     },
     {
+      text: "Hi, I’m a seller on this platform. I do live sessions for imported luxury perfumes and international cosmetics. The team here is very supportive, especially the admin Sasmita Behera 🤝. Though it was my very first live, I still got a few orders, which gave me so much confidence and motivation ❤️",
+      name: "Meenal Maheshware",
+      role: "Importer & Cosmetic Seller, Indore",
+      image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Appreciation for Buddingpreneurs ✨. After joining this wonderful community, my page has gained so much visibility and growth. The support, guidance, and encouragement here are truly amazing. A heartfelt thank you to the Buddingpreneurs community for creating such a positive and empowering space. Grateful to be a part of this journey 🤍✨",
+      name: "Shraddha creation",
+      role: "Handmade Crafts Founder, Pune",
+      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Buddingpreneurs is truly an amazing platform for women working from home. A heartfelt thank you to Sasmita Mam for her constant guidance and support. Because of this group, I have received genuine orders and started earning confidently. It’s a wonderful space for women who want to grow and build something of their own.",
+      name: "Chandni Amish Ladani",
+      role: "Home Entrepreneur, Gujarat",
+      image: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "When I joined this group, I thought it was like any other group. But after some time, I found Buddingpreneurs is a different group. It is very much helpful for entrepreneurs like me. Specifically their Canva session—it was an eye opener. I learned so many things about a very difficult topic. Here I met many talented people. Thanks Buddingpreneurs, amazing group.",
+      name: "Rekha Agarwal",
+      role: "Art & Graphic Designer, Dehradun",
+      image: "https://images.unsplash.com/photo-1521252659862-eec69941b071?w=80&h=80&fit=crop&crop=face"
+    },
+    {
       text: "The buddingpreneurs has been an invaluable resource for learning, networking, and refining entrepreneurial skills. We trust buddingpreneurs. Must try... see the difference.",
       name: "Nirmla Chib",
       role: "Entrepreneur & Brand MD, TVAREETAZ",
-      image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=80&h=80&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
     },
     {
       text: "Buddingpreneurs has helped me transition from running a localized home setup to receiving inquiries and client bookings from all parts of India. Truly amazing platform!",
       name: "Shikha Gupta",
       role: "Baking Entrepreneur, Pune",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face"
     },
     {
       text: "As a woman running a boutique, finding a trustworthy audience is tough. This platform verified my seller status, immediately establishing trust and driving regular client leads.",
       name: "Punam Das",
       role: "Fashion Designer, Dehradun",
-      image: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=80&h=80&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face"
     },
     {
       text: "Excellent support environment. The mentorship and real-world marketing advice provided by the admin team have made all the difference in scaling my home decor startup.",
       name: "Nivedita Shahi",
       role: "Home Decor Founder, Mumbai",
-      image: "https://images.unsplash.com/photo-1521252659862-eec69941b071?w=80&h=80&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face"
     },
     {
       text: "The organic networking opportunities here are genuine. Buddingpreneurs isn't just a list directory; it's an active community that helps you grow and shine.",
       name: "Lekhakraj K R",
       role: "Creative Designer, Bangalore",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
+      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face"
     }
   ];
 
@@ -734,16 +758,16 @@ export default function Home() {
           {/* Scrolling Columns Container */}
           <div className="flex justify-center gap-5 mt-4 [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] max-h-[720px] overflow-hidden">
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(0, 3)}
+              testimonials={allTestimonials.slice(0, 5)}
               duration={18}
             />
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(3, 6)}
+              testimonials={allTestimonials.slice(5, 9)}
               className="hidden md:block"
               duration={22}
             />
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(6, 9)}
+              testimonials={allTestimonials.slice(9, 13)}
               className="hidden lg:block"
               duration={20}
             />
