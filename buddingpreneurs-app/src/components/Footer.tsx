@@ -7,8 +7,15 @@ export default function Footer() {
     <footer className="py-12 bg-[#1C1C1C] relative z-10 w-full mt-auto">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 items-start">
         <div className="col-span-1 md:col-span-2">
-          <a href="/" className="flex items-center gap-2 mb-6">
-            <span className="text-2xl font-black tracking-tight text-white font-sans lowercase">buddingpreneurs</span>
+          <a href="/" className="flex items-center gap-2.5 mb-6 group">
+            <div className="w-8 h-8 rounded-full overflow-hidden border border-slate-700 bg-white relative flex-shrink-0">
+              <img 
+                src="/brand_logo.png" 
+                alt="Buddingpreneurs Brand Logo" 
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <span className="text-2xl font-black tracking-tight text-white font-sans">Buddingpreneurs</span>
           </a>
           <p className="text-[#888888] text-sm leading-relaxed max-w-sm font-sans mb-8">
             Indian women entrepreneurs rise here. Join the sisterhood, build your personal brand, set up digital catalogs, and achieve economic self-reliance.
