@@ -317,7 +317,7 @@ export default function Home() {
       {/* ☀️ BRIGHT AIRY HERO SECTION (Exactly like image.png, now full screen with stretched image overlay) */}
       <section className="relative bg-white min-h-screen px-6 flex flex-col items-center justify-start overflow-hidden">
         {/* Full-screen background image stretched to cover */}
-        <div className="absolute inset-0 z-0 translate-y-24 sm:translate-y-32 md:translate-y-40 lg:translate-y-48">
+        <div className="absolute inset-0 z-0 translate-y-36 sm:translate-y-44 md:translate-y-56 lg:translate-y-64">
           <Image
             src="/images/home/image-copy.png"
             alt="Buddingpreneurs Women Founders Selfie Background"
@@ -329,7 +329,7 @@ export default function Home() {
         </div>
 
         {/* Text and buttons wrapper overlaid on top */}
-        <div className="max-w-4xl mx-auto text-center z-10 relative flex flex-col items-center pt-36 sm:pt-40 pb-16">
+        <div className="max-w-4xl mx-auto text-center z-10 relative flex flex-col items-center pt-20 sm:pt-24 pb-16">
           
           {/* Brand Logo & Name */}
           <motion.div 
