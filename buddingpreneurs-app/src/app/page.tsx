@@ -96,9 +96,9 @@ export default function Home() {
       image: "https://images.unsplash.com/photo-1614204424926-197290e96b97?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "Excellent Community Engagement and Support! I am extremely impressed with the level of support and engagement from this business community. The page is a fantastic resource for networking and sharing.",
+      text: "Before Buddingpreneurs, I had no idea how to scale or pitch my brand. It has something unique—it's thoughtful, inclusive, and high quality. I trust this platform to help me grow—not just my business, but myself.",
       name: "Mili Sirohi",
-      role: "Business Member & Founder, Noida",
+      role: "Professional Artist, Founder of the brand Platefuls_of_Art",
       image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face"
     },
     {
@@ -126,9 +126,9 @@ export default function Home() {
       image: "https://images.unsplash.com/photo-1521252659862-eec69941b071?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "The buddingpreneurs has been an invaluable resource for learning, networking, and refining entrepreneurial skills. We trust buddingpreneurs. Must try... see the difference.",
-      name: "Nirmla Chib",
-      role: "Entrepreneur & Brand MD, TVAREETAZ",
+      text: "Buddingpreneurs has been an invaluable resource for learning, networking, and refining entrepreneurial skills. We trust Buddingpreneurs. Must try… see the difference.",
+      name: "Nirmala Chib",
+      role: "Entrepreneur, Brand TVAREETAZ, MD",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
     },
     {
@@ -144,9 +144,9 @@ export default function Home() {
       image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "Excellent support environment. The mentorship and real-world marketing advice provided by the admin team have made all the difference in scaling my home decor startup.",
+      text: "Calling all women entrepreneurs! If you're looking for a space that's safe, supportive, and rich with resources, Buddingpreneurs is exactly where you need to be. This platform has helped me grow—not just my business, but also my confidence, mindset, and network.",
       name: "Nivedita Shahi",
-      role: "Home Decor Founder, Mumbai",
+      role: "A passionate Home Baker, Owner of Sweet Smile Bake",
       image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face"
     },
     {
@@ -154,6 +154,30 @@ export default function Home() {
       name: "Lekhakraj K R",
       role: "Creative Designer, Bangalore",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Buddingpreneurs can be considered as a perfect example of a harmonious blend of mentorship and networking. It nurtures aspiring entrepreneurs and turns their ideas into successful ventures.",
+      name: "Anamika Sarkar",
+      role: "Professional Artist/Crafter, Founder of ana_creationz",
+      image: "https://images.unsplash.com/photo-1543132220-3ec99c5994fc?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Hello everyone, I am Megha, founder of M3 Foods. When M3 Foods was starting its business on social media, the first networking site which I met was Buddingpreneurs. This platform helped me scale my business; it's safe, supportive & resourceful for all women entrepreneurs. I trust this platform for my business growth.",
+      name: "Megha Berry Arora",
+      role: "Owner at M3 Foods (Homemade Masalas & Calorie-free Snacks)",
+      image: "https://images.unsplash.com/photo-1534751516642-a131fed10495?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Buddingpreneurs platform is very encouraging & helpful for all women entrepreneurs. This group helps me to rise further not only in business, but also encourages me in my personality development.",
+      name: "Tanu Winkle Kohli",
+      role: "Brand Owner at TK Closet (Clothing and Handbags)",
+      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=80&h=80&fit=crop&crop=face"
+    },
+    {
+      text: "Buddingpreneur platform is safe, supportive, and deeply resourceful for all women entrepreneurs. I trust this platform to reach out to people who are interested in working on their health at all levels—spiritually, mentally, and physically.",
+      name: "Dr. Aradhana Singh",
+      role: "Yoga and Fitness Expert",
+      image: "https://images.unsplash.com/photo-1548142813-c348350df52b?w=80&h=80&fit=crop&crop=face"
     }
   ];
 
@@ -758,16 +782,16 @@ export default function Home() {
           {/* Scrolling Columns Container */}
           <div className="flex justify-center gap-5 mt-4 [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] max-h-[720px] overflow-hidden">
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(0, 5)}
+              testimonials={allTestimonials.slice(0, 6)}
               duration={18}
             />
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(5, 9)}
+              testimonials={allTestimonials.slice(6, 12)}
               className="hidden md:block"
               duration={22}
             />
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(9, 13)}
+              testimonials={allTestimonials.slice(12, 17)}
               className="hidden lg:block"
               duration={20}
             />
