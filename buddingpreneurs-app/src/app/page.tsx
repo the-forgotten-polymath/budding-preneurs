@@ -78,76 +78,58 @@ export default function Home() {
 
   const allTestimonials = [
     {
-      text: "Buddingpreneurs completely changed my life. I went from a simple idea scribbled in a notebook to running a fully operational home business. The digital marketing skills and brand promotion strategies I learned here were absolutely invaluable.",
-      name: "Priya Sharma",
-      role: "Startup Founder, Pune",
+      text: "Nothing less than 5 stars... it was here that I got my first pan-India order (out of Maharashtra). The Admin and team @Buddingpreneurs have been very supportive and helpful.",
+      name: "Tasnim Soni",
+      role: "Founder & Soni Brand, Pune",
       image: "https://images.unsplash.com/photo-1502764613149-7f1d229e230f?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "The community support at Buddingpreneurs is truly unmatched. Connecting with 7,000+ women on the same journey gave me the courage and confidence I needed to finally launch my boutique.",
-      name: "Ananya Desai",
-      role: "Boutique Owner, Mumbai",
+      text: "No doubts, it's a lovely group and all the sellers are verified and trustworthy. I get most of my orders from this group. Thank you so much!",
+      name: "Yuvansh Arora",
+      role: "Verified Seller & Merchant, Delhi",
       image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "Within just one month of attending the digital marketing workshop, my online sales literally tripled. The practical strategies here are real, actionable, and tailored for women entrepreneurs like me.",
-      name: "Ritu Verma",
-      role: "Freelance Designer, Delhi",
+      text: "A community where we find growth, visibility, skills & the best supporting environment. Thank you Buddingpreneurs!",
+      name: "Disha Jotwani",
+      role: "Creative Entrepreneur, Maharashtra",
       image: "https://images.unsplash.com/photo-1614204424926-197290e96b97?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "I always dreamed of my own bakery but the business setup process scared me. Buddingpreneurs guided me step by step, from GST registration to Instagram branding. Today I'm economically independent!",
-      name: "Meera Patel",
-      role: "Home Baker & Founder, Ahmedabad",
+      text: "Excellent Community Engagement and Support! I am extremely impressed with the level of support and engagement from this business community. The page is a fantastic resource for networking and sharing.",
+      name: "Mili Sirohi",
+      role: "Business Member & Founder, Noida",
       image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "The B2B networking sessions connected me to clients I never would have found on my own. Within two months of joining, I signed three corporate deals for my consultancy firm.",
-      name: "Sunita Agarwal",
-      role: "Business Consultant, Bangalore",
+      text: "The buddingpreneurs has been an invaluable resource for learning, networking, and refining entrepreneurial skills. We trust buddingpreneurs. Must try... see the difference.",
+      name: "Nirmla Chib",
+      role: "Entrepreneur & Brand MD, TVAREETAZ",
       image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "As a single mother starting from scratch, I was terrified. Buddingpreneurs not only gave me skills but a sisterhood. My handmade jewellery brand now ships Pan-India and I have 40+ wholesale clients.",
-      name: "Kavitha Nair",
-      role: "Jewellery Entrepreneur, Kochi",
+      text: "Buddingpreneurs has helped me transition from running a localized home setup to receiving inquiries and client bookings from all parts of India. Truly amazing platform!",
+      name: "Shikha Gupta",
+      role: "Baking Entrepreneur, Pune",
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "The visibility I gained through Buddingpreneurs' directory and features was phenomenal. My coaching practice went from 3 clients to a full waitlist in under 6 months!",
-      name: "Deepika Malhotra",
-      role: "Life Coach & Speaker, Gurugram",
+      text: "As a woman running a boutique, finding a trustworthy audience is tough. This platform verified my seller status, immediately establishing trust and driving regular client leads.",
+      name: "Punam Das",
+      role: "Fashion Designer, Dehradun",
       image: "https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "Buddingpreneurs' workshops on AI tools for business were a game-changer. I automated my entire content calendar and saved 15 hours a week, which I now invest in growing my brand.",
-      name: "Nisha Gupta",
-      role: "Content Creator & D2C Founder, Jaipur",
+      text: "Excellent support environment. The mentorship and real-world marketing advice provided by the admin team have made all the difference in scaling my home decor startup.",
+      name: "Nivedita Shahi",
+      role: "Home Decor Founder, Mumbai",
       image: "https://images.unsplash.com/photo-1521252659862-eec69941b071?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "I came from a small town with big dreams and zero network. Buddingpreneurs connected me to mentors, collaborators, and customers across India. My saree brand is now a thriving D2C success story.",
-      name: "Rekha Yadav",
-      role: "Ethnic Wear Founder, Lucknow",
+      text: "The organic networking opportunities here are genuine. Buddingpreneurs isn't just a list directory; it's an active community that helps you grow and shine.",
+      name: "Lekhakraj K R",
+      role: "Creative Designer, Bangalore",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face"
-    },
-    {
-      text: "The pricing and financial literacy sessions completely changed how I valued my work. I stopped under-pricing my services and doubled my revenue in just 3 months after the workshop.",
-      name: "Pooja Iyer",
-      role: "Graphic Designer, Chennai",
-      image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=80&h=80&fit=crop&crop=face"
-    },
-    {
-      text: "Joining Buddingpreneurs was the best business decision I ever made. The strategic partnerships I formed here helped me land my first B2B client worth ₹5 lakhs within 60 days.",
-      name: "Shruti Kapoor",
-      role: "HR Consultant, Hyderabad",
-      image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=80&h=80&fit=crop&crop=face"
-    },
-    {
-      text: "The mentorship and the real-world case studies at Buddingpreneurs workshops gave me practical knowledge no MBA program could. My food startup is now profitable and expanding to 3 new cities!",
-      name: "Lalita Sharma",
-      role: "Food Startup Founder, Bhopal",
-      image: "https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=80&h=80&fit=crop&crop=face"
     }
   ];
 
@@ -752,16 +734,16 @@ export default function Home() {
           {/* Scrolling Columns Container */}
           <div className="flex justify-center gap-5 mt-4 [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] max-h-[720px] overflow-hidden">
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(0, 4)}
+              testimonials={allTestimonials.slice(0, 3)}
               duration={18}
             />
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(4, 8)}
+              testimonials={allTestimonials.slice(3, 6)}
               className="hidden md:block"
               duration={22}
             />
             <TestimonialsColumn
-              testimonials={allTestimonials.slice(8, 12)}
+              testimonials={allTestimonials.slice(6, 9)}
               className="hidden lg:block"
               duration={20}
             />
