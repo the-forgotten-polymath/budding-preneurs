@@ -242,8 +242,9 @@ export default function Home() {
                 className="object-cover w-full h-full"
               />
             </div>
-            <span className="text-xl font-black tracking-tight text-[#0f172a] font-sans">
+            <span className="text-xl font-black tracking-tight text-[#0f172a] font-sans relative">
               Buddingpreneurs
+              <span className="absolute -top-0.5 -right-3 inline-flex items-center justify-center border border-[#0f172a] rounded-full w-2.5 h-2.5 text-[6px] font-bold leading-none select-none">R</span>
             </span>
           </a>
 
@@ -339,7 +340,7 @@ export default function Home() {
           >
             <span>Registered Brand ®</span>
             <span className="text-slate-300">|</span>
-            <span className="text-[#C9540A]">Pan-India Women Entrepreneurs Community</span>
+            <span className="text-[#C9540A]">A Collaborative Ecosystem for Women Entrepreneurs</span>
           </motion.div>
 
           {/* Centered Heading */}
