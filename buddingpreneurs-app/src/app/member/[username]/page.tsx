@@ -298,7 +298,7 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
             </span>
           </a>
 
-          <nav className="hidden lg:flex flex-wrap items-center justify-center gap-4 xl:gap-6">
+          <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
             <a href="/" className="text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A]">Home</a>
             <a href="/directory" className="text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A]">Directory</a>
             <a href="/programs" className="text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A]">Our Programs</a>

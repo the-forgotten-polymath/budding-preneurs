@@ -45,7 +45,7 @@ export default function ContactPage() {
               Buddingpreneurs
             </span>
           </a>
-          <nav className="hidden lg:flex flex-wrap items-center justify-center gap-4 xl:gap-6">
+          <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
             {navLinks.map((link) => (
               <a
                 key={link.name}
