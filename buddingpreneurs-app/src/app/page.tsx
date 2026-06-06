@@ -337,15 +337,6 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center z-10 relative flex flex-col items-center pt-20 sm:pt-24 pb-16">
           
 
-          {/* Brand Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex flex-wrap items-center justify-center gap-2 px-4 py-1.5 rounded-full bg-[#FAF8F5] border border-[#E8E4DF] text-slate-600 text-xs font-bold tracking-wide mb-6 shadow-sm"
-          >
-            <span className="text-[#C9540A]">A Collaborative Ecosystem for Women Entrepreneurs</span>
-          </motion.div>
 
           {/* Centered Heading */}
           <motion.h1
