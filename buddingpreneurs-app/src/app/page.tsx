@@ -235,7 +235,7 @@ export default function Home() {
           
           {/* Buddingpreneurs Brand Logo */}
           <a href="/" className="flex items-center gap-2.5 group transition-all duration-300">
-            <div className="w-9 h-9 rounded-full overflow-hidden border border-slate-200 bg-white relative flex-shrink-0">
+            <div className="w-10 h-10 rounded-full overflow-hidden border border-slate-200 bg-white relative flex-shrink-0">
               <img 
                 src="/brand_logo.png" 
                 alt="Buddingpreneurs Brand Logo" 
@@ -243,11 +243,11 @@ export default function Home() {
               />
             </div>
             <div className="flex flex-col items-start leading-tight">
-              <span className="text-sm font-black tracking-tight text-[#0f172a] font-sans relative pr-3">
+              <span className="text-base sm:text-lg font-black tracking-tight text-[#0f172a] font-sans relative pr-4">
                 Buddingpreneurs
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center border border-[#0f172a] rounded-full w-2 h-2 text-[5px] font-bold leading-none select-none">R</span>
+                <span className="absolute top-0 right-0 inline-flex items-center justify-center border border-[#0f172a] rounded-full w-2.5 h-2.5 text-[6px] font-bold leading-none select-none">R</span>
               </span>
-              <span className="text-[7.5px] font-bold text-[#C9540A] tracking-tight font-sans">
+              <span className="text-[8.5px] sm:text-[9.5px] font-bold text-[#C9540A] tracking-tight font-sans mt-0.5">
                 A Collaborative Ecosystem for Women Entrepreneurs
               </span>
             </div>
@@ -322,7 +322,7 @@ export default function Home() {
       {/* ☀️ BRIGHT AIRY HERO SECTION (Exactly like image.png, now full screen with stretched image overlay) */}
       <section className="relative bg-white min-h-screen px-6 flex flex-col items-center justify-start overflow-hidden">
         {/* Full-screen background image stretched to cover */}
-        <div className="absolute inset-0 z-0 translate-y-16 sm:translate-y-24 md:translate-y-32 lg:translate-y-40">
+        <div className="absolute inset-0 z-0 translate-y-16 sm:translate-y-24 md:translate-y-8 lg:translate-y-10">
           <Image
             src="/images/home/image-copy.png"
             alt="Buddingpreneurs Women Founders Selfie Background"
