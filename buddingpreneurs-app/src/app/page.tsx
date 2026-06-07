@@ -343,7 +343,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl sm:text-5xl md:text-[56px] font-black text-[#0f172a] tracking-tight leading-[1.12] mb-6 max-w-3xl font-sans"
+            className="text-[31px] sm:text-[43px] md:text-[51px] font-black text-[#0f172a] tracking-tight leading-[1.12] mb-6 max-w-3xl font-sans"
           >
             Find Your Tribe,<br />
             Build Your Network.
