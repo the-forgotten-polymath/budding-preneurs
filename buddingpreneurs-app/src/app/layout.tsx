@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
   title: siteMetadata.title,
   description: siteMetadata.description,
-  keywords: ["women entrepreneurs", "startup training", "empowerment", "Indian startups", "digital marketing", "self-reliance", "networking", "mastermind", "Dehradun"],
+  keywords: ["buddingpreneurs", "buddingpreneur", "buddingpreneurs india", "buddingpreneurs pune", "buddingpreneurs dehradun", "women entrepreneurs", "startup training", "empowerment", "Indian startups", "digital marketing", "self-reliance", "networking", "mastermind", "Dehradun"],
   robots: {
     index: true,
     follow: true,
