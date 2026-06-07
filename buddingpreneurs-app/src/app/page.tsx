@@ -322,7 +322,7 @@ export default function Home() {
       {/* ☀️ BRIGHT AIRY HERO SECTION (Exactly like image.png, now full screen with stretched image overlay) */}
       <section className="relative bg-white min-h-screen px-6 flex flex-col items-center justify-start overflow-hidden">
         {/* Full-screen background image stretched to cover */}
-        <div className="absolute inset-0 z-0 translate-y-36 sm:translate-y-44 md:translate-y-56 lg:translate-y-64">
+        <div className="absolute inset-0 z-0 translate-y-16 sm:translate-y-24 md:translate-y-32 lg:translate-y-40">
           <Image
             src="/images/home/image-copy.png"
             alt="Buddingpreneurs Women Founders Selfie Background"
