@@ -157,7 +157,7 @@ export const siteMetadata = {
     whatsappDirect: "https://wa.me/918534027633", 
     facebookGroup: "https://www.facebook.com/groups/543871825820662/",
     facebookPage: "https://www.facebook.com/share/g/1BJQE9DGxw/",
-    instagram: "https://www.instagram.com/buddingpreneurspune/",
+    instagram: "https://www.instagram.com/buddingpreneurs?igsh=MTZwN3RhbjIyOWQ0aQ==",
     linkedin: "https://www.linkedin.com/in/sasmita-b-4945a8232/"
   }
 };
