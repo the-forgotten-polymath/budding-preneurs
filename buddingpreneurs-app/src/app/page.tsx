@@ -343,7 +343,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-[31px] sm:text-[43px] md:text-[51px] font-black text-[#0f172a] tracking-tight leading-[1.12] mb-6 max-w-3xl font-sans"
+            className="text-[31px] sm:text-[43px] md:text-[51px] font-black text-[#0f172a] tracking-tight leading-[1.12] mb-3 max-w-3xl font-sans"
           >
             Find Your Tribe,<br />
             Build Your Network.
@@ -354,7 +354,7 @@ export default function Home() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-[#334155] text-sm sm:text-base md:text-[18px] max-w-xl mx-auto leading-relaxed mb-8 font-semibold font-sans"
+            className="text-[#334155] text-sm sm:text-base md:text-[18px] max-w-xl mx-auto leading-relaxed mb-5 font-semibold font-sans"
           >
             Join India's Women Entrepreneurs Community for Growth,<br className="hidden sm:inline" />
             Visibility & Business Opportunities
