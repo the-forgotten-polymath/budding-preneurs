@@ -158,11 +158,24 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: "Missing required contact details" }, { status: 400 });
     }
 
+    let targetMemberUsername = memberUsername;
+    if (targetMemberUsername === "admin") {
+      const { data: adminMember } = await supabaseAdmin
+        .from("members")
+        .select("username")
+        .eq("role", "admin")
+        .limit(1)
+        .maybeSingle();
+      if (adminMember) {
+        targetMemberUsername = adminMember.username;
+      }
+    }
+
     // 1. Check if recipient member profile exists
     const { data: recipientMember, error: recipientError } = await supabaseAdmin
       .from("members")
       .select("username, leads_count")
-      .eq("username", memberUsername)
+      .eq("username", targetMemberUsername)
       .maybeSingle();
 
     if (recipientError || !recipientMember) {
@@ -173,7 +186,7 @@ export async function POST(request: Request) {
     const newLeadId = "L-" + Math.floor(Math.random() * 9000 + 1000);
     const newLeadData = {
       id: newLeadId,
-      member_username: memberUsername,
+      member_username: targetMemberUsername,
       client_name: clientName,
       client_email: clientEmail,
       client_phone: clientPhone,
@@ -195,7 +208,7 @@ export async function POST(request: Request) {
     const { error: countError } = await supabaseAdmin
       .from("members")
       .update({ leads_count: (recipientMember.leads_count || 0) + 1 })
-      .eq("username", memberUsername);
+      .eq("username", targetMemberUsername);
 
     if (countError) {
       console.error("Failed to increment lead stats:", countError);
@@ -205,7 +218,7 @@ export async function POST(request: Request) {
       success: true,
       data: {
         id: newLeadId,
-        memberUsername,
+        memberUsername: targetMemberUsername,
         clientName,
         clientEmail,
         clientPhone,

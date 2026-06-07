@@ -9,6 +9,60 @@ export default function ContactPage() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    category: "",
+    socialLink: ""
+  });
+  const [loading, setLoading] = useState(false);
+  const [statusMsg, setStatusMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatusMsg(null);
+
+    const clientMessage = `Business Category: ${formData.category}\nSocial Media Page: ${formData.socialLink || 'N/A'}`;
+
+    try {
+      const res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          memberUsername: "admin",
+          clientName: formData.name,
+          clientEmail: formData.email || "no-email@buddingpreneurs.com",
+          clientPhone: formData.phone,
+          clientMessage
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setStatusMsg({
+          type: "success",
+          text: "Your application has been submitted successfully! We will get in touch with you soon."
+        });
+        setFormData({ name: "", email: "", phone: "", category: "", socialLink: "" });
+      } else {
+        setStatusMsg({
+          type: "error",
+          text: data.error || "Failed to submit application. Please try again."
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      setStatusMsg({
+        type: "error",
+        text: "An error occurred. Please check your connection and try again."
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -99,22 +153,52 @@ export default function ContactPage() {
               No dream is too small when you have the right support. Fill out the form below and let us help you turn your skills into a thriving business.
             </p>
 
-            <form className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-6">
+            <form onSubmit={handleSubmit} className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 space-y-6">
+              {statusMsg && (
+                <div className={`p-4 rounded-xl text-sm font-semibold ${statusMsg.type === "success" ? "bg-emerald-50 text-emerald-800 border border-emerald-100" : "bg-rose-50 text-rose-800 border border-rose-100"}`}>
+                  {statusMsg.text}
+                </div>
+              )}
               <div>
                 <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Name *</label>
-                <input type="text" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50" placeholder="Your full name" required />
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50"
+                  placeholder="Your full name"
+                  required
+                />
               </div>
               <div>
                 <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Email Address</label>
-                <input type="email" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50" placeholder="you@example.com" />
+                <input
+                  type="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50"
+                  placeholder="you@example.com"
+                />
               </div>
               <div>
                 <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Mobile Number *</label>
-                <input type="tel" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50" placeholder="Your mobile number" required />
+                <input
+                  type="tel"
+                  value={formData.phone}
+                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50"
+                  placeholder="Your mobile number"
+                  required
+                />
               </div>
               <div>
                 <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Business Category *</label>
-                <select defaultValue="" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50" required>
+                <select
+                  value={formData.category}
+                  onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50"
+                  required
+                >
                   <option value="" disabled>Select a category</option>
                   <option value="crafting">Crafting</option>
                   <option value="food">Food & Baking</option>
@@ -125,11 +209,21 @@ export default function ContactPage() {
               </div>
               <div>
                 <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Social Media Page Link (If you have one)</label>
-                <input type="url" className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50" placeholder="https://instagram.com/yourpage" />
+                <input
+                  type="url"
+                  value={formData.socialLink}
+                  onChange={(e) => setFormData({ ...formData, socialLink: e.target.value })}
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-[#C9540A] focus:border-transparent transition-all bg-slate-50"
+                  placeholder="https://instagram.com/yourpage"
+                />
               </div>
               
-              <button type="submit" className="w-full py-4 rounded-full bg-[#1A1A1A] text-white font-bold hover:bg-[#C9540A] transition-colors flex justify-center items-center gap-2">
-                Submit Application <ArrowRight className="w-4 h-4" />
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full py-4 rounded-full bg-[#1A1A1A] text-white font-bold hover:bg-[#C9540A] transition-colors flex justify-center items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {loading ? "Submitting..." : "Submit Application"} <ArrowRight className="w-4 h-4" />
               </button>
             </form>
           </div>
