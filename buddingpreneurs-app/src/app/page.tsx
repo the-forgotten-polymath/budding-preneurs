@@ -616,7 +616,7 @@ export default function Home() {
           <div className="w-full lg:w-5/12 bg-[#1A1A1A] rounded-2xl p-12 relative overflow-hidden">
             <div className="absolute top-8 left-8 text-[#C9540A] text-6xl font-serif leading-none opacity-50">"</div>
             <h3 className="text-white text-3xl font-sans font-medium leading-tight relative z-10 mt-8">
-              Every big journey begins with a small step — and at Buddingpreneur, we help women take that first leap.
+              Every big journey begins with a small step — and at Buddingpreneurs, we help women take that first leap.
             </h3>
             <div className="absolute -bottom-10 -right-10 opacity-10">
               <Sparkles className="w-64 h-64 text-white" />
