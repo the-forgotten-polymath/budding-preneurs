@@ -98,13 +98,12 @@ export default function RegisterPage() {
       const data = await res.json();
 
       if (data.success) {
-        router.push("/dashboard");
-        router.refresh();
+        router.push(`/dashboard`);
       } else {
-        setError(data.error || "Registration failed.");
+        setError(data.error + (data.details ? " Details: " + JSON.stringify(data.details) : ""));
       }
-    } catch {
-      setError("Network error. Please check your connection.");
+    } catch (err) {
+      setError("Network error. Please try again later.");
     } finally {
       setLoading(false);
     }
