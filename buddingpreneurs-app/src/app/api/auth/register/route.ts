@@ -161,6 +161,7 @@ export async function POST(request: Request) {
         rating: 5.0,
         reviews_count: 0,
         verified: false,
+        status: "approved",
         join_date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
         plan: "Basic",
         logo: business_name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase(),
