@@ -151,7 +151,6 @@ export async function POST(request: Request) {
         username,
         founder_name,
         name: business_name,
-        business_name: business_name,
         tagline: tagline || `Pioneering ${category || "Business"} in ${city || "India"}`,
         category: category || "Consultant",
         city: city || "Delhi",
