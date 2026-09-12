@@ -151,7 +151,7 @@ export default function DashboardPage() {
   const fetchDashboardData = async (username: string) => {
     setCurrentUsername(username);
     try {
-      const memberRes = await fetch("/api/members");
+      const memberRes = await fetch(`/api/members?t=${Date.now()}`);
       const memberData = await memberRes.json();
       if (!memberData.success) {
         setLoadError(memberData.error || "Failed to load members API");
