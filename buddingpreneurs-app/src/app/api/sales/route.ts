@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getSupabaseServerClient } from "@/lib/supabase";
+import { getSupabaseAdminClient } from "@/lib/supabase";
 
 export async function POST(req: Request) {
   try {
@@ -18,13 +18,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 });
     }
 
-    const supabase = await getSupabaseServerClient();
-
-    // Verify session
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      return NextResponse.json({ success: false, error: "Unauthorized" }, { status: 401 });
-    }
+    const supabase = getSupabaseAdminClient();
 
     // Insert sale report
     const { data, error } = await supabase
@@ -32,7 +26,7 @@ export async function POST(req: Request) {
       .insert([
         {
           member_id,
-          lead_id: lead_id || null, // null if no lead selected
+          lead_id: lead_id || null,
           product_service,
           amount,
           lead_source,
@@ -49,14 +43,12 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: error.message }, { status: 500 });
     }
 
-    // If there's a lead_id associated, let's update the lead status to "Converted" automatically
+    // If lead_id provided, mark the lead as Converted
     if (lead_id) {
       await supabase
         .from("leads")
         .update({ status: "Converted" })
         .eq("id", lead_id);
-      
-      // We don't block the response on this, if it fails it's minor, but we could log it.
     }
 
     return NextResponse.json({ success: true, data });
