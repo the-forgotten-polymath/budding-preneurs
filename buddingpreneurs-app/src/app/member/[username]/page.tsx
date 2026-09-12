@@ -484,6 +484,28 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                   <div className="flex flex-col gap-2">
                     {(() => {
                       if (!member.contact.website) return null;
+                      
+                      const getLinkName = (url: string, idx?: number) => {
+                        try {
+                          const lower = url.toLowerCase();
+                          if (lower.includes('instagram.com')) return 'Instagram';
+                          if (lower.includes('linkedin.com')) return 'LinkedIn';
+                          if (lower.includes('facebook.com')) return 'Facebook';
+                          if (lower.includes('twitter.com') || lower.includes('x.com')) return 'Twitter';
+                          if (lower.includes('youtube.com')) return 'YouTube';
+                          if (lower.includes('tiktok.com')) return 'TikTok';
+                          if (lower.includes('wa.me') || lower.includes('whatsapp.com')) return 'WhatsApp';
+                          if (lower.includes('github.com')) return 'GitHub';
+                          
+                          const { hostname } = new URL(url);
+                          const parts = hostname.replace('www.', '').split('.');
+                          if (parts.length > 0) {
+                            return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
+                          }
+                        } catch (e) {}
+                        return idx !== undefined ? `Link #${idx + 1}` : "Link";
+                      };
+
                       try {
                         const parsed = JSON.parse(member.contact.website);
                         if (Array.isArray(parsed)) {
@@ -495,7 +517,7 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                               rel="noopener noreferrer" 
                               className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold"
                             >
-                              <Globe className="w-4 h-4" /> Catalogue Link {parsed.length > 1 ? `#${idx + 1}` : ""}
+                              <Globe className="w-4 h-4" /> {getLinkName(link, parsed.length > 1 ? idx : undefined)}
                             </a>
                           ));
                         }
@@ -503,7 +525,7 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                       
                       return (
                         <a href={member.contact.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold">
-                          <Globe className="w-4 h-4" /> Catalogue Link
+                          <Globe className="w-4 h-4" /> {getLinkName(member.contact.website)}
                         </a>
                       );
                     })()}
