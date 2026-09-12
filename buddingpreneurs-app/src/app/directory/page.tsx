@@ -149,10 +149,22 @@ export default function DirectoryPage() {
     const matchWholesale = !wholesaleOnly || hasWholesale;
     const matchRetail = !retailOnly || hasRetail;
 
-    const matchSearch = searchQuery === "" || 
-      member.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-      member.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (member.services && member.services.some(s => s.name.toLowerCase().includes(searchQuery.toLowerCase())));
+    const query = searchQuery.trim().toLowerCase();
+    let matchSearch = true;
+    if (query !== "") {
+      const searchTerms = query.split(/\s+/);
+      const searchableText = [
+        member.name,
+        member.category,
+        member.city,
+        member.tagline,
+        member.bio,
+        member.founderName,
+        ...(member.services?.map(s => `${s.name} ${s.description}`) || [])
+      ].filter(Boolean).join(" ").toLowerCase();
+
+      matchSearch = searchTerms.every(term => searchableText.includes(term));
+    }
     
     return matchCategory && matchCity && matchBudget && matchVerified && matchFeatured && matchCollab && matchB2b && matchB2c && matchWholesale && matchRetail && matchSearch;
   }).sort((a, b) => {
