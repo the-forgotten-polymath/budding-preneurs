@@ -18,7 +18,7 @@ export async function POST(req: Request) {
       return NextResponse.json({ success: false, error: "Missing required fields" }, { status: 400 });
     }
 
-    const supabase = getSupabaseServerClient();
+    const supabase = await getSupabaseServerClient();
 
     // Verify session
     const { data: { session } } = await supabase.auth.getSession();
