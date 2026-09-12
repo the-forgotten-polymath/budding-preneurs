@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getSupabaseServerClient, getSupabaseAdminClient } from "@/lib/supabase";
 
+export const dynamic = "force-dynamic";
+
 // Helper to map Supabase flat database structure into the camelCase interface expected by the React frontend
 function mapDbMemberToFrontend(dbMember: any) {
   return {
