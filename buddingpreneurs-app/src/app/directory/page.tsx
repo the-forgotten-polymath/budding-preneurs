@@ -20,6 +20,7 @@ import Footer from "@/components/Footer";
 interface Member {
   username: string;
   name: string;
+  founderName?: string;
   tagline: string;
   category: string;
   city: string;
