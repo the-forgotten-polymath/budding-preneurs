@@ -431,11 +431,6 @@ END:VCARD`;
         <div>
           <h2 className="text-2xl font-bold mb-2">Member Dashboard Loading Error</h2>
           <p className="text-[#6B6B6B] mb-4">Please register or sign in to continue.</p>
-          <p className="text-sm text-red-500 max-w-md mx-auto whitespace-pre-wrap">
-            Debug Info: username={currentUsername}, sessionUser={sessionUser ? sessionUser.username : 'null'}
-            <br />
-            Error: {loadError || "None"}
-          </p>
         </div>
       </div>
     );
