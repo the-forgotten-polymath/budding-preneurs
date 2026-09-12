@@ -146,11 +146,16 @@ export default function DashboardPage() {
     "Other"
   ];
 
+  const [loadError, setLoadError] = useState<string | null>(null);
+
   const fetchDashboardData = async (username: string) => {
     setCurrentUsername(username);
     try {
       const memberRes = await fetch("/api/members");
       const memberData = await memberRes.json();
+      if (!memberData.success) {
+        setLoadError(memberData.error || "Failed to load members API");
+      }
       if (memberData.success) {
         const found = memberData.data.find((m: Member) => m.username === username);
         if (found) {
@@ -185,6 +190,8 @@ export default function DashboardPage() {
               setCatalogLinks([]);
             }
           }
+        } else {
+          setLoadError("Member found in session, but not found in public members API data.");
         }
       }
       const leadsRes = await fetch(`/api/leads?username=${username}`);
@@ -195,8 +202,9 @@ export default function DashboardPage() {
       const regRes = await fetch("/api/workshops/register");
       const regData = await regRes.json();
       if (regData.success) setRegistrations(regData.data);
-    } catch (err) {
+    } catch (err: any) {
       console.error("Failed to load dashboard data:", err);
+      setLoadError(err.message || "Network error while loading dashboard.");
     } finally {
       setLoading(false);
     }
@@ -422,7 +430,12 @@ END:VCARD`;
       <div className="min-h-screen bg-[#FAF8F5] flex items-center justify-center p-6 text-center">
         <div>
           <h2 className="text-2xl font-bold mb-2">Member Dashboard Loading Error</h2>
-          <p className="text-[#6B6B6B]">Please register or sign in to continue.</p>
+          <p className="text-[#6B6B6B] mb-4">Please register or sign in to continue.</p>
+          <p className="text-sm text-red-500 max-w-md mx-auto whitespace-pre-wrap">
+            Debug Info: username={currentUsername}, sessionUser={sessionUser ? sessionUser.username : 'null'}
+            <br />
+            Error: {loadError || "None"}
+          </p>
         </div>
       </div>
     );
