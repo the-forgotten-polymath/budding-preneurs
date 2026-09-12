@@ -40,6 +40,10 @@ interface Member {
     website: string;
     whatsapp: string;
   };
+  featured: boolean;
+  businessType: string[];
+  openForCollaboration: boolean;
+  services: { name: string; description: string; price: string }[];
 }
 
 const CATEGORIES = [
@@ -77,8 +81,15 @@ export default function DirectoryPage() {
   // Filters
   const [activeCategory, setActiveCategory] = useState("All");
   const [searchCity, setSearchCity] = useState("");
+  const [searchQuery, setSearchQuery] = useState(""); // For Business/Product/Service
   const [activeBudget, setActiveBudget] = useState("All");
   const [verifiedOnly, setVerifiedOnly] = useState(false);
+  const [featuredOnly, setFeaturedOnly] = useState(false);
+  const [b2bOnly, setB2bOnly] = useState(false);
+  const [b2cOnly, setB2cOnly] = useState(false);
+  const [wholesaleOnly, setWholesaleOnly] = useState(false);
+  const [retailOnly, setRetailOnly] = useState(false);
+  const [collaborationOnly, setCollaborationOnly] = useState(false);
   
   // Sort
   const [sortBy, setSortBy] = useState("featured"); // featured, viewed, active
@@ -124,12 +135,30 @@ export default function DirectoryPage() {
     }
 
     const matchVerified = !verifiedOnly || member.verified;
+    const matchFeatured = !featuredOnly || member.featured;
+    const matchCollab = !collaborationOnly || member.openForCollaboration;
     
-    return matchCategory && matchCity && matchBudget && matchVerified;
+    // Type checking with safe navigation
+    const hasB2b = member.businessType?.includes('B2B');
+    const hasB2c = member.businessType?.includes('B2C');
+    const hasWholesale = member.businessType?.includes('Wholesale');
+    const hasRetail = member.businessType?.includes('Retail');
+
+    const matchB2b = !b2bOnly || hasB2b;
+    const matchB2c = !b2cOnly || hasB2c;
+    const matchWholesale = !wholesaleOnly || hasWholesale;
+    const matchRetail = !retailOnly || hasRetail;
+
+    const matchSearch = searchQuery === "" || 
+      member.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      member.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (member.services && member.services.some(s => s.name.toLowerCase().includes(searchQuery.toLowerCase())));
+    
+    return matchCategory && matchCity && matchBudget && matchVerified && matchFeatured && matchCollab && matchB2b && matchB2c && matchWholesale && matchRetail && matchSearch;
   }).sort((a, b) => {
     if (sortBy === "featured") {
-      if (a.plan === "Featured" && b.plan !== "Featured") return -1;
-      if (a.plan !== "Featured" && b.plan === "Featured") return 1;
+      if (a.featured && !b.featured) return -1;
+      if (!a.featured && b.featured) return 1;
       return b.views - a.views;
     }
     if (sortBy === "viewed") return b.views - a.views;
@@ -221,9 +250,15 @@ export default function DirectoryPage() {
             <h1 className="text-5xl md:text-6xl font-black mb-6 text-[#1A1A1A] tracking-tight uppercase font-display">
               Vendor <span className="text-[#C9540A] italic font-heading capitalize">Directory</span>
             </h1>
-            <p className="text-lg md:text-xl text-[#6B6B6B] leading-relaxed">
-              Discover and connect with top verified professionals, businesses, and freelancers in your area.
+            <p className="text-lg font-bold text-[#C9540A] mb-4">In your area – PAN India businesses</p>
+            <p className="text-lg md:text-xl text-[#6B6B6B] leading-relaxed mb-8">
+              Discover and connect with top verified professionals, businesses, and freelancers.
             </p>
+            <div className="flex justify-center">
+              <a href="/register" className="inline-flex items-center gap-2 bg-[#1A1A1A] hover:bg-[#2C2C2C] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
+                List your Business / Join the Directory <ArrowRight className="w-5 h-5" />
+              </a>
+            </div>
           </motion.div>
         </section>
 
@@ -237,6 +272,21 @@ export default function DirectoryPage() {
                 <div className="flex items-center gap-2 mb-6 text-[#1A1A1A]">
                   <Filter className="w-5 h-5" />
                   <h3 className="text-lg font-bold">Filters</h3>
+                </div>
+
+                {/* Global Search */}
+                <div className="mb-6">
+                  <label className="block text-sm font-semibold text-[#1A1A1A] mb-2">Search</label>
+                  <div className="relative">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B6B6B]" />
+                    <input 
+                      type="text" 
+                      placeholder="Business, Product, Service..." 
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full bg-[#F4F1ED] border-none rounded-lg pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none transition-shadow"
+                    />
+                  </div>
                 </div>
 
                 {/* City Search */}
@@ -270,6 +320,47 @@ export default function DirectoryPage() {
                       Verified Only <CheckCircle2 className="w-4 h-4 text-emerald-500" />
                     </span>
                   </label>
+                </div>
+                
+                <div className="mb-6 pb-6 border-b border-[#E8E4DF] flex flex-col gap-4">
+                  <label className="flex items-center gap-3 cursor-pointer group">
+                    <div className={`w-10 h-5 rounded-full transition-colors relative ${featuredOnly ? 'bg-[#C9540A]' : 'bg-[#E8E4DF]'}`}>
+                      <div className={`absolute top-0.5 left-0.5 bg-white w-4 h-4 rounded-full transition-transform ${featuredOnly ? 'translate-x-5' : 'translate-x-0'}`} />
+                    </div>
+                    <input type="checkbox" className="sr-only" checked={featuredOnly} onChange={() => setFeaturedOnly(!featuredOnly)} />
+                    <span className="text-sm font-semibold text-[#1A1A1A]">Featured Profiles</span>
+                  </label>
+                  
+                  <label className="flex items-center gap-3 cursor-pointer group">
+                    <div className={`w-10 h-5 rounded-full transition-colors relative ${collaborationOnly ? 'bg-[#C9540A]' : 'bg-[#E8E4DF]'}`}>
+                      <div className={`absolute top-0.5 left-0.5 bg-white w-4 h-4 rounded-full transition-transform ${collaborationOnly ? 'translate-x-5' : 'translate-x-0'}`} />
+                    </div>
+                    <input type="checkbox" className="sr-only" checked={collaborationOnly} onChange={() => setCollaborationOnly(!collaborationOnly)} />
+                    <span className="text-sm font-semibold text-[#1A1A1A]">Open for Collaboration</span>
+                  </label>
+                </div>
+
+                {/* Business Types */}
+                <div className="mb-6 pb-6 border-b border-[#E8E4DF]">
+                  <label className="block text-sm font-semibold text-[#1A1A1A] mb-3">Business Type</label>
+                  <div className="grid grid-cols-2 gap-3">
+                    {[
+                      { id: 'b2b', label: 'B2B', state: b2bOnly, setter: setB2bOnly },
+                      { id: 'b2c', label: 'B2C', state: b2cOnly, setter: setB2cOnly },
+                      { id: 'wholesale', label: 'Wholesale', state: wholesaleOnly, setter: setWholesaleOnly },
+                      { id: 'retail', label: 'Retail', state: retailOnly, setter: setRetailOnly }
+                    ].map(type => (
+                      <label key={type.id} className="flex items-center gap-2 cursor-pointer">
+                        <input 
+                          type="checkbox" 
+                          checked={type.state}
+                          onChange={() => type.setter(!type.state)}
+                          className="w-4 h-4 rounded border-[#E8E4DF] text-[#C9540A] focus:ring-[#C9540A]" 
+                        />
+                        <span className="text-sm text-[#6B6B6B]">{type.label}</span>
+                      </label>
+                    ))}
+                  </div>
                 </div>
 
                 {/* Categories */}
@@ -380,9 +471,14 @@ export default function DirectoryPage() {
                         )}
                         {/* Badges */}
                         <div className="absolute top-3 left-3 flex flex-col gap-2">
-                          {member.plan === "Featured" && (
+                          {member.featured && (
                             <span className="bg-[#1A1A1A]/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md flex items-center gap-1">
                               <span>⭐</span> Featured
+                            </span>
+                          )}
+                          {member.openForCollaboration && (
+                            <span className="bg-[#C9540A]/90 backdrop-blur-sm text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md">
+                              🤝 Open to Collab
                             </span>
                           )}
                         </div>

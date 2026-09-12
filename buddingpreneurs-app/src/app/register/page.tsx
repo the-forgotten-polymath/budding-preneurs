@@ -38,7 +38,7 @@ export default function RegisterPage() {
   const router = useRouter();
 
   const [form, setForm] = useState({
-    name: "", username: "", email: "", phone: "",
+    founder_name: "", business_name: "", username: "", email: "", phone: "",
     password: "", confirmPassword: "", category: "Handicrafts & Art",
     city: "", tagline: "", bio: "", promoCode: "",
   });
@@ -49,11 +49,11 @@ export default function RegisterPage() {
 
   const set = (key: string, value: string) => {
     setForm((f) => ({ ...f, [key]: value }));
-    // Auto-generate username from name
-    if (key === "name" && !form.username) {
+    // Auto-generate username from business name
+    if (key === "business_name" && !form.username) {
       setForm((f) => ({
         ...f,
-        name: value,
+        business_name: value,
         username: value.toLowerCase().trim().replace(/[^a-z0-9]/g, "-").replace(/-+/g, "-").substring(0, 30),
       }));
     }
@@ -82,7 +82,8 @@ export default function RegisterPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: form.name,
+          founder_name: form.founder_name,
+          business_name: form.business_name,
           username: form.username.toLowerCase().replace(/[^a-z0-9-]/g, "-"),
           email: form.email,
           phone: form.phone,
@@ -204,12 +205,21 @@ export default function RegisterPage() {
               {step === 1 && (
                 <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="flex flex-col gap-5">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="sm:col-span-2">
-                      <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Full Business Name *</label>
+                    <div>
+                      <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Founder Name *</label>
                       <div className="relative">
                         <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9A9A9A]" />
+                        <input required type="text" placeholder="e.g. Priya Sharma"
+                          value={form.founder_name} onChange={(e) => set("founder_name", e.target.value)}
+                          className="w-full bg-[#F4F1ED] border-2 border-transparent rounded-xl pl-11 pr-4 py-3.5 text-sm font-medium text-[#1A1A1A] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#C9540A] transition-colors" />
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Business Name *</label>
+                      <div className="relative">
+                        <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-[#9A9A9A]" />
                         <input required type="text" placeholder="e.g. Priya Fashion & Couture"
-                          value={form.name} onChange={(e) => set("name", e.target.value)}
+                          value={form.business_name} onChange={(e) => set("business_name", e.target.value)}
                           className="w-full bg-[#F4F1ED] border-2 border-transparent rounded-xl pl-11 pr-4 py-3.5 text-sm font-medium text-[#1A1A1A] placeholder:text-[#9A9A9A] focus:outline-none focus:border-[#C9540A] transition-colors" />
                       </div>
                     </div>
@@ -263,7 +273,7 @@ export default function RegisterPage() {
                   </div>
 
                   <button type="button" onClick={() => {
-                    if (!form.name || !form.username || !form.email || !form.phone || !form.password || !form.confirmPassword) {
+                    if (!form.founder_name || !form.business_name || !form.username || !form.email || !form.phone || !form.password || !form.confirmPassword) {
                       setError("Please fill all required fields."); return;
                     }
                     if (form.password !== form.confirmPassword) { setError("Passwords do not match."); return; }

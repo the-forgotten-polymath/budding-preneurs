@@ -95,6 +95,7 @@ export default function DashboardPage() {
   const [member, setMember] = useState<Member | null>(null);
   const [currentUsername, setCurrentUsername] = useState<string>("");
   const [isRegisterOpen, setIsRegisterOpen] = useState(false);
+  const [isReportSaleOpen, setIsReportSaleOpen] = useState(false);
   const [leads, setLeads] = useState<Lead[]>([]);
   const [registrations, setRegistrations] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -665,15 +666,20 @@ END:VCARD`;
                   <p className="text-[#6B6B6B]">Manage your inquiries and track conversions.</p>
                 </div>
                 
-                <div className="relative">
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B6B6B]" />
-                  <input 
-                    type="text" 
-                    placeholder="Search leads..." 
-                    value={searchLead}
-                    onChange={(e) => setSearchLead(e.target.value)}
-                    className="w-full sm:w-64 bg-white border border-[#E8E4DF] rounded-xl pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none"
-                  />
+                <div className="flex flex-col sm:flex-row items-center gap-3">
+                  <div className="relative w-full sm:w-auto">
+                    <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B6B6B]" />
+                    <input 
+                      type="text" 
+                      placeholder="Search leads..." 
+                      value={searchLead}
+                      onChange={(e) => setSearchLead(e.target.value)}
+                      className="w-full sm:w-64 bg-white border border-[#E8E4DF] rounded-xl pl-10 pr-4 py-2.5 text-sm focus:ring-2 focus:ring-[#C9540A] outline-none"
+                    />
+                  </div>
+                  <button onClick={() => setIsReportSaleOpen(true)} className="w-full sm:w-auto px-4 py-2.5 bg-[#C9540A] hover:bg-[#A8420A] text-white font-bold rounded-xl transition-all shadow-sm flex items-center justify-center gap-2 text-sm whitespace-nowrap">
+                    + Report Sale
+                  </button>
                 </div>
               </div>
 
@@ -1353,6 +1359,16 @@ END:VCARD`;
         }} 
       />
 
+      <ReportSaleModal 
+        isOpen={isReportSaleOpen} 
+        onClose={() => setIsReportSaleOpen(false)} 
+        memberId={member.username} 
+        leads={leads}
+        onSuccess={async () => {
+          await fetchDashboardData(currentUsername);
+        }} 
+      />
+
     </div>
   );
 }
@@ -1581,6 +1597,196 @@ function RegisterModal({
               className="px-6 py-2.5 bg-[#C9540A] hover:bg-[#A8420A] disabled:bg-gray-400 text-white font-bold rounded-xl text-xs transition-all shadow-md"
             >
               {submitting ? "Registering..." : "Simulate Registration"}
+            </button>
+          </div>
+        </form>
+      </motion.div>
+    </div>
+  );
+}
+
+function ReportSaleModal({ 
+  isOpen, 
+  onClose, 
+  memberId,
+  leads,
+  onSuccess 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  memberId: string;
+  leads: Lead[];
+  onSuccess: () => void; 
+}) {
+  const [submitting, setSubmitting] = useState(false);
+  const [productService, setProductService] = useState("");
+  const [amount, setAmount] = useState("");
+  const [leadSource, setLeadSource] = useState("BP Directory");
+  const [leadId, setLeadId] = useState("");
+  const [orderId, setOrderId] = useState("");
+  const [saleDate, setSaleDate] = useState(() => new Date().toISOString().split("T")[0]);
+
+  if (!isOpen) return null;
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!productService || !amount) {
+      alert("Please fill in the product/service and amount.");
+      return;
+    }
+    setSubmitting(true);
+
+    try {
+      const res = await fetch("/api/sales", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          member_id: memberId,
+          lead_id: leadSource === "BP Directory" && leadId ? leadId : null,
+          product_service: productService,
+          amount: parseFloat(amount),
+          lead_source: leadSource,
+          sale_date: saleDate,
+          order_id: orderId || null
+        })
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        onSuccess();
+        onClose();
+        // Reset form
+        setProductService("");
+        setAmount("");
+        setLeadSource("BP Directory");
+        setLeadId("");
+        setOrderId("");
+      } else {
+        alert(data.error || "Failed to report sale.");
+      }
+    } catch (err) {
+      console.error("Error reporting sale:", err);
+      alert("Failed to report sale.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="fixed inset-0 bg-[#1A1A1A]/70 backdrop-blur-sm z-[999] flex items-center justify-center p-4">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.95 }}
+        className="bg-white rounded-3xl border border-[#E8E4DF] w-full max-w-lg max-h-[90vh] overflow-y-auto shadow-2xl flex flex-col p-6 md:p-8"
+      >
+        <div className="flex items-center justify-between border-b border-[#E8E4DF] pb-4 mb-6">
+          <h2 className="text-2xl font-black text-[#1A1A1A] font-display uppercase tracking-tight">
+            Report <span className="text-[#C9540A] italic font-heading capitalize">Sale</span>
+          </h2>
+          <button type="button" onClick={onClose} className="p-2 hover:bg-[#F4F1ED] rounded-xl text-[#6B6B6B]">
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <div>
+            <label className="block text-xs font-bold uppercase text-[#1A1A1A] mb-1">Product / Service Sold *</label>
+            <input 
+              required 
+              type="text" 
+              placeholder="e.g. Website Design Package"
+              value={productService}
+              onChange={(e) => setProductService(e.target.value)}
+              className="w-full bg-[#F4F1ED] border-none rounded-lg px-3 py-2.5 text-xs focus:ring-2 focus:ring-[#C9540A] outline-none" 
+            />
+          </div>
+          
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold uppercase text-[#1A1A1A] mb-1">Sale Amount (₹) *</label>
+              <input 
+                required 
+                type="number" 
+                placeholder="e.g. 5000"
+                value={amount}
+                onChange={(e) => setAmount(e.target.value)}
+                className="w-full bg-[#F4F1ED] border-none rounded-lg px-3 py-2.5 text-xs focus:ring-2 focus:ring-[#C9540A] outline-none" 
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase text-[#1A1A1A] mb-1">Sale Date *</label>
+              <input 
+                required 
+                type="date" 
+                value={saleDate}
+                onChange={(e) => setSaleDate(e.target.value)}
+                className="w-full bg-[#F4F1ED] border-none rounded-lg px-3 py-2.5 text-xs focus:ring-2 focus:ring-[#C9540A] outline-none" 
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold uppercase text-[#1A1A1A] mb-1">Order / Invoice ID (Optional)</label>
+            <input 
+              type="text" 
+              placeholder="e.g. INV-2023-001"
+              value={orderId}
+              onChange={(e) => setOrderId(e.target.value)}
+              className="w-full bg-[#F4F1ED] border-none rounded-lg px-3 py-2.5 text-xs focus:ring-2 focus:ring-[#C9540A] outline-none" 
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold uppercase text-[#1A1A1A] mb-1">Lead Source *</label>
+            <select 
+              value={leadSource}
+              onChange={(e) => {
+                setLeadSource(e.target.value);
+                if (e.target.value !== "BP Directory") setLeadId("");
+              }}
+              className="w-full bg-[#F4F1ED] border-none rounded-lg px-3 py-2.5 text-xs focus:ring-2 focus:ring-[#C9540A] outline-none text-[#1A1A1A]"
+            >
+              <option value="BP Directory">BP Directory Lead</option>
+              <option value="Social Media">Social Media (Instagram/FB/LinkedIn)</option>
+              <option value="Direct / Referral">Direct / Referral</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          {leadSource === "BP Directory" && (
+            <div>
+              <label className="block text-xs font-bold uppercase text-[#1A1A1A] mb-1">Link to Lead *</label>
+              <select 
+                required
+                value={leadId}
+                onChange={(e) => setLeadId(e.target.value)}
+                className="w-full bg-[#F4F1ED] border-none rounded-lg px-3 py-2.5 text-xs focus:ring-2 focus:ring-[#C9540A] outline-none text-[#1A1A1A]"
+              >
+                <option value="">Select a Lead...</option>
+                {leads.map(lead => (
+                  <option key={lead.id} value={lead.id}>
+                    {lead.clientName} - {new Date(lead.timestamp).toLocaleDateString()}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <div className="border-t border-[#E8E4DF] pt-4 mt-2 flex items-center justify-end gap-3">
+            <button 
+              type="button" 
+              onClick={onClose} 
+              className="px-5 py-2.5 bg-[#FAF8F5] hover:bg-[#F4F1ED] border border-[#E8E4DF] text-[#6B6B6B] font-bold rounded-xl text-xs transition-colors"
+            >
+              Cancel
+            </button>
+            <button 
+              type="submit" 
+              disabled={submitting}
+              className="px-6 py-2.5 bg-[#C9540A] hover:bg-[#A8420A] disabled:bg-gray-400 text-white font-bold rounded-xl text-xs transition-all shadow-md"
+            >
+              {submitting ? "Saving..." : "Report Sale"}
             </button>
           </div>
         </form>

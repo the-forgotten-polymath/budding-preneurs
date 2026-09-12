@@ -4,12 +4,12 @@ import { getSupabaseServerClient, getSupabaseAdminClient } from "@/lib/supabase"
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, username, category, city, email, phone, password, tagline, bio, promoCode } = body;
+    const { founder_name, business_name, username, category, city, email, phone, password, tagline, bio, promoCode } = body;
 
     // Validate required fields
-    if (!name || !username || !email || !phone || !password) {
+    if (!founder_name || !business_name || !username || !email || !phone || !password) {
       return NextResponse.json(
-        { success: false, error: "Name, username, email, phone, and password are required." },
+        { success: false, error: "Founder Name, Business Name, username, email, phone, and password are required." },
         { status: 400 }
       );
     }
@@ -104,7 +104,8 @@ export async function POST(request: Request) {
       password,
       options: {
         data: {
-          name,
+          name: business_name,
+          founder_name,
           username,
           role: userRole
         }
@@ -148,11 +149,13 @@ export async function POST(request: Request) {
       // Create a brand new public profile row
       const newMemberProfile = {
         username,
-        name,
+        founder_name,
+        name: business_name,
+        business_name: business_name,
         tagline: tagline || `Pioneering ${category || "Business"} in ${city || "India"}`,
         category: category || "Consultant",
         city: city || "Delhi",
-        bio: bio || `Passionate founder of ${name}. Building connections and growing through the Buddingpreneurs network.`,
+        bio: bio || `Passionate founder of ${business_name}. Building connections and growing through the Buddingpreneurs network.`,
         views: 0,
         leads_count: 0,
         conversions: 0,
@@ -161,7 +164,7 @@ export async function POST(request: Request) {
         verified: false,
         join_date: new Date().toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }),
         plan: "Basic",
-        logo: name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase(),
+        logo: business_name.split(" ").map((n: string) => n[0]).join("").substring(0, 2).toUpperCase(),
         cover_image: "/images/programs/programs_women_meeting_1779275083144.png",
         email,
         phone,
@@ -192,7 +195,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       success: true,
-      user: { username, name, role: userRole }
+      user: { username, name: business_name, role: userRole }
     });
   } catch (error) {
     console.error("Register error:", error);

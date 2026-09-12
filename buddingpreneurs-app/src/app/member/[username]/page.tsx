@@ -55,6 +55,14 @@ interface Member {
     facebook: string;
     linkedin: string;
   };
+  founderName: string;
+  businessType: string[];
+  openForCollaboration: boolean;
+  aboutText: string;
+  priceRange: string;
+  shippingAreas: string;
+  whatsappCatalogUrl: string;
+  socialLinks: string;
   services: ServiceCatalogItem[];
 }
 
@@ -372,8 +380,34 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
               <div className="bg-white rounded-2xl shadow-sm border border-[#E8E4DF] p-6 md:p-8 mb-8">
                 <h2 className="text-xl font-bold mb-4 font-display uppercase tracking-wide">About <span className="text-[#C9540A] italic font-heading capitalize">Us</span></h2>
                 <p className="text-[#6B6B6B] leading-relaxed whitespace-pre-line">
-                  {member.bio || member.tagline}
+                  {member.aboutText || member.bio || member.tagline}
                 </p>
+              </div>
+
+              {/* Business Details */}
+              <div className="bg-white rounded-2xl shadow-sm border border-[#E8E4DF] p-6 md:p-8 mb-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {member.priceRange && (
+                  <div>
+                    <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Price Range</h3>
+                    <p className="text-[#6B6B6B]">{member.priceRange}</p>
+                  </div>
+                )}
+                {member.shippingAreas && (
+                  <div>
+                    <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Shipping / Service Areas</h3>
+                    <p className="text-[#6B6B6B] flex items-start gap-2">
+                      <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[#C9540A]" /> {member.shippingAreas}
+                    </p>
+                  </div>
+                )}
+                {member.openForCollaboration && (
+                  <div className="sm:col-span-2">
+                    <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Collaboration</h3>
+                    <p className="text-[#C9540A] font-medium bg-[#C9540A]/10 inline-block px-3 py-1 rounded-lg">
+                      🤝 Open for Collaboration
+                    </p>
+                  </div>
+                )}
               </div>
 
               {/* Services / Products */}
@@ -418,10 +452,16 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                 <h3 className="font-bold text-lg mb-6 border-b border-[#E8E4DF] pb-4">Connect with {member.name}</h3>
                 
                 <div className="flex flex-col gap-3">
-                  {/* WhatsApp CTA */}
-                  <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] hover:bg-[#1DA851] text-white font-bold rounded-xl transition-all shadow-sm">
-                    <MessageCircle className="w-5 h-5" /> Chat on WhatsApp
-                  </button>
+                  {/* WhatsApp Catalog CTA */}
+                  {member.whatsappCatalogUrl ? (
+                    <a href={member.whatsappCatalogUrl} target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] hover:bg-[#1DA851] text-white font-bold rounded-xl transition-all shadow-sm">
+                      <MessageCircle className="w-5 h-5" /> View WhatsApp Catalog
+                    </a>
+                  ) : (
+                    <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] hover:bg-[#1DA851] text-white font-bold rounded-xl transition-all shadow-sm">
+                      <MessageCircle className="w-5 h-5" /> Chat on WhatsApp
+                    </button>
+                  )}
                   
                   {/* Inquiry CTA */}
                   <button onClick={() => setIsInquiryModalOpen(true)} className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#C9540A] hover:bg-[#A8420A] text-white font-bold rounded-xl transition-all shadow-sm">
@@ -467,6 +507,11 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                         </a>
                       );
                     })()}
+                    {member.socialLinks && (
+                      <a href={member.socialLinks} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold">
+                        Social Media / Linktree
+                      </a>
+                    )}
                     {member.social.instagram && (
                       <a href={member.social.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 py-2 px-3 bg-[#F4F1ED] text-sm text-[#1A1A1A] hover:bg-[#C9540A] hover:text-white rounded-lg transition-colors font-bold">
                         Instagram

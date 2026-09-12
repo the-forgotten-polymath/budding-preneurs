@@ -16,10 +16,20 @@ function mapDbMemberToFrontend(dbMember: any) {
     rating: Number(dbMember.rating) || 5.0,
     reviewsCount: dbMember.reviews_count || 0,
     verified: dbMember.verified || false,
+    status: dbMember.status || "pending",
+    featured: dbMember.featured || false,
     joinDate: dbMember.join_date || "",
     plan: dbMember.plan || "Basic",
     logo: dbMember.logo || "",
     coverImage: dbMember.cover_image || "",
+    founderName: dbMember.founder_name || "",
+    businessType: dbMember.business_type || [],
+    openForCollaboration: dbMember.open_for_collaboration || false,
+    aboutText: dbMember.about_text || "",
+    priceRange: dbMember.price_range || "",
+    shippingAreas: dbMember.shipping_areas || "",
+    whatsappCatalogUrl: dbMember.whatsapp_catalog_url || "",
+    socialLinks: dbMember.social_links || "",
     contact: {
       email: dbMember.email || "",
       phone: dbMember.phone || "",
@@ -59,6 +69,7 @@ export async function GET() {
           image_url
         )
       `)
+      .eq("status", "approved")
       .neq("role", "admin"); // Admin profiles should not show in public directory
 
     if (membersError) {
@@ -125,10 +136,19 @@ export async function POST(request: Request) {
     if (body.qrcodeUrl !== undefined) updatePayload.qrcode_url = body.qrcodeUrl;
     if (body.logo !== undefined) updatePayload.logo = body.logo;
     if (body.coverImage !== undefined) updatePayload.cover_image = body.coverImage;
+    if (body.founderName !== undefined) updatePayload.founder_name = body.founderName;
+    if (body.businessType !== undefined) updatePayload.business_type = body.businessType;
+    if (body.openForCollaboration !== undefined) updatePayload.open_for_collaboration = body.openForCollaboration;
+    if (body.aboutText !== undefined) updatePayload.about_text = body.aboutText;
+    if (body.priceRange !== undefined) updatePayload.price_range = body.priceRange;
+    if (body.shippingAreas !== undefined) updatePayload.shipping_areas = body.shippingAreas;
+    if (body.whatsappCatalogUrl !== undefined) updatePayload.whatsapp_catalog_url = body.whatsappCatalogUrl;
+    if (body.socialLinks !== undefined) updatePayload.social_links = body.socialLinks;
     
-    // Plan and verification states are protected and only settable by Admins
+    // Plan, verification, and profile status states are protected and only settable by Admins
     if (body.plan !== undefined && isAdmin) updatePayload.plan = body.plan;
     if (body.verified !== undefined && isAdmin) updatePayload.verified = body.verified;
+    if (body.status !== undefined && isAdmin) updatePayload.status = body.status;
 
     // Map nested contact info
     if (body.contact) {

@@ -225,6 +225,7 @@ export default function AdminAnalyticsPage() {
           bio: editingMember.bio,
           plan: editingMember.plan,
           verified: editingMember.verified,
+          status: editingMember.status,
           contact: editingMember.contact || {},
           social: editingMember.social || {}
         })
@@ -997,6 +998,18 @@ export default function AdminAnalyticsPage() {
                         >
                           <option value="false">Pending Verification</option>
                           <option value="true">Verified / Active</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label className="block text-xs font-bold text-gray-700 mb-1">Profile Approval Status</label>
+                        <select
+                          value={editingMember.status || "pending"}
+                          onChange={(e) => setEditingMember({ ...editingMember, status: e.target.value })}
+                          className="w-full bg-[#FAF8F5] border border-[#E8E4DF] rounded-xl px-3 py-2.5 text-sm outline-none focus:border-[#C9540A] focus:ring-1 focus:ring-[#C9540A]"
+                        >
+                          <option value="pending">Pending</option>
+                          <option value="approved">Approved</option>
+                          <option value="rejected">Rejected</option>
                         </select>
                       </div>
                     </div>

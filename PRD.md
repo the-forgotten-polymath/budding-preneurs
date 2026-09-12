@@ -826,3 +826,13 @@ This allows sellers to:
 *End of PRD — Buddingpreneurs Member Platform v1.0*
 
 *This document should be treated as a living spec. All feature decisions and scope changes must be version-tracked.*
+
+
+
+
+
+1. 📸 Photo & Video Gallery - 1500
+2. 📍 Google Maps + Business Hours + Custom Branding + Featured Listing + Premium Badge - 500
+3. 📊 Lead Analytics Dashboard - 1500 
+4. SEO - 1,000
+
