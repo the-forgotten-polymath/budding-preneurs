@@ -187,7 +187,11 @@ export async function POST(request: Request) {
         // Clean up Supabase Auth user if db insert fails to prevent orphaned accounts
         await supabaseAdmin.auth.admin.deleteUser(authUser.id);
         return NextResponse.json(
-          { success: false, error: "Failed to create public member profile." },
+          { 
+            success: false, 
+            error: "Failed to create public member profile.", 
+            details: insertError 
+          },
           { status: 500 }
         );
       }
