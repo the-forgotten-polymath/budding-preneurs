@@ -515,12 +515,8 @@ export default function DirectoryPage() {
                           {member.tagline || member.bio}
                         </p>
                         
-                        {/* Rating & Stats */}
-                        <div className="flex items-center justify-between py-3 border-t border-[#E8E4DF] mt-auto">
-                          <div className="flex items-center gap-1">
-                            <span className="text-amber-400 text-sm">★</span>
-                            <span className="text-sm font-bold text-[#1A1A1A]">{member.rating.toFixed(1)}</span>
-                          </div>
+                        {/* Stats */}
+                        <div className="flex items-center justify-end py-3 border-t border-[#E8E4DF] mt-auto">
                           <div className="text-[11px] text-[#6B6B6B] flex gap-3">
                             <span title="Profile Views">👁️ {member.views}</span>
                             <span title="Leads Generated">📩 {member.leadsCount}</span>
