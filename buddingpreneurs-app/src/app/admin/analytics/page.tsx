@@ -164,7 +164,9 @@ export default function AdminAnalyticsPage() {
       if (meJson.success && meJson.user) {
         setAdminName(meJson.user.name);
         setAdminUsername(meJson.user.username);
-        if (!meJson.user.phone) {
+        if (meJson.user.phone) {
+          setPromptPhone(meJson.user.phone);
+        } else {
           setShowPhonePrompt(true);
         }
       }
@@ -450,6 +452,12 @@ export default function AdminAnalyticsPage() {
           <div className="w-8 h-8 rounded-full bg-[#C9540A] flex items-center justify-center font-bold text-sm text-white">
             {adminName.charAt(0)}
           </div>
+          <button
+            onClick={() => setShowPhonePrompt(true)}
+            className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-[#C9540A] text-white rounded-lg font-semibold text-xs transition-colors"
+          >
+            <Phone className="w-3.5 h-3.5" /> Update Phone
+          </button>
           <button
             onClick={handleSignOut}
             className="flex items-center gap-1.5 px-3 py-1.5 bg-white/10 hover:bg-red-600 text-white rounded-lg font-semibold text-xs transition-colors"
