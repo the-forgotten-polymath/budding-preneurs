@@ -178,6 +178,25 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, error: "Failed to update member details" }, { status: 500 });
     }
 
+    // 6. Update phone number in Supabase Auth if provided
+    if (updatePayload.phone) {
+      const { data: targetMember } = await supabaseAdmin
+        .from("members")
+        .select("auth_user_id")
+        .eq("username", body.username)
+        .maybeSingle();
+
+      if (targetMember?.auth_user_id) {
+        const { error: authUpdateError } = await supabaseAdmin.auth.admin.updateUserById(targetMember.auth_user_id, {
+          phone: updatePayload.phone
+        });
+        if (authUpdateError) {
+          console.error("Failed to update phone in Supabase Auth:", authUpdateError);
+          // Don't fail the whole request, but log it.
+        }
+      }
+    }
+
     // 6. Sync dynamic array of services if provided
     if (body.services && Array.isArray(body.services)) {
       // Clear existing services
