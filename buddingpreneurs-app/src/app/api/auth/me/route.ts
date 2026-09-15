@@ -16,7 +16,7 @@ export async function GET() {
     const supabaseAdmin = getSupabaseAdminClient();
     const { data: member, error: dbError } = await supabaseAdmin
       .from("members")
-      .select("username, name, role, email")
+      .select("username, name, role, email, phone")
       .eq("auth_user_id", user.id)
       .maybeSingle();
 
@@ -33,6 +33,7 @@ export async function GET() {
           name: user.user_metadata?.name || "Member",
           role: "vendor",
           email: user.email,
+          phone: null,
         },
       });
     }
@@ -44,6 +45,7 @@ export async function GET() {
         name: member.name,
         role: member.role || "vendor",
         email: member.email || user.email,
+        phone: member.phone,
       },
     });
   } catch (error) {

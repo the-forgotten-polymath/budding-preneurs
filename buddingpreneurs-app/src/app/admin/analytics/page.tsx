@@ -54,6 +54,12 @@ export default function AdminAnalyticsPage() {
   const [memberToDelete, setMemberToDelete] = useState<any | null>(null);
   const [dropdownOpenMember, setDropdownOpenMember] = useState<string | null>(null);
 
+  // Phone Prompt State
+  const [showPhonePrompt, setShowPhonePrompt] = useState(false);
+  const [promptPhone, setPromptPhone] = useState("");
+  const [savingPromptPhone, setSavingPromptPhone] = useState(false);
+  const [adminUsername, setAdminUsername] = useState("");
+
   // Promo Code States
   const [promoCode, setPromoCode] = useState("BPFREE");
   const [savingPromo, setSavingPromo] = useState(false);
@@ -157,6 +163,10 @@ export default function AdminAnalyticsPage() {
       }
       if (meJson.success && meJson.user) {
         setAdminName(meJson.user.name);
+        setAdminUsername(meJson.user.username);
+        if (!meJson.user.phone) {
+          setShowPhonePrompt(true);
+        }
       }
       if (regJson.success) {
         setRegistrations(regJson.data);
@@ -168,6 +178,34 @@ export default function AdminAnalyticsPage() {
       console.error("Error fetching admin dashboard data:", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSavePromptPhone = async () => {
+    if (!promptPhone || promptPhone.trim().length < 10) {
+      alert("Please enter a valid phone number (at least 10 digits).");
+      return;
+    }
+    setSavingPromptPhone(true);
+    try {
+      const res = await fetch("/api/members", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          username: adminUsername,
+          contact: { phone: promptPhone.trim() }
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setShowPhonePrompt(false);
+      } else {
+        alert(data.error || "Failed to save phone number.");
+      }
+    } catch (err) {
+      alert("Network error while saving phone number.");
+    } finally {
+      setSavingPromptPhone(false);
     }
   };
 
@@ -1184,6 +1222,48 @@ export default function AdminAnalyticsPage() {
                 >
                   {saving && <Loader2 className="w-4 h-4 animate-spin" />}
                   Delete Account
+                </button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Mandatory Phone Prompt Modal */}
+      <AnimatePresence>
+        {showPhonePrompt && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 relative"
+            >
+              <div className="flex flex-col items-center text-center">
+                <div className="w-16 h-16 bg-[#F4F1ED] rounded-full flex items-center justify-center mb-4">
+                  <Phone className="w-8 h-8 text-[#C9540A]" />
+                </div>
+                <h3 className="text-xl font-bold text-[#1A1A1A] mb-2">Secure Your Account</h3>
+                <p className="text-sm text-[#6B6B6B] mb-6">
+                  Please provide a valid phone number. This is required to secure your account and will be used to help you reset your password if you ever get locked out.
+                </p>
+                <div className="w-full text-left mb-6">
+                  <label className="block text-sm font-bold text-[#1A1A1A] mb-2">Phone Number *</label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="e.g. 9876543210"
+                    value={promptPhone}
+                    onChange={(e) => setPromptPhone(e.target.value)}
+                    className="w-full bg-[#F4F1ED] border-2 border-transparent rounded-xl px-4 py-3 text-sm font-medium focus:outline-none focus:border-[#C9540A]"
+                  />
+                </div>
+                <button
+                  onClick={handleSavePromptPhone}
+                  disabled={savingPromptPhone || !promptPhone || promptPhone.trim().length < 10}
+                  className="w-full py-3.5 bg-[#C9540A] hover:bg-[#A8420A] disabled:bg-gray-400 text-white font-bold rounded-xl shadow-md transition-all flex items-center justify-center gap-2"
+                >
+                  {savingPromptPhone ? "Saving..." : "Save Phone Number"}
                 </button>
               </div>
             </motion.div>
