@@ -165,9 +165,6 @@ export default function DashboardPage() {
         const found = memberData.data.find((m: Member) => m.username === username);
         if (found) {
           setMember(found);
-          if (!found.contact.phone) {
-            setShowPhonePrompt(true);
-          }
           setServices(found.services || []);
           setLogo(found.logo || "");
           setCoverImage(found.coverImage || "");
@@ -225,6 +222,12 @@ export default function DashboardPage() {
       .then((data) => {
         if (data.success && data.user) {
           setSessionUser(data.user);
+          
+          // Force phone prompt for any user (including admin) missing a phone
+          if (!data.user.phone) {
+            setShowPhonePrompt(true);
+          }
+          
           fetchDashboardData(data.user.username);
         } else {
           // Not authenticated — middleware should have caught this, but double-guard
