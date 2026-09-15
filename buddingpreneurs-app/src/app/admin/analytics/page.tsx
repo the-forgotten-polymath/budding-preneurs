@@ -188,12 +188,11 @@ export default function AdminAnalyticsPage() {
     }
     setSavingPromptPhone(true);
     try {
-      const res = await fetch("/api/members", {
+      const res = await fetch("/api/auth/update-phone", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username: adminUsername,
-          contact: { phone: promptPhone.trim() }
+          phone: promptPhone.trim()
         })
       });
       const data = await res.json();
