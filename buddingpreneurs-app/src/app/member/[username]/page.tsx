@@ -267,7 +267,14 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
 
   const handleWhatsApp = () => {
     if (!member) return;
-    window.open(`https://wa.me/${member.contact.whatsapp}?text=Hi+I+found+you+on+Buddingpreneurs+(Ref:+BP-${member.username}).+Could+we+connect?`, "_blank");
+    const waNumber = member.contact.whatsapp || member.contact.phone;
+    if (waNumber) {
+      // Remove any non-numeric characters for the wa.me link
+      const cleanNumber = waNumber.replace(/\D/g, '');
+      window.open(`https://wa.me/${cleanNumber}?text=Hi+I+found+you+on+Buddingpreneurs+(Ref:+BP-${member.username}).+Could+we+connect?`, "_blank");
+    } else {
+      alert("This member has not provided a contact number.");
+    }
   };
 
   if (loading) {
@@ -459,7 +466,7 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
                     </a>
                   ) : (
                     <button onClick={handleWhatsApp} className="w-full flex items-center justify-center gap-2 py-3.5 bg-[#25D366] hover:bg-[#1DA851] text-white font-bold rounded-xl transition-all shadow-sm">
-                      <MessageCircle className="w-5 h-5" /> Chat on WhatsApp
+                      <MessageCircle className="w-5 h-5" /> View Products / Services
                     </button>
                   )}
                   
