@@ -39,6 +39,8 @@ interface ServiceCatalogItem {
   name: string;
   price: string;
   description: string;
+  imageUrl?: string;
+  imageFile?: File;
 }
 
 interface Member {
@@ -119,6 +121,8 @@ export default function DashboardPage() {
   const [newServiceName, setNewServiceName] = useState("");
   const [newServicePrice, setNewServicePrice] = useState("");
   const [newServiceDesc, setNewServiceDesc] = useState("");
+  const [newServiceImage, setNewServiceImage] = useState<File | null>(null);
+  const [newServiceImagePreview, setNewServiceImagePreview] = useState<string | null>(null);
 
   // Catalogue Links State
   const [catalogLinks, setCatalogLinks] = useState<string[]>([]);
@@ -316,6 +320,29 @@ export default function DashboardPage() {
         setUploadingImages(false);
       }
 
+      const supabase = getSupabaseBrowserClient();
+      const updatedServices = [...services];
+      for (let i = 0; i < updatedServices.length; i++) {
+        const svc = updatedServices[i];
+        if (svc.imageFile) {
+          setUploadingImages(true);
+          const svcPath = `${member.username}/service-${i}-${Date.now()}.${svc.imageFile.name.split('.').pop()}`;
+          const { error: svcError } = await supabase.storage
+            .from("vendor_profiles")
+            .upload(svcPath, svc.imageFile, { upsert: true, contentType: svc.imageFile.type });
+
+          if (!svcError) {
+            const { data: svcUrl } = supabase.storage
+              .from("vendor_profiles")
+              .getPublicUrl(svcPath);
+            svc.imageUrl = svcUrl.publicUrl;
+          }
+          // Remove the File object before saving to DB
+          delete svc.imageFile;
+        }
+      }
+      setUploadingImages(false);
+
       const updatedMember = {
         username: member.username,
         name: formData.get("name") as string,
@@ -330,7 +357,7 @@ export default function DashboardPage() {
           whatsapp: formData.get("whatsapp") as string,
           website: JSON.stringify(catalogLinks),
         },
-        services // Sync up-to-date custom catalog
+        services: updatedServices // Sync up-to-date custom catalog
       };
 
       const res = await fetch("/api/members", {
@@ -1087,19 +1114,30 @@ END:VCARD`;
                       <div className="flex flex-col gap-3">
                         {services.map((service, index) => (
                           <div key={index} className="flex flex-col sm:flex-row sm:items-center justify-between p-4 bg-[#FAF8F5] rounded-xl border border-[#E8E4DF] gap-3">
-                            <div className="flex-1">
-                              <div className="flex items-baseline gap-2 mb-1">
-                                <span className="font-bold text-[#1A1A1A]">{service.name}</span>
-                                <span className="text-xs font-bold text-[#C9540A]">{service.price}</span>
+                            <div className="flex gap-4 w-full sm:w-auto">
+                              {(service.imageUrl || service.imageFile) && (
+                                <div className="w-16 h-16 rounded-lg bg-gray-200 overflow-hidden shrink-0">
+                                  <img 
+                                    src={service.imageFile ? URL.createObjectURL(service.imageFile) : service.imageUrl} 
+                                    alt={service.name} 
+                                    className="w-full h-full object-cover" 
+                                  />
+                                </div>
+                              )}
+                              <div className="flex-1">
+                                <div className="flex items-baseline gap-2 mb-1">
+                                  <span className="font-bold text-[#1A1A1A]">{service.name}</span>
+                                  <span className="text-xs font-bold text-[#C9540A]">{service.price}</span>
+                                </div>
+                                <p className="text-xs text-[#6B6B6B] line-clamp-2">{service.description}</p>
                               </div>
-                              <p className="text-xs text-[#6B6B6B]">{service.description}</p>
                             </div>
                             <button 
                               type="button"
                               onClick={() => {
                                 setServices(services.filter((_, idx) => idx !== index));
                               }}
-                              className="px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors border border-red-200 sm:self-center"
+                              className="px-3 py-1.5 text-xs font-bold text-red-600 bg-red-50 hover:bg-red-100 rounded-lg transition-colors border border-red-200 sm:self-center shrink-0"
                             >
                               Remove
                             </button>
@@ -1113,59 +1151,91 @@ END:VCARD`;
                       </div>
 
                       {/* Add Service Block */}
-                      <div className="p-4 bg-[#F4F1ED] border border-[#E8E4DF] rounded-xl flex flex-col gap-3">
-                        <h4 className="font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Add New Product / Service</h4>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          <div>
-                            <input 
-                              type="text" 
-                              placeholder="Service/Product Name (e.g. Premium Bridal Styling)"
-                              value={newServiceName}
-                              onChange={(e) => setNewServiceName(e.target.value)}
-                              className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
-                            />
+                      {services.length < 5 ? (
+                        <div className="p-4 bg-[#F4F1ED] border border-[#E8E4DF] rounded-xl flex flex-col gap-3">
+                          <h4 className="font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Add New Product / Service ({5 - services.length} remaining)</h4>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <input 
+                                type="text" 
+                                placeholder="Service/Product Name (e.g. Premium Bridal Styling)"
+                                value={newServiceName}
+                                onChange={(e) => setNewServiceName(e.target.value)}
+                                className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
+                              />
+                            </div>
+                            <div>
+                              <input 
+                                type="text" 
+                                placeholder="Price (e.g. ₹5,000 or ₹1,500/hr)"
+                                value={newServicePrice}
+                                onChange={(e) => setNewServicePrice(e.target.value)}
+                                className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
+                              />
+                            </div>
                           </div>
                           <div>
                             <input 
                               type="text" 
-                              placeholder="Price (e.g. ₹5,000 or ₹1,500/hr)"
-                              value={newServicePrice}
-                              onChange={(e) => setNewServicePrice(e.target.value)}
+                              placeholder="Brief description of catalog item deliverables"
+                              value={newServiceDesc}
+                              onChange={(e) => setNewServiceDesc(e.target.value)}
                               className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
                             />
                           </div>
+                          <div>
+                            <label className="block text-xs font-semibold text-[#6B6B6B] mb-1">Product Image (Optional)</label>
+                            <input 
+                              type="file" 
+                              accept="image/*"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) {
+                                  if (file.size > 2 * 1024 * 1024) {
+                                    alert("Product image must be under 2MB.");
+                                    return;
+                                  }
+                                  setNewServiceImage(file);
+                                  setNewServiceImagePreview(URL.createObjectURL(file));
+                                }
+                              }}
+                              className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-1.5 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
+                            />
+                            {newServiceImagePreview && (
+                              <img src={newServiceImagePreview} className="mt-2 h-16 w-16 rounded-md object-cover" alt="Preview" />
+                            )}
+                          </div>
+                          <button 
+                            type="button"
+                            onClick={() => {
+                              if (!newServiceName.trim()) {
+                                alert("Please enter a service name.");
+                                return;
+                              }
+                              const newItem: ServiceCatalogItem = {
+                                name: newServiceName.trim(),
+                                price: newServicePrice.trim() || "Contact for pricing",
+                                description: newServiceDesc.trim() || "Professional female founder consulting service.",
+                                imageFile: newServiceImage || undefined,
+                                imageUrl: undefined
+                              };
+                              setServices([...services, newItem]);
+                              setNewServiceName("");
+                              setNewServicePrice("");
+                              setNewServiceDesc("");
+                              setNewServiceImage(null);
+                              setNewServiceImagePreview(null);
+                            }}
+                            className="py-2 px-4 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-lg text-xs font-bold transition-all self-end"
+                          >
+                            + Add Catalog Item
+                          </button>
                         </div>
-                        <div>
-                          <input 
-                            type="text" 
-                            placeholder="Brief description of catalog item deliverables"
-                            value={newServiceDesc}
-                            onChange={(e) => setNewServiceDesc(e.target.value)}
-                            className="w-full bg-white border border-[#E8E4DF] rounded-lg px-3 py-2 text-xs focus:ring-1 focus:ring-[#C9540A] outline-none"
-                          />
+                      ) : (
+                        <div className="p-4 bg-[#FFF8F5] border border-[#FFD8C4] rounded-xl text-center">
+                          <p className="text-[#C9540A] text-sm font-bold">You have reached the maximum limit of 5 products/services.</p>
                         </div>
-                        <button 
-                          type="button"
-                          onClick={() => {
-                            if (!newServiceName.trim()) {
-                              alert("Please enter a service name.");
-                              return;
-                            }
-                            const newItem = {
-                              name: newServiceName.trim(),
-                              price: newServicePrice.trim() || "Contact for pricing",
-                              description: newServiceDesc.trim() || "Professional female founder consulting service."
-                            };
-                            setServices([...services, newItem]);
-                            setNewServiceName("");
-                            setNewServicePrice("");
-                            setNewServiceDesc("");
-                          }}
-                          className="py-2 px-4 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-lg text-xs font-bold transition-all self-end"
-                        >
-                          + Add Catalog Item
-                        </button>
-                      </div>
+                      )}
                     </div>
 
                     <div className="pt-6 border-t border-[#E8E4DF]">
