@@ -392,30 +392,32 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
               </div>
 
               {/* Business Details */}
-              <div className="bg-white rounded-2xl shadow-sm border border-[#E8E4DF] p-6 md:p-8 mb-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {member.priceRange && (
-                  <div>
-                    <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Price Range</h3>
-                    <p className="text-[#6B6B6B]">{member.priceRange}</p>
-                  </div>
-                )}
-                {member.shippingAreas && (
-                  <div>
-                    <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Shipping / Service Areas</h3>
-                    <p className="text-[#6B6B6B] flex items-start gap-2">
-                      <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[#C9540A]" /> {member.shippingAreas}
-                    </p>
-                  </div>
-                )}
-                {member.openForCollaboration && (
-                  <div className="sm:col-span-2">
-                    <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Collaboration</h3>
-                    <p className="text-[#C9540A] font-medium bg-[#C9540A]/10 inline-block px-3 py-1 rounded-lg">
-                      🤝 Open for Collaboration
-                    </p>
-                  </div>
-                )}
-              </div>
+              {(member.priceRange || member.shippingAreas || member.openForCollaboration) && (
+                <div className="bg-white rounded-2xl shadow-sm border border-[#E8E4DF] p-6 md:p-8 mb-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {member.priceRange && (
+                    <div>
+                      <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Price Range</h3>
+                      <p className="text-[#6B6B6B]">{member.priceRange}</p>
+                    </div>
+                  )}
+                  {member.shippingAreas && (
+                    <div>
+                      <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Shipping / Service Areas</h3>
+                      <p className="text-[#6B6B6B] flex items-start gap-2">
+                        <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-[#C9540A]" /> {member.shippingAreas}
+                      </p>
+                    </div>
+                  )}
+                  {member.openForCollaboration && (
+                    <div className="sm:col-span-2">
+                      <h3 className="text-sm font-bold text-[#1A1A1A] mb-2 uppercase tracking-wide">Collaboration</h3>
+                      <p className="text-[#C9540A] font-medium bg-[#C9540A]/10 inline-block px-3 py-1 rounded-lg">
+                        🤝 Open for Collaboration
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
 
               {/* Services / Products */}
               {member.services && member.services.length > 0 && (
