@@ -281,67 +281,57 @@ export default function DashboardPage() {
     let finalCoverImageUrl = coverImage;
 
     try {
-      if (logoFile || coverImageFile) {
+      const supabase = getSupabaseBrowserClient();
+      const updatedServices = [...services];
+      const uploadPromises: Promise<void>[] = [];
+
+      if (logoFile || coverImageFile || updatedServices.some(s => s.imageFile)) {
         setUploadingImages(true);
-        const supabase = getSupabaseBrowserClient();
 
         if (logoFile) {
           const logoPath = `${member.username}/logo-${Date.now()}.${logoFile.name.split('.').pop()}`;
-          const { error: logoError } = await supabase.storage
-            .from("vendor_profiles")
-            .upload(logoPath, logoFile, { upsert: true, contentType: logoFile.type });
-
-          if (logoError) {
-            throw new Error(`Logo upload failed: ${logoError.message}`);
-          }
-
-          const { data: logoPublicUrl } = supabase.storage
-            .from("vendor_profiles")
-            .getPublicUrl(logoPath);
-          finalLogoUrl = logoPublicUrl.publicUrl;
+          uploadPromises.push(
+            supabase.storage.from("vendor_profiles").upload(logoPath, logoFile, { upsert: true, contentType: logoFile.type })
+              .then(({ error }) => {
+                if (error) throw new Error(`Logo upload failed: ${error.message}`);
+                const { data } = supabase.storage.from("vendor_profiles").getPublicUrl(logoPath);
+                finalLogoUrl = data.publicUrl;
+              })
+          );
         }
 
         if (coverImageFile) {
           const coverPath = `${member.username}/cover-${Date.now()}.${coverImageFile.name.split('.').pop()}`;
-          const { error: coverError } = await supabase.storage
-            .from("vendor_profiles")
-            .upload(coverPath, coverImageFile, { upsert: true, contentType: coverImageFile.type });
-
-          if (coverError) {
-            throw new Error(`Cover image upload failed: ${coverError.message}`);
-          }
-
-          const { data: coverPublicUrl } = supabase.storage
-            .from("vendor_profiles")
-            .getPublicUrl(coverPath);
-          finalCoverImageUrl = coverPublicUrl.publicUrl;
+          uploadPromises.push(
+            supabase.storage.from("vendor_profiles").upload(coverPath, coverImageFile, { upsert: true, contentType: coverImageFile.type })
+              .then(({ error }) => {
+                if (error) throw new Error(`Cover image upload failed: ${error.message}`);
+                const { data } = supabase.storage.from("vendor_profiles").getPublicUrl(coverPath);
+                finalCoverImageUrl = data.publicUrl;
+              })
+          );
         }
 
+        for (let i = 0; i < updatedServices.length; i++) {
+          const svc = updatedServices[i];
+          if (svc.imageFile) {
+            const svcPath = `${member.username}/service-${i}-${Date.now()}.${svc.imageFile.name.split('.').pop()}`;
+            uploadPromises.push(
+              supabase.storage.from("vendor_profiles").upload(svcPath, svc.imageFile, { upsert: true, contentType: svc.imageFile.type })
+                .then(({ error }) => {
+                  if (!error) {
+                    const { data } = supabase.storage.from("vendor_profiles").getPublicUrl(svcPath);
+                    svc.imageUrl = data.publicUrl;
+                  }
+                  delete svc.imageFile;
+                })
+            );
+          }
+        }
+
+        await Promise.all(uploadPromises);
         setUploadingImages(false);
       }
-
-      const supabase = getSupabaseBrowserClient();
-      const updatedServices = [...services];
-      for (let i = 0; i < updatedServices.length; i++) {
-        const svc = updatedServices[i];
-        if (svc.imageFile) {
-          setUploadingImages(true);
-          const svcPath = `${member.username}/service-${i}-${Date.now()}.${svc.imageFile.name.split('.').pop()}`;
-          const { error: svcError } = await supabase.storage
-            .from("vendor_profiles")
-            .upload(svcPath, svc.imageFile, { upsert: true, contentType: svc.imageFile.type });
-
-          if (!svcError) {
-            const { data: svcUrl } = supabase.storage
-              .from("vendor_profiles")
-              .getPublicUrl(svcPath);
-            svc.imageUrl = svcUrl.publicUrl;
-          }
-          // Remove the File object before saving to DB
-          delete svc.imageFile;
-        }
-      }
-      setUploadingImages(false);
 
       const updatedMember = {
         username: member.username,

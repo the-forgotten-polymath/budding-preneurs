@@ -95,6 +95,8 @@ export default function DirectoryPage() {
   // Sort
   const [sortBy, setSortBy] = useState("featured"); // featured, viewed, active
   const [isSortOpen, setIsSortOpen] = useState(false);
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false);
+  const [showAllCategories, setShowAllCategories] = useState(false);
 
   // Fetch live members from API
   const fetchMembers = async () => {
@@ -280,9 +282,20 @@ export default function DirectoryPage() {
           <div className="flex flex-col lg:flex-row gap-8">
             
             {/* SIDEBAR FILTERS */}
-            <aside className="w-full lg:w-1/4 flex flex-col gap-8">
-              <div className="bg-white p-6 rounded-2xl shadow-sm border border-[#E8E4DF]">
-                <div className="flex items-center gap-2 mb-6 text-[#1A1A1A]">
+            <aside className="w-full lg:w-1/4 flex flex-col gap-4">
+              <button 
+                onClick={() => setIsMobileFiltersOpen(!isMobileFiltersOpen)}
+                className="lg:hidden w-full flex items-center justify-between bg-white p-4 rounded-xl border border-[#E8E4DF] shadow-sm font-bold text-[#1A1A1A]"
+              >
+                <div className="flex items-center gap-2">
+                  <Filter className="w-5 h-5 text-[#C9540A]" />
+                  Filters & Categories
+                </div>
+                {isMobileFiltersOpen ? <X className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+              </button>
+              
+              <div className={`bg-white p-6 rounded-2xl shadow-sm border border-[#E8E4DF] ${isMobileFiltersOpen ? 'block' : 'hidden lg:block'}`}>
+                <div className="hidden lg:flex items-center gap-2 mb-6 text-[#1A1A1A]">
                   <Filter className="w-5 h-5" />
                   <h3 className="text-lg font-bold">Filters</h3>
                 </div>
@@ -380,7 +393,7 @@ export default function DirectoryPage() {
                 <div className="mb-6">
                   <label className="block text-sm font-semibold text-[#1A1A1A] mb-3">Category</label>
                   <div className="flex flex-col gap-2">
-                    {CATEGORIES.map(cat => (
+                    {(showAllCategories ? CATEGORIES : CATEGORIES.slice(0, 5)).map(cat => (
                       <button 
                         key={cat}
                         onClick={() => setActiveCategory(cat)}
@@ -389,6 +402,22 @@ export default function DirectoryPage() {
                         {cat}
                       </button>
                     ))}
+                    {!showAllCategories && CATEGORIES.length > 5 && (
+                      <button 
+                        onClick={() => setShowAllCategories(true)}
+                        className="text-left px-3 py-2 text-sm font-semibold text-[#C9540A] hover:bg-[#F4F1ED] rounded-lg mt-1"
+                      >
+                        + Show More ({CATEGORIES.length - 5})
+                      </button>
+                    )}
+                    {showAllCategories && (
+                      <button 
+                        onClick={() => setShowAllCategories(false)}
+                        className="text-left px-3 py-2 text-sm font-semibold text-[#6B6B6B] hover:bg-[#F4F1ED] rounded-lg mt-1"
+                      >
+                        - Show Less
+                      </button>
+                    )}
                   </div>
                 </div>
 
