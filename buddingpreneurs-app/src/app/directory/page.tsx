@@ -203,15 +203,11 @@ export default function DirectoryPage() {
 
           <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
             <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
-            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Showcase</a>
             <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
-            <a href="/directory" className="text-[11px] xl:text-xs font-bold text-[#C9540A] transition-colors border-b-2 border-[#C9540A] pb-1">Directory</a>
-            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Blog</a>
-            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Our Programs</a>
-            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Plan</a>
-            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Disclaimer</a>
-            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About us</a>
-            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Contact</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Programs</a>
+            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About</a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -234,12 +230,12 @@ export default function DirectoryPage() {
             className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md pt-24 px-6 pb-6 overflow-y-auto lg:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 items-center text-center mt-8">
-              {['Home', 'Workshops', 'Community', 'Directory', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
+              {['Home', 'Business Showcase', 'Community', 'Programs', 'Workshops', 'About'].map((item) => (
                 <a
                   key={item}
                   href={item === 'Home' ? '/' : item === 'Our Programs' ? '/programs' : item === 'About us' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`text-lg font-semibold transition-colors ${item === 'Directory' ? 'text-[#C9540A]' : 'text-[#1A1A1A] hover:text-[#C9540A]'}`}
+                  className={`text-lg font-semibold transition-colors ${item === 'Business Showcase' ? 'text-[#C9540A]' : 'text-[#1A1A1A] hover:text-[#C9540A]'}`}
                 >
                   {item}
                 </a>
@@ -263,15 +259,14 @@ export default function DirectoryPage() {
             className="max-w-3xl mx-auto"
           >
             <h1 className="text-5xl md:text-6xl font-black mb-6 text-[#1A1A1A] tracking-tight uppercase font-display">
-              Vendor <span className="text-[#C9540A] italic font-heading capitalize">Directory</span>
+              Business <span className="text-[#C9540A] italic font-heading capitalize">Showcase</span>
             </h1>
-            <p className="text-lg font-bold text-[#C9540A] mb-4">In your area – PAN India businesses</p>
             <p className="text-lg md:text-xl text-[#6B6B6B] leading-relaxed mb-8">
-              Discover and connect with top verified professionals, businesses, and freelancers.
+              Discover Women-Led Businesses
             </p>
             <div className="flex justify-center">
               <a href="/register" className="inline-flex items-center gap-2 bg-[#1A1A1A] hover:bg-[#2C2C2C] text-white px-8 py-4 rounded-xl font-bold transition-all shadow-lg hover:shadow-xl hover:-translate-y-1">
-                List your Business / Join the Directory <ArrowRight className="w-5 h-5" />
+                List your Business / Join the Business Showcase <ArrowRight className="w-5 h-5" />
               </a>
             </div>
           </motion.div>

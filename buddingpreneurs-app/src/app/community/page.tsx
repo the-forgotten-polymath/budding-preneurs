@@ -62,20 +62,12 @@ export default function CommunityPage() {
           </a>
 
           <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.path}
-                className={`text-[11px] xl:text-xs font-semibold transition-colors ${
-                  link.name === 'Community' 
-                    ? "text-[#C9540A] border-b-2 border-[#C9540A] pb-1 font-bold" 
-                    : "text-[#1A1A1A] hover:text-[#C9540A]"
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
-          <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a>
+            <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Showcase</a>
+            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Programs</a>
+            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About</a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">

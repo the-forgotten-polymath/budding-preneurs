@@ -141,15 +141,11 @@ export default function WorkshopsPage() {
 
           <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
             <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
-            <a href="/workshops" className="text-[11px] xl:text-xs font-bold text-[#C9540A] transition-colors border-b-2 border-[#C9540A] pb-1">Workshops</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Showcase</a>
             <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
-            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a>
-            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Blog</a>
-            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Our Programs</a>
-            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Plan</a>
-            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Disclaimer</a>
-            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About us</a>
-            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Contact</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Programs</a>
+            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About</a>
           </nav>
 
           <div className="flex items-center gap-2 sm:gap-4">
@@ -172,7 +168,7 @@ export default function WorkshopsPage() {
             className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md pt-24 px-6 pb-6 overflow-y-auto lg:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 items-center text-center mt-8">
-              {['Home', 'Workshops', 'Community', 'Directory', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
+              {['Home', 'Business Showcase', 'Community', 'Programs', 'Workshops', 'About'].map((item) => (
                 <a
                   key={item}
                   href={item === 'Home' ? '/' : item === 'Our Programs' ? '/programs' : item === 'About us' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
@@ -344,7 +340,7 @@ export default function WorkshopsPage() {
                     E-Commerce <span className="italic text-[#C9540A] font-serif">& D2C</span>
                   </h3>
                   <ul className="space-y-2.5 mb-8">
-                    {["Online Selling Strategies", "Marketplace Selling", "Website & Store Setup", "Customer Retention Techniques", "D2C Brand Growth"].map((item) => (
+                    {["Online Selling Strategies", "Business Showcase Selling", "Website & Store Setup", "Customer Retention Techniques", "D2C Brand Growth"].map((item) => (
                       <li key={item} className="flex items-start gap-2 text-[14px] text-[#6B6B6B] leading-relaxed">
                         <span className="text-[#C9540A] mt-1 text-xs">◆</span>
                         <span>{item}</span>

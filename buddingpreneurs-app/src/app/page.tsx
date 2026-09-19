@@ -150,7 +150,7 @@ export default function Home() {
       image: "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=80&h=80&fit=crop&crop=face"
     },
     {
-      text: "The organic networking opportunities here are genuine. Buddingpreneurs isn't just a list directory; it's an active community that helps you grow and shine.",
+      text: "The organic networking opportunities here are genuine. Buddingpreneurs isn't just a list marketplace; it's an active community that helps you grow and shine.",
       name: "Lekhakraj K R",
       role: "Creative Designer, Bangalore",
       image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&h=80&fit=crop&crop=face"
@@ -256,15 +256,11 @@ export default function Home() {
           {/* Center Navigation links */}
           <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
             <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
-            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Showcase</a>
             <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
-            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a>
-            <a href="/blog" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Blog</a>
-            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Our Programs</a>
-            <a href="/business-plan" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Plan</a>
-            <a href="/disclaimer" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Disclaimer</a>
-            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About us</a>
-            <a href="/contact" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Contact</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Programs</a>
+            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About</a>
           </nav>
 
           {/* Call to action button */}
@@ -293,7 +289,7 @@ export default function Home() {
             className="fixed inset-0 z-40 bg-white/95 backdrop-blur-md pt-24 px-6 pb-6 overflow-y-auto lg:hidden flex flex-col"
           >
             <div className="flex flex-col gap-6 items-center text-center mt-8">
-              {['Home', 'Workshops', 'Community', 'Directory', 'Blog', 'Our Programs', 'Business Plan', 'Disclaimer', 'About us', 'Contact'].map((item) => (
+              {['Home', 'Business Showcase', 'Community', 'Programs', 'Workshops', 'About'].map((item) => (
                 <a
                   key={item}
                   href={item === 'Home' ? '/' : item === 'Our Programs' ? '/programs' : item === 'About us' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
@@ -311,7 +307,7 @@ export default function Home() {
                 onClick={() => setIsMobileMenuOpen(false)}
                 className="px-8 py-3.5 rounded-full text-sm font-bold transition-all flex items-center justify-center gap-2 bg-[#0f172a] text-white w-full max-w-xs shadow-sm hover:bg-slate-800"
               >
-                <span>Join for Free</span>
+                <span>Join Buddingpreneurs</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -345,8 +341,7 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="text-[26px] sm:text-[38px] md:text-[46px] font-black text-[#0f172a] tracking-tight leading-[1.12] mb-[7px] max-w-3xl font-sans"
           >
-            Find Your Tribe,<br />
-            Build Your Network.
+            Celebrate Women-Led Businesses
           </motion.h1>
 
           {/* Centered Subtitle */}
@@ -356,8 +351,8 @@ export default function Home() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-[#334155] text-[10px] sm:text-[12px] md:text-[13px] max-w-xl mx-auto leading-relaxed mb-[15px] font-semibold font-sans"
           >
-            Join India's Women Entrepreneurs Community for Growth,<br className="hidden sm:inline" />
-            Visibility & Business Opportunities
+            Discover • Connect • Collaborate • Grow<br className="hidden sm:inline" />
+            Discover inspiring brands, products, services and entrepreneurs across India.
           </motion.p>
 
           {/* Centered Buttons */}
@@ -371,7 +366,7 @@ export default function Home() {
               href="/business-plan"
               className="inline-flex items-center gap-1.5 px-6 py-3.5 rounded-full bg-[#C9540A] hover:bg-[#A8420A] text-white text-xs font-bold transition-all shadow-sm"
             >
-              <span>Join for Free</span>
+              <span>Join Buddingpreneurs</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </a>
             
@@ -386,7 +381,7 @@ export default function Home() {
                   className="object-cover w-full h-full"
                 />
               </div>
-              <span>Explore Communities</span>
+              <span>Explore Business Showcase</span>
             </a>
           </motion.div>
         </div>
@@ -434,16 +429,26 @@ export default function Home() {
               className="w-full h-auto object-cover object-top" 
               alt="Buddingpreneurs Founder" 
             />
+            <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm px-5 py-3 rounded-xl shadow-lg border border-white/20 text-center md:text-left">
+              <p className="font-bold text-[#1A1A1A] text-lg sm:text-xl mb-0.5">Sasmita Behera</p>
+              <p className="text-xs sm:text-sm font-bold text-[#C9540A] uppercase tracking-wide">Founder, Buddingpreneurs</p>
+            </div>
           </div>
           <div className="w-full md:w-1/12 flex justify-start md:justify-center">
             <span className="text-[#6B6B6B] text-sm font-semibold tracking-widest uppercase md:-rotate-90 md:block inline-block transform origin-center whitespace-nowrap">
               Who we are
             </span>
           </div>
-          <div className="w-full md:w-6/12">
-            <h2 className="text-[#1A1A1A] text-2xl sm:text-3xl md:text-4xl leading-relaxed font-sans font-medium">
-              Buddingpreneurs is a vibrant community dedicated to <span className="italic text-[#C9540A] font-serif font-bold">empowering Indian women</span> through skill development, collaboration, and support, fostering independence and economic growth in their entrepreneurial journeys. We believe in the power of community to help women <span className="italic text-[#C9540A] font-serif font-bold">turn ideas into income</span>.
+          <div className="w-full md:w-6/12 flex flex-col gap-5">
+            <h2 className="text-[#C9540A] text-sm sm:text-base font-bold font-sans uppercase tracking-widest bg-[#F4F1ED] w-max px-3 py-1 rounded-lg">
+              More than a community. A business ecosystem.
             </h2>
+            <p className="text-[#1A1A1A] text-xl sm:text-2xl leading-relaxed font-sans font-medium">
+              Buddingpreneurs brings women-led businesses together to build visibility, meaningful connections and business opportunities.
+            </p>
+            <p className="text-[#6B6B6B] text-lg sm:text-xl leading-relaxed font-sans font-medium">
+              We believe in the power of community, collaboration, learning and business showcases to help women grow.
+            </p>
           </div>
         </div>
       </section>
@@ -562,7 +567,7 @@ export default function Home() {
                 desc: "Become a member of the Buddingpreneurs network to gain business visibility, direct networking access, speaking opportunities, lead generation pipelines, digital training workshops, resource access, and exclusive WhatsApp group access.",
                 bullets: [
                   "Full WhatsApp Inner Circle posting access & VIP support",
-                  "Premium member profile in the verified business directory",
+                  "Premium member profile in the verified business marketplace",
                   "Priority leads distribution & customer matchmaking",
                   "Free entry to all live monthly workshops & meets"
                 ]

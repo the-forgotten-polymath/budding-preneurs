@@ -289,7 +289,7 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
     return (
       <div className="min-h-screen bg-[#FAF8F5] flex flex-col items-center justify-center">
         <h2 className="text-2xl font-bold mb-2">Member Profile Not Found</h2>
-        <a href="/directory" className="text-[#C9540A] font-bold hover:underline">Back to Directory</a>
+        <a href="/directory" className="text-[#C9540A] font-bold hover:underline">Back to Marketplace</a>
       </div>
     );
   }
@@ -314,9 +314,12 @@ export default function MemberProfilePage({ params }: { params: Promise<{ userna
           </a>
 
           <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
-            <a href="/" className="text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A]">Home</a>
-            <a href="/directory" className="text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A]">Directory</a>
-            <a href="/programs" className="text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A]">Our Programs</a>
+            <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Showcase</a>
+            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Programs</a>
+            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About</a>
           </nav>
 
           <div className="flex items-center gap-4">

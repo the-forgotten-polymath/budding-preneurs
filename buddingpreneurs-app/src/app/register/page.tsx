@@ -131,7 +131,7 @@ export default function RegisterPage() {
           {[
             "Public business profile & shareable QR V-Card",
             "CRM inbox — receive and track client leads",
-            "Directory listing visible to thousands of visitors",
+            "Marketplace listing visible to thousands of visitors",
             "Access to workshops, programs & community events",
           ].map((benefit) => (
             <div key={benefit} className="flex items-start gap-3">

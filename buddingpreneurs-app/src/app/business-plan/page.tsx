@@ -68,19 +68,12 @@ export default function BusinessPlanPage() {
             </span>
           </a>
           <nav className="hidden lg:flex flex-nowrap items-center justify-center gap-3 xl:gap-5 whitespace-nowrap">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.path}
-                className={`text-[11px] xl:text-xs font-semibold transition-colors ${
-                  link.name === 'Business Plan' 
-                    ? "text-[#C9540A] border-b-2 border-[#C9540A] pb-1 font-bold" 
-                    : "text-[#1A1A1A] hover:text-[#C9540A]"
-                }`}
-              >
-                {link.name}
-              </a>
-            ))}
+            <a href="/" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Home</a>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Showcase</a>
+            <a href="/community" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Community</a>
+            <a href="/programs" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Programs</a>
+            <a href="/workshops" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Workshops</a>
+            <a href="/about" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">About</a>
           </nav>
           <div className="flex items-center gap-2 sm:gap-4">
             <a href="/contact" className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-1.5 bg-[#C9540A] hover:bg-[#A8420A] text-white shadow-sm">
@@ -351,7 +344,7 @@ export default function BusinessPlanPage() {
               <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
               <li><a href="/programs" className="hover:text-white transition-colors">Programs</a></li>
               <li><a href="/community" className="hover:text-white transition-colors">Community</a>
-            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Directory</a></li>
+            <a href="/directory" className="text-[11px] xl:text-xs font-semibold text-[#1A1A1A] hover:text-[#C9540A] transition-colors">Business Showcase</a></li>
               <li><a href="/contact" className="hover:text-white transition-colors">Contact Us</a></li>
             </ul>
           </div>

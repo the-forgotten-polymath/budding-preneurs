@@ -115,7 +115,7 @@ export const tabsData: TabData[] = [
         name: "Premium Plan",
         idealFor: "Scaling small businesses",
         price: "₹1,999/mo",
-        features: ["All Startup benefits + Spotlights", "Pitch feedback & coaching sessions", "E-Certificate & Directory Listing"]
+        features: ["All Startup benefits + Spotlights", "Pitch feedback & coaching sessions", "E-Certificate & Marketplace Listing"]
       },
       {
         name: "VIP / Pro Plan",

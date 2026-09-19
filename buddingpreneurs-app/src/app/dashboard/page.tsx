@@ -1770,7 +1770,7 @@ function ReportSaleModal({
   const [submitting, setSubmitting] = useState(false);
   const [productService, setProductService] = useState("");
   const [amount, setAmount] = useState("");
-  const [leadSource, setLeadSource] = useState("BP Directory");
+  const [leadSource, setLeadSource] = useState("BP Business Showcase");
   const [leadId, setLeadId] = useState("");
   const [orderId, setOrderId] = useState("");
   const [saleDate, setSaleDate] = useState(() => new Date().toISOString().split("T")[0]);
@@ -1791,7 +1791,7 @@ function ReportSaleModal({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           member_id: memberId,
-          lead_id: leadSource === "BP Directory" && leadId ? leadId : null,
+          lead_id: leadSource === "BP Business Showcase" && leadId ? leadId : null,
           product_service: productService,
           amount: parseFloat(amount),
           lead_source: leadSource,
@@ -1807,7 +1807,7 @@ function ReportSaleModal({
         // Reset form
         setProductService("");
         setAmount("");
-        setLeadSource("BP Directory");
+        setLeadSource("BP Business Showcase");
         setLeadId("");
         setOrderId("");
       } else {
@@ -1892,18 +1892,18 @@ function ReportSaleModal({
               value={leadSource}
               onChange={(e) => {
                 setLeadSource(e.target.value);
-                if (e.target.value !== "BP Directory") setLeadId("");
+                if (e.target.value !== "BP Business Showcase") setLeadId("");
               }}
               className="w-full bg-[#F4F1ED] border-none rounded-lg px-3 py-2.5 text-xs focus:ring-2 focus:ring-[#C9540A] outline-none text-[#1A1A1A]"
             >
-              <option value="BP Directory">BP Directory Lead</option>
+              <option value="BP Business Showcase">BP Business Showcase Lead</option>
               <option value="Social Media">Social Media (Instagram/FB/LinkedIn)</option>
               <option value="Direct / Referral">Direct / Referral</option>
               <option value="Other">Other</option>
             </select>
           </div>
 
-          {leadSource === "BP Directory" && (
+          {leadSource === "BP Business Showcase" && (
             <div>
               <label className="block text-xs font-bold uppercase text-[#1A1A1A] mb-1">Link to Lead *</label>
               <select 

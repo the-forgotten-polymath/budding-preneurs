@@ -69,7 +69,7 @@ export default function NavAuth() {
         href="/register"
         className="hidden md:inline-flex px-4 py-2 bg-[#C9540A] hover:bg-[#A8420A] text-white rounded-full font-bold text-[11px] xl:text-xs transition-colors shadow-sm whitespace-nowrap"
       >
-        Join Free
+        Get Featured
       </a>
     </div>
   );
