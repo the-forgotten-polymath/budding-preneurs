@@ -233,7 +233,7 @@ export default function DirectoryPage() {
               {['Home', 'Business Showcase', 'Community', 'Programs', 'Workshops', 'About'].map((item) => (
                 <a
                   key={item}
-                  href={item === 'Home' ? '/' : item === 'Our Programs' ? '/programs' : item === 'About us' ? '/about' : `/${item.toLowerCase().replace(' ', '-')}`}
+                  href={item === 'Home' ? '/' : item === 'Business Showcase' ? '/directory' : `/${item.toLowerCase().replace(' ', '-')}`}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`text-lg font-semibold transition-colors ${item === 'Business Showcase' ? 'text-[#C9540A]' : 'text-[#1A1A1A] hover:text-[#C9540A]'}`}
                 >
