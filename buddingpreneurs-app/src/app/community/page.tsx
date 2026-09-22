@@ -212,9 +212,12 @@ export default function CommunityPage() {
         {/* GALLERY SECTION */}
         <section className="py-24 px-6 bg-white border-t border-[#E8E4DF]">
           <div className="max-w-7xl mx-auto text-center">
-            <h2 className="text-3xl font-black text-[#1A1A1A] mb-4">Gallery</h2>
-            <p className="text-[#C9540A] font-bold tracking-widest uppercase text-sm mb-12">
-              From Idea to Income: Empowering Women Through Startup Support
+            <h2 className="text-3xl font-black text-[#1A1A1A] mb-4 uppercase">Our Community in Action</h2>
+            <p className="text-[#C9540A] font-bold tracking-widest uppercase text-sm mb-6">
+              CONNECT • LEARN • COLLABORATE • GROW
+            </p>
+            <p className="text-[#334155] text-lg leading-relaxed max-w-3xl mx-auto mb-12">
+              A glimpse into the conversations, workshops, networking sessions, webinars, showcases and community moments that bring women entrepreneurs together.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
               <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF] bg-black">
