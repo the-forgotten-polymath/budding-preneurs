@@ -225,6 +225,11 @@ export default function CommunityPage() {
               </div>
               <div className="relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF] bg-black">
                 <Image src="/images/community/net5.png" alt="Networking Meet 5" width={1200} height={800} className="w-full h-auto object-contain hover:scale-105 transition-transform duration-500" />
+                <div className="absolute bottom-6 sm:bottom-10 left-0 w-full text-center pointer-events-none z-10 px-4">
+                  <p className="text-white font-bold text-lg md:text-xl xl:text-2xl tracking-wide drop-shadow-lg font-sans">
+                    Buddingpreneurs Monthly Networking Meet
+                  </p>
+                </div>
               </div>
             </div>
           </div>
