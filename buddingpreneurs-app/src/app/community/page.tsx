@@ -216,7 +216,7 @@ export default function CommunityPage() {
             <p className="text-[#C9540A] font-bold tracking-widest uppercase text-sm mb-12">
               From Idea to Income: Empowering Women Through Startup Support
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF]">
                 <Image src="/images/community/net1.png" alt="Networking Meet 1" fill className="object-cover hover:scale-105 transition-transform duration-500" />
               </div>
@@ -225,6 +225,9 @@ export default function CommunityPage() {
               </div>
               <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF]">
                 <Image src="/images/community/NET3.png" alt="Networking Meet 3" fill className="object-cover hover:scale-105 transition-transform duration-500" />
+              </div>
+              <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF]">
+                <Image src="/images/community/net4.png" alt="Networking Meet 4" fill className="object-cover hover:scale-105 transition-transform duration-500" />
               </div>
             </div>
           </div>
