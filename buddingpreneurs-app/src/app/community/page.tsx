@@ -216,18 +216,15 @@ export default function CommunityPage() {
             <p className="text-[#C9540A] font-bold tracking-widest uppercase text-sm mb-12">
               From Idea to Income: Empowering Women Through Startup Support
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <div className="aspect-square relative rounded-2xl overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=600&q=80" alt="Gallery" fill className="object-cover hover:scale-105 transition-transform duration-500" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF]">
+                <Image src="/images/community/net1.png" alt="Networking Meet 1" fill className="object-cover hover:scale-105 transition-transform duration-500" />
               </div>
-              <div className="aspect-square relative rounded-2xl overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1573164574572-cb89e39749b4?auto=format&fit=crop&w=600&q=80" alt="Gallery" fill className="object-cover hover:scale-105 transition-transform duration-500" />
+              <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF]">
+                <Image src="/images/community/net2.png" alt="Networking Meet 2" fill className="object-cover hover:scale-105 transition-transform duration-500" />
               </div>
-              <div className="aspect-square relative rounded-2xl overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&w=600&q=80" alt="Gallery" fill className="object-cover hover:scale-105 transition-transform duration-500" />
-              </div>
-              <div className="aspect-square relative rounded-2xl overflow-hidden">
-                <Image src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&w=600&q=80" alt="Gallery" fill className="object-cover hover:scale-105 transition-transform duration-500" />
+              <div className="aspect-[4/3] relative rounded-2xl overflow-hidden shadow-lg border border-[#E8E4DF]">
+                <Image src="/images/community/NET3.png" alt="Networking Meet 3" fill className="object-cover hover:scale-105 transition-transform duration-500" />
               </div>
             </div>
           </div>

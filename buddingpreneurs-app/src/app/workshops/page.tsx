@@ -512,8 +512,8 @@ export default function WorkshopsPage() {
                   <div className="w-full lg:w-1/2 relative">
                     <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] w-full border border-gray-800">
                       <Image
-                        src="/images/workshops/workshops_sign_1779275512627.png"
-                        alt="Forcing a Change sign"
+                        src="/images/workshops/digimark.png"
+                        alt="7 Days Digital Marketing Workshop"
                         fill
                         className="object-cover"
                       />
@@ -525,10 +525,10 @@ export default function WorkshopsPage() {
                       <span>Featured Workshop</span>
                     </div>
                     <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                      Skill Development <span className="italic font-serif text-[#C9540A]">Workshop</span>
+                      7 Days Digital Marketing <span className="italic font-serif text-[#C9540A]">Workshop</span>
                     </h2>
                     <p className="text-gray-300 text-lg leading-relaxed mb-8">
-                      Join our empowering Skill Development Workshop designed for Indian women entrepreneurs. Learn essential skills in brand promotion on Facebook, Instagram, and WhatsApp. Collaborate with fellow women to enhance your business acumen and achieve economic independence through shared resources and support.
+                      Join our empowering 7 Days Digital Marketing Workshop taken by the founder, designed for Indian women entrepreneurs. Learn essential skills in brand promotion on Facebook, Instagram, and WhatsApp. Collaborate with fellow women to enhance your business acumen and achieve economic independence through shared resources and support.
                     </p>
                     <button 
                       onClick={() => openRegisterModal("Featured Skill Development Masterclass")}
