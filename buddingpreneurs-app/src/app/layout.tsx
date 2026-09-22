@@ -20,7 +20,11 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"),
-  title: siteMetadata.title,
+  applicationName: "Buddingpreneurs",
+  title: {
+    default: siteMetadata.title,
+    template: "%s | Buddingpreneurs",
+  },
   description: siteMetadata.description,
   keywords: ["buddingpreneurs", "buddingpreneur", "buddingpreneurs india", "buddingpreneurs pune", "buddingpreneurs dehradun", "women entrepreneurs", "startup training", "empowerment", "Indian startups", "digital marketing", "self-reliance", "networking", "mastermind", "Dehradun"],
   robots: {
