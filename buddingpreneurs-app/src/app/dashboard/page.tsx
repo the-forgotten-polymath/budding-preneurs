@@ -1141,9 +1141,9 @@ END:VCARD`;
                       </div>
 
                       {/* Add Service Block */}
-                      {services.length < 5 ? (
+                      {services.length < 10 ? (
                         <div className="p-4 bg-[#F4F1ED] border border-[#E8E4DF] rounded-xl flex flex-col gap-3">
-                          <h4 className="font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Add New Product / Service ({5 - services.length} remaining)</h4>
+                          <h4 className="font-bold text-xs text-[#1A1A1A] uppercase tracking-wider">Add New Product / Service ({10 - services.length} remaining)</h4>
                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <div>
                               <input 
@@ -1223,7 +1223,7 @@ END:VCARD`;
                         </div>
                       ) : (
                         <div className="p-4 bg-[#FFF8F5] border border-[#FFD8C4] rounded-xl text-center">
-                          <p className="text-[#C9540A] text-sm font-bold">You have reached the maximum limit of 5 products/services.</p>
+                          <p className="text-[#C9540A] text-sm font-bold">You have reached the maximum limit of 10 products/services.</p>
                         </div>
                       )}
                     </div>
