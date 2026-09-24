@@ -205,14 +205,14 @@ export default function WorkshopsPage() {
           </p>
 
           {/* Dynamic Filter Tabs - Glassmorphism & Fluid Sliding Bubble */}
-          <div className="flex items-center justify-start md:justify-between gap-3 sm:gap-4 mt-8 bg-white/40 backdrop-blur-md p-2.5 rounded-full max-w-5xl w-full mx-auto border border-white/60 shadow-[0_12px_40px_rgba(0,0,0,0.06)] overflow-x-auto no-scrollbar flex-nowrap whitespace-nowrap px-4 sm:px-6 relative">
+          <div className="inline-flex items-center gap-3 sm:gap-4 mt-8 bg-white/40 backdrop-blur-md p-2.5 rounded-full max-w-[95vw] border border-white/60 shadow-[0_12px_40px_rgba(0,0,0,0.06)] overflow-x-auto no-scrollbar flex-nowrap whitespace-nowrap px-4 sm:px-6 relative">
             {(["all", "marketing", "management", "community"] as const).map((cat) => {
               const isActive = activeCategory === cat;
               return (
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat as any)}
-                  className={`px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors duration-300 shrink-0 md:flex-1 text-center relative z-10 ${
+                  className={`px-6 py-3.5 sm:px-8 sm:py-4 rounded-full text-[11px] sm:text-xs font-black uppercase tracking-wider transition-colors duration-300 shrink-0 text-center relative z-10 ${
                     isActive ? "text-white" : "text-slate-600 hover:text-[#C9540A]"
                   }`}
                 >

@@ -103,11 +103,19 @@ export default function AboutPage() {
               <img src="/images/founder.png" alt="Founder" className="object-cover w-full h-full" />
             </div>
             <div>
-              <h3 className="text-2xl font-black text-[#1A1A1A] mb-2">Sasmita Behera</h3>
-              <p className="text-[#C9540A] font-bold text-sm mb-4">Founder & Director</p>
-              <p className="text-slate-600 leading-relaxed">
-                A visionary entrepreneur dedicated to grassroots empowerment. Sasmita believes that when you invest in a woman, you invest in an entire family and community. Her leadership at Buddingpreneurs has guided numerous women from concept to successful execution of their business ideas.
-              </p>
+              <h3 className="text-2xl font-black text-[#1A1A1A] mb-2">Meet Sasmita Behera</h3>
+              <p className="text-[#C9540A] font-bold text-sm mb-4">Founder & Admin, Buddingpreneurs | Founder, Art of Filigree</p>
+              <div className="text-slate-600 leading-relaxed space-y-4">
+                <p>Sasmita Behera is an entrepreneur, community builder and advocate for women’s growth and independence.</p>
+                <p>Her entrepreneurial journey began with Art of Filigree, inspired by the exquisite traditional silver filigree craft of Odisha.</p>
+                <p>With a Master of Computer Applications (MCA) from Sambalpur University, a Bachelor of Education (B.Ed) from MDU, Rohtak, and a Digital Marketing qualification from DSOM, Dehradun, Sasmita brings together her academic background, entrepreneurial experience and passion for learning to everything she undertakes.</p>
+                <p>Her journey has been shaped not only by business, but also by her commitment to education and empowerment. She has personally navigated the responsibilities of raising and educating her child through Standard 8, while continuing to develop her own skills and entrepreneurial pursuits.</p>
+                <p>Her passion for connecting with women entrepreneurs eventually led her to create Buddingpreneurs — a community built on the simple belief that women should not have to build their businesses alone.</p>
+                <p>Through Buddingpreneurs, Sasmita strives to create opportunities for women to connect, learn, collaborate, showcase their businesses and grow together.</p>
+                <p>Her experiences have shown her that women often don't lack talent. What they sometimes lack is visibility, confidence, access to the right network, or simply someone who believes in them.</p>
+                <p>This understanding became the heart of Buddingpreneurs.<br/>With her background in technology, education, digital marketing and entrepreneurship, Sasmita is working to build a supportive ecosystem where women-led businesses are seen, heard, celebrated and empowered to grow.</p>
+                <p>Her vision is simple yet powerful:<br/>“Her vision is to make sure that no woman with the passion to build is held back simply because she doesn't know where to start, how to start, whom to connect with, or how to be seen. 💜”</p>
+              </div>
             </div>
           </div>
         </div>
