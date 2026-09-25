@@ -376,7 +376,7 @@ export default function Home() {
             >
               <div className="w-5 h-5 rounded-full overflow-hidden border border-slate-200 relative flex-shrink-0">
                 <img 
-                  src="/images/home/founder.png" 
+                  src="/images/founder.png" 
                   alt="Founder" 
                   className="object-cover w-full h-full"
                 />
